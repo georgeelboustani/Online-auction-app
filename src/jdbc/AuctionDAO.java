@@ -1,4 +1,4 @@
-package model;
+package jdbc;
 
 public interface AuctionDAO {
 	
