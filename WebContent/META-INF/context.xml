@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context reloadable="true">
+<Resource auth="Container"
+		  name="jdbc/postgres"
+		  type="javax.sql.DataSource"
+		  driverClassName="org.postgresql.Driver"
+		  url="jdbc:postgresql://localhost:3306/testdb"
+	      username="root"
+		  password="pass"
+		  maxIdle="10"
+		  maxActive="200"
+		  maxWait="5"
+		  removeAbandoned="true"
+		  removeAbandonedTimeout="1200"
+/>
+</Context>
