@@ -1,4 +1,4 @@
-package model;
+package jdbc;
 
 import java.util.Date;
 
