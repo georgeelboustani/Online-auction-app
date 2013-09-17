@@ -55,6 +55,7 @@ public class HeaderFilter implements Filter {
 		if(session.getAttribute("user") == null){
 			res.sendRedirect("Landing/");
 		}else{
+			//continue as usual
 			chain.doFilter(request, response);
 			res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate"); 
 			res.setHeader("Pragma", "no-cache"); 
