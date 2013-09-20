@@ -3,10 +3,12 @@ package servlets;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -33,12 +35,27 @@ public class ControllerServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.info("doGet invoked");
+		String userPath=request.getServletPath();
+		if(userPath.matches("")){
+			
+		}
+		
+		HttpSession session = request.getSession(true);
+		if(session.getAttribute("user") == null){
+        	logger.info("Not logged in");
+        	response.sendRedirect("login.jsp");
+        }
 		
 		if(request.getParameter("action") != null){
-			//action for url-parsing
+			String action = request.getParameter("action");
+			if(action.equals("login")){
+				RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+	        	dispatcher.forward(request, response);
+			}
 		}else if(request.getParameter("callback") != null){
 			//callback for ajax
 		}
+		
 	}
 
 	/**
@@ -47,10 +64,14 @@ public class ControllerServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.info("doPost invoked");
 		
+		HttpSession session = request.getSession(true);
+       
 		if(request.getParameter("action") != null){
 			//callback for url-parsing
 		}else if(request.getParameter("callback") != null){
-			//callback for ajax
+			if(request.getParameter("callback").contains("")){
+				
+			}
 		}
 	}
 

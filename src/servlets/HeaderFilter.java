@@ -1,4 +1,4 @@
-package controller;
+package servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,40 +32,24 @@ public class HeaderFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, 
+			FilterChain chain) throws IOException, ServletException {
+		
 		logger.info("HeaderFilter invoked");
-		HttpServletRequest req = (HttpServletRequest) request;
+//		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
-		
-		String url = req.getServletPath();
-		boolean allowedRequest = false;
-        
-        if(urlList.contains(url)) {
-            allowedRequest = true;
-        }
-             
-        if (!allowedRequest) {
-            HttpSession session = req.getSession(false);
-            if (null == session) {
-                res.sendRedirect("index.jsp");
-            }
-        }
-		
+//////		res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate"); 
+////		res.setHeader("Pragma", "no-cache"); 
+//		res.setDateHeader("Expires", 0);
 		chain.doFilter(request, response);
+		
 	}
 
 	/**
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
-		String urls = fConfig.getInitParameter("avoid-urls");
-        StringTokenizer token = new StringTokenizer(urls, ",");
+		
         
-        urlList = new ArrayList<String>();
-        
-        while (token.hasMoreTokens()) {
-            urlList.add(token.nextToken());
-        }
 	}
 }

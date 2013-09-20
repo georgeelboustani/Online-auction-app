@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd http://java.sun.com/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee" version="2.4">
   <display-name>RollBack E-Auction WebApp</display-name>
-  <description>Auction made by RollBack Team</description>
   <session-config>
     <session-timeout>120</session-timeout>
   </session-config>
-  <!-- default mapping of / goes to 
-  		ControllerServlet to check user session  -->
-  <servlet-mapping>
-    <servlet-name>ControllerServlet</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
-  <filter>
-    <filter-name>HeaderFilter</filter-name>
-    <filter-class>
-        servlets.HeaderFilter
-    </filter-class>
+  <servlet>
+    <servlet-name>controller</servlet-name>
+    <servlet-class>servlets.ControllerServlet</servlet-class>
     <init-param>
-        <param-name>avoid-urls</param-name>
-        <param-value>index.jsp</param-value>
+      <param-name>debug</param-name>
+      <param-value>0</param-value>
     </init-param>
-  </filter>
-  <filter-mapping>
-    <filter-name>HeaderFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
+    <init-param>
+      <param-name>listings</param-name>
+      <param-value>false</param-value>
+  	</init-param>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>controller</servlet-name>
+  	<url-pattern>/static/*</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
