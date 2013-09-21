@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -11,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import exceptions.ServiceLocatorException;
+import jdbc.DBConnectionFactory;
 
 
 
@@ -35,6 +40,17 @@ public class ControllerServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.info("doGet invoked");
+		
+		try {
+			Connection con = DBConnectionFactory.getConnection();
+			logger.info("DB CATALOG = " + con.getCatalog());
+		} catch (ServiceLocatorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		HttpSession session = request.getSession(true);
 		
