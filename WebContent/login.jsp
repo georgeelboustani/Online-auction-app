@@ -3,19 +3,19 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <!--[if lt IE 9]>
-      <script src="${pageContext.request.contextPath}/static/js/html5shiv.js"></script>
-      <script src="${pageContext.request.contextPath}/static/js/respond.min.js"></script>
+      <script src="${pageContext.request.contextPath}/js/html5shiv.js"></script>
+      <script src="${pageContext.request.contextPath}/js/respond.min.js"></script>
     <![endif]-->
     <title>Login to Application</title>
 </head>
 <body>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-   	<script src="${pageContext.request.contextPath}/static/js/jquery-1.10.2.min.js"></script>
-   	<script src="${pageContext.request.contextPath}/static/js/jquery-migrate-1.2.1.min.js"></script>
+   	<script src="${pageContext.request.contextPath}/js/jquery-1.10.2.min.js"></script>
+   	<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.2.1.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
-   	<script src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
+   	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     
     <h2>Hello, please log in:</h2><br/>
     <form method=post name="callback" id="loginForm" >

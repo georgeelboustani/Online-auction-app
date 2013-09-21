@@ -38,8 +38,8 @@ public class HeaderFilter implements Filter {
 		logger.info("HeaderFilter invoked");
 //		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
-//////		res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate"); 
-////		res.setHeader("Pragma", "no-cache"); 
+//		res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate"); 
+//		res.setHeader("Pragma", "no-cache"); 
 //		res.setDateHeader("Expires", 0);
 		chain.doFilter(request, response);
 		

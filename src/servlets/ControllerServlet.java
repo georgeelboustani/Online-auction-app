@@ -35,20 +35,13 @@ public class ControllerServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.info("doGet invoked");
-		String userPath=request.getServletPath();
-		if(userPath.matches("")){
-			
-		}
 		
 		HttpSession session = request.getSession(true);
-		if(session.getAttribute("user") == null){
-        	logger.info("Not logged in");
-        	response.sendRedirect("login.jsp");
-        }
 		
 		if(request.getParameter("action") != null){
 			String action = request.getParameter("action");
 			if(action.equals("login")){
+				logger.info("Doing Login");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 	        	dispatcher.forward(request, response);
 			}

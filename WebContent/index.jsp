@@ -9,7 +9,7 @@
 <body>
 	Index Page
 	<br/>
-	<a href="${pageContext.request.contextPath}/action=login">LOGIN</a>
+	<a href="${pageContext.request.contextPath}/login.jsp?action=login">LOGIN</a>
 	<br/>
 	<a href="${pageContext.request.contextPath}/css/bootstrap.min.css">css file</a>
 </body>
