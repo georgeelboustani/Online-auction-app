@@ -1,4 +1,4 @@
-package controller.actions;
+package webactions;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +8,7 @@ public class LoginAction implements WebAction {
 
 	@Override
 	public RequestDispatcher execute(HttpServletRequest req, HttpServletResponse res) {
-		// TODO - fix this to do what needs to be done at login
+		// TODO - we need to verify the user
 		return req.getRequestDispatcher("index.jsp");		
 	}
 	

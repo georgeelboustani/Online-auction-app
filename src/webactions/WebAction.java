@@ -1,4 +1,4 @@
-package controller.actions;
+package webactions;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;

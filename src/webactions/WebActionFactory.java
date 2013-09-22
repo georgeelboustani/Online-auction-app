@@ -1,4 +1,4 @@
-package controller.actions;
+package webactions;
 
 import java.util.HashMap;
 import java.util.logging.Logger;
