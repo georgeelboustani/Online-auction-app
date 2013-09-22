@@ -1,6 +1,8 @@
 package jdbc;
 
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 public class AuctionDTO {
 	private int aid;
@@ -13,8 +15,8 @@ public class AuctionDTO {
 	private double auctionReservePrice;
 	private double biddingStartPrice;
 	private double biddingIncrement;
-	private Date  auctionStartTime;
-	private Date auctionCloseTime;
+	private Timestamp  auctionStartTime;
+	private Timestamp auctionCloseTime;
 	private boolean auctionHalt;
 	
 	// private List<BidDTO> bids; // we can add this if useful. otherwise better off using DAO to get them
@@ -79,16 +81,16 @@ public class AuctionDTO {
 	public void setBiddingIncrement(double biddingIncrement) {
 		this.biddingIncrement = biddingIncrement;
 	}
-	public Date getAuctionStartTime() {
+	public Timestamp getAuctionStartTime() {
 		return auctionStartTime;
 	}
-	public void setAuctionStartTime(Date auctionStartTime) {
+	public void setAuctionStartTime(Timestamp auctionStartTime) {
 		this.auctionStartTime = auctionStartTime;
 	}
-	public Date getAuctionCloseTime() {
+	public Timestamp getAuctionCloseTime() {
 		return auctionCloseTime;
 	}
-	public void setAuctionCloseTime(Date auctionCloseTime) {
+	public void setAuctionCloseTime(Timestamp auctionCloseTime) {
 		this.auctionCloseTime = auctionCloseTime;
 	}
 	public boolean getAuctionHalt() {

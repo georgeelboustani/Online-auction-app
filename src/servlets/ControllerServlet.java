@@ -2,7 +2,10 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -14,7 +17,12 @@ import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import webactions.WebAction;
+import webactions.WebActionFactory;
 import exceptions.ServiceLocatorException;
+import jdbc.AuctionDAO;
+import jdbc.AuctionDAOImpl;
+import jdbc.AuctionDTO;
 import jdbc.DBConnectionFactory;
 
 
@@ -41,30 +49,22 @@ public class ControllerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.info("doGet invoked");
 		
-		try {
-			Connection con = DBConnectionFactory.getConnection();
-			logger.info("DB CATALOG = " + con.getCatalog());
-		} catch (ServiceLocatorException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		HttpSession session = request.getSession(true);
+		RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
 		
 		if(request.getParameter("action") != null){
 			String action = request.getParameter("action");
-			if(action.equals("login")){
-				logger.info("Doing Login");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-	        	dispatcher.forward(request, response);
+			
+			// TODO - validate the request first? make sure valid action etc. sanity check
+			WebAction webAction = WebActionFactory.getAction(action);
+			if (webAction != null) {
+				rd = webAction.execute(request, response, logger);
 			}
+			
 		}else if(request.getParameter("callback") != null){
 			//callback for ajax
 		}
 		
+		rd.forward(request, response);
 	}
 
 	/**

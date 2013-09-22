@@ -4,7 +4,7 @@ public class DBUtils {
 	
 	// TODO - should we make them enum's
 	// DB table names and columns
-	public static String AUCTION_TABLE = "auction";
+	public static String AUCTION_TABLE = "auction_item";
 	public static String AUC_ID = "aid";
 	public static String AUC_OWNER_ID = "auction_owner_uid";
 	public static String AUC_TITLE = "auction_title";
@@ -36,7 +36,15 @@ public class DBUtils {
 	public static String USER_ACTIVE = "activate";
 	public static String USER_BAN = "ban";
 	
-	public static String ADMIN_TABLE = "admin";
+	public static String ADMIN_TABLE = "user_admin";
 	public static String ADMIN_UID = "uid";
+	
+	public static String CREDITCARD_TABLE = "creditcard";
+	public static String CC_ID = "ccid";
+	public static String CC_OWNER_ID = "card_owner_uid";
+	public static String CARD_NUM = "card_num";
+	public static String CARD_NAME = "card_name";
+	public static String CARD_EXPIRY = "card_expiry";
+	public static String CARD_CSC_NUM = "card_csc_num";
 	
 }
