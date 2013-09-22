@@ -15,6 +15,7 @@ public class WebActionFactory {
 		actionMap = new HashMap<String, WebAction>();
 		actionMap.put("login", new LoginAction());
 		actionMap.put("addAuction", new AddAuctionAction());
+		actionMap.put("addUser", new AddUserAction());
 		// TODO - add more action mappings
 	}
 	

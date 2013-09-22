@@ -8,6 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface WebAction {
 	
-	RequestDispatcher execute(HttpServletRequest req, HttpServletResponse res, Logger logger);
+	String execute(HttpServletRequest req, HttpServletResponse res, Logger logger);
 
 }

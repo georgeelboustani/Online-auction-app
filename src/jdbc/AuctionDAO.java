@@ -8,6 +8,6 @@ public interface AuctionDAO {
 	
 	AuctionDTO getAuctionByItemType(String itemType);
 	
-	// Add more shit we need from the auction table
+	// TODO - Add more shit we need from the auction table
 	
 }

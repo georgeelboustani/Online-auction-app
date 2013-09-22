@@ -1,5 +1,7 @@
 package jdbc;
 
+import java.sql.Date;
+
 public class UserDTO {
 	private int uid;
 	private String username;
@@ -8,7 +10,7 @@ public class UserDTO {
 	private String lastName;
 	private String password;
 	private String email;
-	private int yearOfBirth;
+	private Date yearOfBirth;
 	private String avatar;
 	private boolean activated;
 	private boolean banned;
@@ -55,10 +57,10 @@ public class UserDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getYearOfBirth() {
+	public Date getYearOfBirth() {
 		return yearOfBirth;
 	}
-	public void setYearOfBirth(int yearOfBirth) {
+	public void setYearOfBirth(Date yearOfBirth) {
 		this.yearOfBirth = yearOfBirth;
 	}
 	public String getAvatar() {

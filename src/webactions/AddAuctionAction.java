@@ -14,7 +14,7 @@ import jdbc.AuctionDTO;
 public class AddAuctionAction implements WebAction {
 
 	@Override
-	public RequestDispatcher execute(HttpServletRequest req,HttpServletResponse res, Logger logger) {
+	public String execute(HttpServletRequest req, HttpServletResponse res, Logger logger) {
 		AuctionDTO auc = new AuctionDTO();
 		
 		// TODO - replace all the constant parameters with the values from the request parameters. hopefully there all there :s
@@ -34,7 +34,8 @@ public class AddAuctionAction implements WebAction {
 		AuctionDAO aucdao = new AuctionDAOImpl();
 		aucdao.addAuction(auc);
 		
-		return null;
+		// TODO - return the next page
+		return "index.jsp";
 	}
 
 }

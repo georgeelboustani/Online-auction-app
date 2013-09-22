@@ -2,6 +2,8 @@ package jdbc;
 
 public class DBUtils {
 	
+	public static String SCHEMA_NAME = "public";
+	
 	// TODO - should we make them enum's
 	// DB table names and columns
 	public static String AUCTION_TABLE = "auction_item";

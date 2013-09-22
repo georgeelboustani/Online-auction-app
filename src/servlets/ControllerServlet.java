@@ -49,22 +49,26 @@ public class ControllerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.info("doGet invoked");
 		
-		RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-		
 		if(request.getParameter("action") != null){
+			// TODO - what should the default be
+			String forwardPage = "login.jsp";
+			
 			String action = request.getParameter("action");
 			
 			// TODO - validate the request first? make sure valid action etc. sanity check
 			WebAction webAction = WebActionFactory.getAction(action);
 			if (webAction != null) {
-				rd = webAction.execute(request, response, logger);
+				forwardPage = webAction.execute(request, response, logger);
 			}
 			
+			// TODO - why when i uncomment the forward, shit breaks??
+			//RequestDispatcher rd = request.getRequestDispatcher("/" + forwardPage);
+			//rd.forward(request, response);
 		}else if(request.getParameter("callback") != null){
 			//callback for ajax
 		}
 		
-		rd.forward(request, response);
+		
 	}
 
 	/**

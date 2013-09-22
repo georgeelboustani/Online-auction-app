@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginAction implements WebAction {
 
 	@Override
-	public RequestDispatcher execute(HttpServletRequest req, HttpServletResponse res, Logger logger) {
+	public String execute(HttpServletRequest req, HttpServletResponse res, Logger logger) {
 		// TODO - we need to verify the user
 		logger.info("Doing Login");
-		return req.getRequestDispatcher("index.jsp");		
+		return "index.jsp";		
 	}
 	
 }
