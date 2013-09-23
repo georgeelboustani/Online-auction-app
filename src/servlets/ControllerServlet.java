@@ -25,8 +25,6 @@ import jdbc.AuctionDAOImpl;
 import jdbc.AuctionDTO;
 import jdbc.DBConnectionFactory;
 
-
-
 /**
  * Servlet implementation class ControllerServlet
  */
@@ -40,30 +38,30 @@ public class ControllerServlet extends HttpServlet {
      */
     public ControllerServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		logger.info("doGet invoked");
+		logger.info("ControllerServlet: doGet() invoked");
+		
 		
 		if(request.getParameter("action") != null){
-			// TODO - what should the default be
-			String forwardPage = "login.jsp";
-			
+			// TODO - what should the default be => 
+			// index.jsp with a jsp guard that redirects to login.jsp
+			String forwardPage = "index.jsp";
 			String action = request.getParameter("action");
 			
-			// TODO - validate the request first? make sure valid action etc. sanity check
-			WebAction webAction = WebActionFactory.getAction(action);
-			if (webAction != null) {
-				forwardPage = webAction.execute(request, response, logger);
+			if(action.equals("login")){
+				forwardPage = "login.jsp";
+			}else if(action.equals("home")){
+				forwardPage = "index.jsp";
 			}
 			
 			// TODO - why when i uncomment the forward, shit breaks??
-			//RequestDispatcher rd = request.getRequestDispatcher("/" + forwardPage);
-			//rd.forward(request, response);
+			RequestDispatcher rd = request.getRequestDispatcher(forwardPage);
+			rd.forward(request, response);
 		}else if(request.getParameter("callback") != null){
 			//callback for ajax
 		}
@@ -75,17 +73,25 @@ public class ControllerServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		logger.info("doPost invoked");
+		logger.info("ControllerServlet: doPost() invoked");
 		
 		HttpSession session = request.getSession(true);
        
 		if(request.getParameter("action") != null){
 			//callback for url-parsing
 		}else if(request.getParameter("callback") != null){
-			if(request.getParameter("callback").contains("")){
+			if(request.getParameter("callback").contains("login")){
 				
+				WebAction webAction = WebActionFactory.getAction(action);
+				if (webAction != null) {
+//					forwardPage = webAction.execute(request, response, logger);
+				}
 			}
 		}
+	}
+	
+	private static void printUserSession(){
+		
 	}
 
 }
