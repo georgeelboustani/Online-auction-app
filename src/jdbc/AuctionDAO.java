@@ -10,6 +10,8 @@ public interface AuctionDAO {
 	
 	List<AuctionDTO> getAuctionByItemType(String itemType);
 	
+	List<AuctionDTO> getAllAuctions();
+	
 	// TODO - Add more shit we need from the auction table
 	
 }

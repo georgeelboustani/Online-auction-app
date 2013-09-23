@@ -52,7 +52,8 @@ public class AuctionDAOImpl implements AuctionDAO {
 			e.printStackTrace();
 		}
 	}
-
+	
+	// TODO - test this
 	@Override
 	public AuctionDTO getAuctionById(int auctionId) {
 		AuctionDTO auction = new AuctionDTO();
@@ -81,7 +82,8 @@ public class AuctionDAOImpl implements AuctionDAO {
 		
 		return auction;
 	}
-
+	
+	// TODO - test this
 	@Override
 	public List<AuctionDTO> getAuctionByItemType(String auctionCategory) {
 		List<AuctionDTO> auctions = new ArrayList<AuctionDTO>();
@@ -93,6 +95,33 @@ public class AuctionDAOImpl implements AuctionDAO {
 															 + " WHERE ?=?");
 			userQuery.setString(1,DBUtils.AUC_CATEGORY);
 			userQuery.setString(2,auctionCategory);
+			
+			ResultSet rs = userQuery.executeQuery();
+			while (rs.next()) {
+				auctions.add(generateAuctionDTO(rs));
+			}
+			
+			con.close();
+		} catch (ServiceLocatorException e) {
+			// TODO do some roll back probably
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO do some roll back probably
+			e.printStackTrace();
+		}
+		
+		return auctions;
+	}
+
+	// TODO - test this
+	@Override
+	public List<AuctionDTO> getAllAuctions() {
+		List<AuctionDTO> auctions = new ArrayList<AuctionDTO>();
+		Connection con;
+		try {
+			con = DBConnectionFactory.getConnection();
+			
+			PreparedStatement userQuery = con.prepareStatement("SELECT * FROM " + DBUtils.AUCTION_TABLE);
 			
 			ResultSet rs = userQuery.executeQuery();
 			while (rs.next()) {

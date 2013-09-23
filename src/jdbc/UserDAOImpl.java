@@ -72,6 +72,7 @@ public class UserDAOImpl implements UserDAO {
 		
 		return user;
 	}
+
 	// TODO - not tested yet
 	@Override
 	public List<UserDTO> getUserByFirstName(String firstName) {
@@ -104,6 +105,35 @@ public class UserDAOImpl implements UserDAO {
 		return users;
 	}
 
+	// TODO - not tested yet
+	@Override
+	public List<UserDTO> getAllUsers() {
+		List<UserDTO> users = new ArrayList<UserDTO>();
+		
+		Connection con;
+		
+		try {
+			con = DBConnectionFactory.getConnection();
+			
+			PreparedStatement userQuery = con.prepareStatement("SELECT * FROM " + DBUtils.SCHEMA_NAME + "." + DBUtils.USER_TABLE);
+			
+			ResultSet rs = userQuery.executeQuery();
+			while (rs.next()) {
+				users.add(generateUserDTO(rs));
+			}
+			
+			con.close();
+		} catch (ServiceLocatorException e) {
+			// TODO do some roll back probably
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO do some roll back probably
+			e.printStackTrace();
+		}
+		
+		return users;
+	}
+	
 	private UserDTO generateUserDTO(ResultSet rs) throws SQLException {
 		UserDTO user = new UserDTO();
 		
