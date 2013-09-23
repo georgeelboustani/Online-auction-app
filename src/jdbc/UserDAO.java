@@ -10,5 +10,7 @@ public interface UserDAO {
 	
 	List<UserDTO> getUserByFirstName(String firstName);
 	
+	List<UserDTO> getAllUsers();
+	
 	// Add more shit that we need to perform on user table
 }

@@ -1,12 +1,16 @@
 package jdbc;
 
+import java.util.List;
+
 public interface AuctionDAO {
 	
 	void addAuction(AuctionDTO auction);
 	
 	AuctionDTO getAuctionById(int auctionId);
 	
-	AuctionDTO getAuctionByItemType(String itemType);
+	List<AuctionDTO> getAuctionByItemType(String itemType);
+	
+	List<AuctionDTO> getAllAuctions();
 	
 	// TODO - Add more shit we need from the auction table
 	
