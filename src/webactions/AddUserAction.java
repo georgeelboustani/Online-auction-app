@@ -1,6 +1,7 @@
 package webactions;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -32,7 +33,13 @@ public class AddUserAction implements WebAction {
 		user.setYearOfBirth(new Date(2010, 7, 22));
 		
 		UserDAO userdao = new UserDAOImpl();
-		userdao.addUser(user);
+		try {
+			userdao.addUser(user);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			// TODO - sort out handling of this exception
+			return "error.jsp";
+		}
 		
 		// TODO - return the next page
 		return "login.jsp";

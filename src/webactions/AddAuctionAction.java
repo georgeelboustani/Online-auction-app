@@ -1,5 +1,6 @@
 package webactions;
 
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.logging.Logger;
 
@@ -32,7 +33,13 @@ public class AddAuctionAction implements WebAction {
 		auc.setBiddingStartPrice(10);
 		
 		AuctionDAO aucdao = new AuctionDAOImpl();
-		aucdao.addAuction(auc);
+		try {
+			aucdao.addAuction(auc);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			// TODO - sort out handling of this exception
+			return "error.jsp";
+		}
 		
 		// TODO - return the next page
 		return "index.jsp";

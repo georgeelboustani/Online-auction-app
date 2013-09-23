@@ -1,5 +1,8 @@
 package jdbc;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class DBUtils {
 	
 	public static String SCHEMA_NAME = "public";
@@ -50,4 +53,22 @@ public class DBUtils {
 	public static String CARD_EXPIRY = "card_expiry";
 	public static String CARD_CSC_NUM = "card_csc_num";
 	
+	public static String calculateMD5(String key) {
+		String original = key;
+		MessageDigest md;
+		try {
+			md = MessageDigest.getInstance("MD5");
+			md.update(original.getBytes());
+			byte[] digest = md.digest();
+			StringBuffer sb = new StringBuffer();
+			for (byte b : digest) {
+				sb.append(Integer.toHexString((int) (b & 0xff)));
+			}
+			return sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 }

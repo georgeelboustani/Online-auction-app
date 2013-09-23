@@ -12,9 +12,9 @@ import exceptions.ServiceLocatorException;
 public class AuctionDAOImpl implements AuctionDAO {
 
 	@Override
-	public void addAuction(AuctionDTO auction) {
+	public void addAuction(AuctionDTO auction) throws SQLException {
 		// TODO finish adding auction
-		Connection con;
+		Connection con = null;
 		try {
 			con = DBConnectionFactory.getConnection();
 			// TODO - im assuming here the id is automatically generated on insert,
@@ -43,21 +43,24 @@ public class AuctionDAOImpl implements AuctionDAO {
 			
 			updateAuc.executeUpdate();      
 			
-			con.close();
 		} catch (ServiceLocatorException e) {
 			// TODO do some roll back probably
 			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO do some roll back probably
 			e.printStackTrace();
+		} finally {
+			if (con != null) {
+				con.close();
+			}
 		}
 	}
 	
 	// TODO - test this
 	@Override
-	public AuctionDTO getAuctionById(int auctionId) {
+	public AuctionDTO getAuctionById(int auctionId) throws SQLException {
 		AuctionDTO auction = new AuctionDTO();
-		Connection con;
+		Connection con = null;
 		try {
 			con = DBConnectionFactory.getConnection();
 			
@@ -71,13 +74,16 @@ public class AuctionDAOImpl implements AuctionDAO {
 			
 			auction = generateAuctionDTO(rs);
 			
-			con.close();
 		} catch (ServiceLocatorException e) {
 			// TODO do some roll back probably
 			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO do some roll back probably
 			e.printStackTrace();
+		} finally {
+			if (con != null) {
+				con.close();
+			}
 		}
 		
 		return auction;
@@ -85,9 +91,9 @@ public class AuctionDAOImpl implements AuctionDAO {
 	
 	// TODO - test this
 	@Override
-	public List<AuctionDTO> getAuctionByItemType(String auctionCategory) {
+	public List<AuctionDTO> getAuctionByItemType(String auctionCategory) throws SQLException {
 		List<AuctionDTO> auctions = new ArrayList<AuctionDTO>();
-		Connection con;
+		Connection con = null;
 		try {
 			con = DBConnectionFactory.getConnection();
 			
@@ -101,13 +107,16 @@ public class AuctionDAOImpl implements AuctionDAO {
 				auctions.add(generateAuctionDTO(rs));
 			}
 			
-			con.close();
 		} catch (ServiceLocatorException e) {
 			// TODO do some roll back probably
 			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO do some roll back probably
 			e.printStackTrace();
+		} finally {
+			if (con != null) {
+				con.close();
+			}
 		}
 		
 		return auctions;
@@ -115,9 +124,9 @@ public class AuctionDAOImpl implements AuctionDAO {
 
 	// TODO - test this
 	@Override
-	public List<AuctionDTO> getAllAuctions() {
+	public List<AuctionDTO> getAllAuctions() throws SQLException {
 		List<AuctionDTO> auctions = new ArrayList<AuctionDTO>();
-		Connection con;
+		Connection con = null;
 		try {
 			con = DBConnectionFactory.getConnection();
 			
@@ -128,13 +137,16 @@ public class AuctionDAOImpl implements AuctionDAO {
 				auctions.add(generateAuctionDTO(rs));
 			}
 			
-			con.close();
 		} catch (ServiceLocatorException e) {
 			// TODO do some roll back probably
 			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO do some roll back probably
 			e.printStackTrace();
+		} finally {
+			if (con != null) {
+				con.close();
+			}
 		}
 		
 		return auctions;
