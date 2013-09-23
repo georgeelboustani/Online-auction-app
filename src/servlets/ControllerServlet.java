@@ -82,7 +82,7 @@ public class ControllerServlet extends HttpServlet {
 		}else if(request.getParameter("callback") != null){
 			if(request.getParameter("callback").contains("login")){
 				
-				WebAction webAction = WebActionFactory.getAction(action);
+				WebAction webAction = WebActionFactory.getAction("");
 				if (webAction != null) {
 //					forwardPage = webAction.execute(request, response, logger);
 				}
