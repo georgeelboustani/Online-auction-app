@@ -17,7 +17,6 @@ public class DBConnectionFactory {
 	private static DBConnectionFactory factory = null;
 	private DataSource ds = null;
 	private InitialContext ctx;
-	private Context subctx;
 	
 	private DBConnectionFactory() throws ServiceLocatorException{
 		try{
@@ -30,7 +29,7 @@ public class DBConnectionFactory {
 			throw new ServiceLocatorException();
 		}
 	}
-	
+	 
 	public DataSource getDataSource(){
 		return ds;
 	}
