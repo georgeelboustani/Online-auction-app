@@ -6,19 +6,11 @@ body {
 
 /* switch-container  */
 .switch-container {
-  max-width: 330px;
-  padding: 15px;
+  max-width: 180px;
   margin: 0 auto;
+  margin-top: 20px;
 }
 
-.switch-logo {
-  margin-bottom: 10px;
-}
-
-.switch-item {
-  max-width: 130px;
-  margin: 0 auto;
-}
 
 /* for the sign-in */
 
