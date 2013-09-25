@@ -8,16 +8,23 @@
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 	
-	<!-- init contorller -->
 	<servlet>
-    	<servlet-name>controller</servlet-name>
-    	<servlet-class>servlets.ControllerServlet</servlet-class>
+    	<servlet-name>ControllerServlet</servlet-name>
+    	<servlet-class>servlets.ControllerServlet</servlet-class> 
 	</servlet>
+	<servlet-mapping>
+    	<servlet-name>ControllerServlet</servlet-name>
+    	<url-pattern>/ControllerServlet</url-pattern>
+  	 </servlet-mapping>
 	
 	<!-- default servlet set for js, css, fonts & images -->
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
 		<url-pattern>/js/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/js/custom/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>

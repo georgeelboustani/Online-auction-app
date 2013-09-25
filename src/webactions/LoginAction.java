@@ -12,7 +12,7 @@ public class LoginAction implements WebAction {
 	public String execute(HttpServletRequest req, HttpServletResponse res, Logger logger) {
 		// TODO - we need to verify the user
 		logger.info("Doing Login");
-		return "index.jsp";		
+		return "index.jsp";
 	}
 	
 }

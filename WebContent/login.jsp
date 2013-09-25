@@ -10,52 +10,19 @@
     <link href="${pageContext.request.contextPath}/css/signinandrego.css" rel="stylesheet" media="screen">
     <link href="${pageContext.request.contextPath}/css/jquery-ui-1.10.3.custom.css" rel="stylesheet" media="screen">
     
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-   		<script src="${pageContext.request.contextPath}/js/jquery-1.10.2.js"></script>
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-   		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-   		<script src="${pageContext.request.contextPath}/js/bootstrap-switch.min.js"></script>
-   		<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.3.custom.min.js"></script>
-   		
-   		<script src="${pageContext.request.contextPath}/js/custom/login_regoform.js"></script>
-   		
-    <title>Login to App</title>
+    <title>RollBack: Login Page</title>
 </head>
 <body>
-	<script type="text/javascript">
-		$(function(){
-			
-			$( "#choice" ).buttonset();
-			
-			$('#dp').datepicker({
-			    beforeShow: function(input, inst)
-			    { inst.dpDiv.css({marginTop: -input.offsetHeight + 'px', marginLeft: input.offsetWidth + 'px'}); }
-			});
-			
-			$('#rego').hide();
-			
-			$('#choice').click(function(){
-				if($('#choice1').is(':checked')){
-					$('#login').show();
-					$('#rego').hide();
-				} 
-				if($('#choice2').is(':checked')) {
-					$('#login').hide();
-					$('#rego').show();
-				}
-			});
-		});
-	</script>
 	
 	<div id="login" class="container">
       <form class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="text" class="form-control" placeholder="Email address" autofocus>
-        <input type="password" class="form-control" placeholder="Password">
+        <input id="formSigninEmail" type="text" class="form-control" placeholder="Email address" autofocus>
+        <input id="formSigninPassword" type="password" class="form-control" placeholder="Password">
         <label class="checkbox">
-          <input type="checkbox" value="remember-me"> Remember me
+          <input id="formSigninRememberme" type="checkbox" value="remember"> Remember me
         </label>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button id="loginSubmit" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
     </div>
     
@@ -70,7 +37,7 @@
         <input type="text" class="form-control" placeholder="Last Name" autofocus>
         <input type="text" class="form-control" value="" placeholder="BirthDate" data-date-format="mm/dd/yy" id="dp" style="width:150px">
         
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        <button id="regoSubmit" class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
       </form>
     </div>
     
@@ -84,10 +51,16 @@
 	</div>
     
     
-    <!-- /container -->
-
+    
+    
     <!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Placed JS script files at the end of the document so the pages load faster -->
+	<script src="${pageContext.request.contextPath}/js/jquery-1.10.2.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap-switch.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<!-- custom scripts -->
+	<script src="${pageContext.request.contextPath}/js/custom/login_rego.js"></script>
 </body>
 </html>
