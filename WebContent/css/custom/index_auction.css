@@ -1,0 +1,20 @@
+.bid-input  {
+	width: 70px; 
+	display: inline;
+}
+
+.back-forth-auction-nav {
+	display: inline;
+	float: right
+}
+
+.search-input {
+	height: 39px;
+	width: 150px;
+	display: inline;
+}
+
+.auction-nav-bar {
+	margin-left: -30px;
+	margin-right: -28px;
+}

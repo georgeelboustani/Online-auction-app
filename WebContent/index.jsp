@@ -10,6 +10,7 @@
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="${pageContext.request.contextPath}/css/jquery-ui-1.10.3.custom.css" rel="stylesheet" media="screen">
     <link href="${pageContext.request.contextPath}/css/custom/index.css" rel="stylesheet" media="screen">
+    <link href="${pageContext.request.contextPath}/css/custom/index_auction.css" rel="stylesheet" media="screen">
    		
     <title>RollBack: Auction Page</title>
 </head>
@@ -18,16 +19,132 @@
 		<!-- Navbar -->
 		<jsp:include page="navbar.jsp"/>
 		
-  	
-		<!-- Main component for a primary marketing message or call to action -->
-	    <div class="jumbotron">
-	      <h1>Navbar example</h1>
-	      <p>This example is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-	      <p>
-	        <a class="btn btn-lg btn-primary" href="../../components/#navbar">View navbar docs &raquo;</a>
-	      </p>
-	    </div>
-	</div>
+		<!-- content holder for left auctions -->
+  		<div class="col-md-9">
+  		
+  			<!-- nav bar between 10 auctions -->
+  			<div class="row auction-nav-bar">
+  				<div class="col-md-9 ">
+  					<p>
+  						<input type="text" class="form-control search-input" placeholder="Search"/>
+  						<button type="button" class="btn btn-lg btn-warning">
+	  						<span class="ui-icon ui-icon-search"></span>
+	  					</button>
+  					</p>
+  				</div>
+  				<div class="col-md-3">
+  					<p class="back-forth-auction-nav">
+	  					<button type="button" class="btn btn-sm btn-warning">
+	  						<span class="ui-icon ui-icon ui-icon-circle-triangle-w"></span>
+	  					</button>
+	  					<button type="button" class="btn btn-sm btn-warning">
+	  						<span class="ui-icon ui-icon ui-icon-circle-triangle-e"></span>
+	  					</button>
+	  				</p>
+  				</div>
+  			</div>
+  			
+  			<!-- auction content -->
+	  		<div class="list-group">
+	            <a href="#" class="list-group-item row">
+	            	<div class="col-md-3 list-group-item-text">
+	            		<img data-src="holder.js/140x140" src="${pageContext.request.contextPath}/img/cat.jpg" class="img-circle" alt="140x140" style="width: 140px; height: 140px;">
+	            	</div>
+	            	<div class="col-md-4 list-group-item-text">
+	            		<h4>Title Title Title</h4>
+	            		<p>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+	            	</div>
+	            	<div class="col-md-2 list-group-item-text">
+	            		<p>Current Bid:<br/><strong>$3.50</strong></p>
+	            		<p>Time Left:<br/><strong>00d 00h 00min</strong></p>
+	            	</div>
+	            	<div class="col-md-3 list-group-item-text">
+	            		<p>
+		            		<input type="text" class="form-control bid-input" placeholder="00.00">
+		            		<button type="button" class="btn btn-sm btn-primary">Place Bid</button>
+	            		</p>
+					</div>
+	            </a>
+	            
+	            <a href="#" class="list-group-item row">
+	            	<div class="col-md-3 list-group-item-text">
+	            		<img data-src="holder.js/140x140" src="${pageContext.request.contextPath}/img/cat.jpg" class="img-circle" alt="140x140" style="width: 140px; height: 140px;">
+	            	</div>
+	            	<div class="col-md-4 list-group-item-text">
+	            		<h4>Title Title Title</h4>
+	            		<p>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+	            	</div>
+	            	<div class="col-md-2 list-group-item-text">
+	            		<p>Current Bid:<br/><strong>$3.50</strong></p>
+	            		<p>Time Left:<br/><strong>00d 00h 00min</strong></p>
+	            	</div>
+	            	<div class="col-md-3 list-group-item-text">
+	            		<p>
+		            		<input type="text" class="form-control bid-input" placeholder="00.00" style="width:70px; display:inline;">
+		            		<button type="button" class="btn btn-sm btn-primary">Place Bid</button>
+	            		</p>
+					</div>
+	            </a>
+	            
+	            <a href="#" class="list-group-item row">
+	            	<div class="col-md-3 list-group-item-text">
+	            		<img data-src="holder.js/140x140" src="${pageContext.request.contextPath}/img/cat.jpg" class="img-circle" alt="140x140" style="width: 140px; height: 140px;">
+	            	</div>
+	            	<div class="col-md-4 list-group-item-text">
+	            		<h4>Title Title Title</h4>
+	            		<p>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+	            	</div>
+	            	<div class="col-md-2 list-group-item-text">
+	            		<p>Current Bid:<br/><strong>$3.50</strong></p>
+	            		<p>Time Left:<br/><strong>00d 00h 00min</strong></p>
+	            	</div>
+	            	<div class="col-md-3 list-group-item-text">
+	            		<p>
+		            		<input type="text" class="form-control bid-input" placeholder="00.00" style="width:70px; display:inline;">
+		            		<button type="button" class="btn btn-sm btn-primary">Place Bid</button>
+	            		</p>
+					</div>
+	            </a>
+        	</div>
+        	
+        	<!-- nav bar between 10 auctions -->
+  			<div class="row auction-nav-bar">
+  				<div class="col-md-9"></div>
+  				<div class="col-md-3">
+  					<p class="back-forth-auction-nav">
+	  					<button type="button" class="btn btn-sm btn-warning">
+	  						<span class="ui-icon ui-icon ui-icon-circle-triangle-w"></span>
+	  					</button>
+	  					<button type="button" class="btn btn-sm btn-warning">
+	  						<span class="ui-icon ui-icon ui-icon-circle-triangle-e"></span>
+	  					</button>
+	  				</p>
+  				</div>
+  			</div>
+  			
+  		</div><!-- end auction placeholder -->
+  		
+		
+		
+		<div class="col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
+			<div class="well sidebar-nav">
+				<ul class="nav">
+					<li>Sidebar</li>
+		            <li class="active"><a href="#">Link</a></li>
+		            <li><a href="#">Link</a></li>
+		            <li><a href="#">Link</a></li>
+		            <li>Sidebar</li>
+		            <li><a href="#">Link</a></li>
+		            <li><a href="#">Link</a></li>
+		            <li><a href="#">Link</a></li>
+		            <li>Sidebar</li>
+		            <li><a href="#">Link</a></li>
+		            <li><a href="#">Link</a></li>
+            	</ul>
+          	</div><!--/.well -->
+		</div><!--/span-->
+      	
+	</div><!-- /container -->
 	
 	
 	<!-- Bootstrap core JavaScript
