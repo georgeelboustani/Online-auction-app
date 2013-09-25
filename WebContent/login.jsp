@@ -7,23 +7,47 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="${pageContext.request.contextPath}/css/signin.css" rel="stylesheet" media="screen">
+    <link href="${pageContext.request.contextPath}/css/signinandrego.css" rel="stylesheet" media="screen">
+    <link href="${pageContext.request.contextPath}/css/jquery-ui-1.10.3.custom.css" rel="stylesheet" media="screen">
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-   		<script src="${pageContext.request.contextPath}/js/jquery-1.10.2.min.js"></script>
-   		<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.2.1.min.js"></script>
+   		<script src="${pageContext.request.contextPath}/js/jquery-1.10.2.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
    		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-    
-    <!--[if lt IE 9]>
-      <script src="${pageContext.request.contextPath}/js/html5shiv.js"></script>
-      <script src="${pageContext.request.contextPath}/js/respond.min.js"></script>
-    <![endif]-->
+   		<script src="${pageContext.request.contextPath}/js/bootstrap-switch.min.js"></script>
+   		<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.3.custom.min.js"></script>
+   		
+   		<script src="${pageContext.request.contextPath}/js/custom/login_regoform.js"></script>
+   		
     <title>Login to App</title>
 </head>
 <body>
-	<div class="container">
-
+	<script type="text/javascript">
+		$(function(){
+			
+			$( "#choice" ).buttonset();
+			
+			$('#dp').datepicker({
+			    beforeShow: function(input, inst)
+			    { inst.dpDiv.css({marginTop: -input.offsetHeight + 'px', marginLeft: input.offsetWidth + 'px'}); }
+			});
+			
+			$('#rego').hide();
+			
+			$('#choice').click(function(){
+				if($('#choice1').is(':checked')){
+					$('#login').show();
+					$('#rego').hide();
+				} 
+				if($('#choice2').is(':checked')) {
+					$('#login').hide();
+					$('#rego').show();
+				}
+			});
+		});
+	</script>
+	
+	<div id="login" class="container">
       <form class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
         <input type="text" class="form-control" placeholder="Email address" autofocus>
@@ -33,8 +57,34 @@
         </label>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
-
-    </div><!-- /container -->
+    </div>
+    
+    <div id="rego" class="container">
+      <form class="form-rego">
+        <h2 class="form-rego-heading">Please Register</h2>
+        <input type="text" class="form-control" placeholder="Email address" autofocus>
+        <input type="text" class="form-control" placeholder="User Name" autofocus>
+        <input type="password" class="form-control" placeholder="Password" style="width:200px">
+        <input type="password" class="form-control" placeholder="Repeat Password" style="width:200px">
+        <input type="text" class="form-control" placeholder="First Name" autofocus>
+        <input type="text" class="form-control" placeholder="Last Name" autofocus>
+        <input type="text" class="form-control" value="" placeholder="BirthDate" data-date-format="mm/dd/yy" id="dp" style="width:150px">
+        
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+      </form>
+    </div>
+    
+    <div class="switch-container">
+	   	<form>
+			<div id="choice">
+			 	<input type="radio" id="choice1" name="radio" checked="checked" /><label for="choice1">Login</label>
+				<input type="radio" id="choice2" name="radio" /><label for="choice2">Register</label>
+			</div>
+		</form>
+	</div>
+    
+    
+    <!-- /container -->
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
