@@ -37,6 +37,10 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
+		<url-pattern>/css/custom/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
 		<url-pattern>/fonts/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
