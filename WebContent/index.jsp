@@ -34,10 +34,10 @@
   				</div>
   				<div class="col-md-3">
   					<p class="back-forth-auction-nav">
-	  					<button type="button" class="btn btn-sm btn-warning">
+	  					<button type="button" class="btn btn-lg btn-warning">
 	  						<span class="ui-icon ui-icon ui-icon-circle-triangle-w"></span>
 	  					</button>
-	  					<button type="button" class="btn btn-sm btn-warning">
+	  					<button type="button" class="btn btn-lg btn-warning">
 	  						<span class="ui-icon ui-icon ui-icon-circle-triangle-e"></span>
 	  					</button>
 	  				</p>
@@ -112,10 +112,10 @@
   				<div class="col-md-9"></div>
   				<div class="col-md-3">
   					<p class="back-forth-auction-nav">
-	  					<button type="button" class="btn btn-sm btn-warning">
+	  					<button type="button" class="btn btn-lg btn-warning">
 	  						<span class="ui-icon ui-icon ui-icon-circle-triangle-w"></span>
 	  					</button>
-	  					<button type="button" class="btn btn-sm btn-warning">
+	  					<button type="button" class="btn btn-lg btn-warning">
 	  						<span class="ui-icon ui-icon ui-icon-circle-triangle-e"></span>
 	  					</button>
 	  				</p>
