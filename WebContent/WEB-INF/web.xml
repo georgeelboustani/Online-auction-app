@@ -12,7 +12,7 @@
     	<servlet-name>ControllerServlet</servlet-name>
     	<servlet-class>servlets.ControllerServlet</servlet-class> 
 	</servlet>
-	
+
 	<!-- default servlet set for js, css, fonts & images -->
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
