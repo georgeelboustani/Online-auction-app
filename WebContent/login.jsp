@@ -8,6 +8,8 @@
     <meta name="author" content="">
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="${pageContext.request.contextPath}/css/jquery-ui-1.10.3.custom.css" rel="stylesheet" media="screen">
+    
+    <!-- custom css pages -->
     <link href="${pageContext.request.contextPath}/css/custom/login.css" rel="stylesheet" media="screen">
     
     <title>RollBack: Login Page</title>
