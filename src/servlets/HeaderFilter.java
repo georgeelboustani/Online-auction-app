@@ -34,9 +34,16 @@ public class HeaderFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, 
 			FilterChain chain) throws IOException, ServletException {
+		//Create cross site session hash to 
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpServletResponse res = (HttpServletResponse) response;
+		HttpSession session = req.getSession();
+		
+		
 		
 		logger.info("HeaderFilter invoked");
 		chain.doFilter(request, response);
+		
 	}
 
 	/**
@@ -44,6 +51,5 @@ public class HeaderFilter implements Filter {
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
 		
-        
 	}
 }

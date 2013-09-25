@@ -1,11 +1,15 @@
 package servlets;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.util.Enumeration;
 import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -16,6 +20,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.tools.JavaFileObject;
+
+import org.json.JSONObject;
+import org.json.JSONStringer;
+import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
 
 import webactions.WebAction;
 import webactions.WebActionFactory;
@@ -24,6 +34,8 @@ import jdbc.AuctionDAO;
 import jdbc.AuctionDAOImpl;
 import jdbc.AuctionDTO;
 import jdbc.DBConnectionFactory;
+
+
 
 /**
  * Servlet implementation class ControllerServlet
@@ -45,7 +57,11 @@ public class ControllerServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.info("ControllerServlet: doGet() invoked");
-		
+		HttpSession session = request.getSession(true);
+		if(session.getAttribute("user") == null){
+			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+			rd.forward(request, response);
+		}
 		
 		if(request.getParameter("action") != null){
 			// TODO - what should the default be => 
@@ -66,7 +82,6 @@ public class ControllerServlet extends HttpServlet {
 			//callback for ajax
 		}
 		
-		
 	}
 
 	/**
@@ -74,24 +89,34 @@ public class ControllerServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.info("ControllerServlet: doPost() invoked");
+		System.out.println(request.getParameter("data"));
 		
 		HttpSession session = request.getSession(true);
-       
-		if(request.getParameter("action") != null){
-			//callback for url-parsing
-		}else if(request.getParameter("callback") != null){
-			if(request.getParameter("callback").contains("login")){
+		
+		if(session.getAttribute("user") == null){
+//			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+//			rd.forward(request, response);
+		}
+		
+		if(request.getParameter("callback") != null){
+			if(request.getParameter("callback").equals("login")){
+				
+				try{
+					JSONObject dataObj = (JSONObject) new JSONParser().parse(request.getParameter("data"));
+					String email = dataObj.get("signinEmail").toString();
+					String password = dataObj.get("signinPassword").toString();
+					String rememberMe = dataObj.get("signinRememberme").toString;
+					System.out.println(email + ", " + password + ", " + rememberMe);
+					
+				}catch(ParseException pe){
+					pe.printStackTrace();
+				}
 				
 				WebAction webAction = WebActionFactory.getAction("");
 				if (webAction != null) {
-//					forwardPage = webAction.execute(request, response, logger);
+					forwardPage = webAction.execute(request, response, logger);
 				}
 			}
 		}
 	}
-	
-	private static void printUserSession(){
-		
-	}
-
 }
