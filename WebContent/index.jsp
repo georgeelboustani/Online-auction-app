@@ -8,12 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="${pageContext.request.contextPath}/css/signinandrego.css" rel="stylesheet" media="screen">
     <link href="${pageContext.request.contextPath}/css/jquery-ui-1.10.3.custom.css" rel="stylesheet" media="screen">
-    
-    
-   		
-   		<script src="${pageContext.request.contextPath}/js/custom/login_regoform.js"></script>
+    <link href="${pageContext.request.contextPath}/css/custom/index.css" rel="stylesheet" media="screen">
    		
     <title>RollBack: Auction Page</title>
 </head>
