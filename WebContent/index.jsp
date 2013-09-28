@@ -69,7 +69,7 @@
 	            	</div>
 	            	<div class="col-md-2 list-group-item-text">
 	            		<p>Current Bid:<br/><strong>$3.50</strong></p>
-	            		<p>Time Left:<br/><strong>00d 00h 00min</strong></p>
+	            		<p>Time Left:<br/><strong>30 min</strong></p>
 	            	</div>
 	            	<div class="col-md-3 list-group-item-text">
 	            		<p>
@@ -78,7 +78,6 @@
 							  <input class="span2 form-control bid-input" id="appendedPrependedInput" type="text">
 							  <button type="button" class="btn btn-sm btn-primary">Bid</button>
 							</div>
-		            		
 	            		</p>
 					</div>
 	            </a>
@@ -93,13 +92,35 @@
 	            	</div>
 	            	<div class="col-md-2 list-group-item-text">
 	            		<p>Current Bid:<br/><strong>$3.50</strong></p>
-	            		<p>Time Left:<br/><strong>00d 00h 00min</strong></p>
+	            		<p>Time Left:<br/><strong>60min</strong></p>
 	            	</div>
 	            	<div class="col-md-3 list-group-item-text">
-	            		<div class="alert alert-danger">
-	            			<p>
-	            				<span><strong>Your Bid:</strong> $4.00</span>
-	            			</p>
+	            		<div class="alert alert-danger my-bid-alert">
+	            			<p><span><strong>Failed Bid:</strong> $3.00</span></p>
+	            		</div>
+	            		<div class="input-prepend auction-input">
+						  <span class="add-on">$</span>
+						  <input class="span2 form-control bid-input" id="appendedPrependedInput" type="text">
+						  <button type="button" class="btn btn-sm btn-primary">Bid</button>
+						</div>
+					</div>
+	            </a>
+	            
+	            <a href="#" class="list-group-item row">
+	            	<div class="col-md-3 list-group-item-text">
+	            		<img data-src="holder.js/140x140" src="${pageContext.request.contextPath}/img/cat.jpg" class="img-circle" alt="140x140" style="width: 140px; height: 140px;">
+	            	</div>
+	            	<div class="col-md-4 list-group-item-text">
+	            		<h4>Title Title Title</h4>
+	            		<p>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+	            	</div>
+	            	<div class="col-md-2 list-group-item-text">
+	            		<p>Current Bid:<br/><strong>$4.00</strong></p>
+	            		<p>Time Left:<br/><strong>15min</strong></p>
+	            	</div>
+	            	<div class="col-md-3 list-group-item-text">
+	            		<div class="alert alert-success my-bid-alert">
+	            			<p><span><strong>Winning Bid:</strong> $4.00</span></p>
 	            		</div>
 					</div>
 	            </a>

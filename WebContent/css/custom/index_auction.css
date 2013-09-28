@@ -33,3 +33,8 @@
 	display: inline;
 	float: right;
 }
+
+.my-alert-success {
+	width: 110px;
+	float: right;	
+}

@@ -1,17 +1,10 @@
 		<div class="col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
 			<div class="well sidebar-nav">
 				<ul class="nav">
-					<li>Sidebar</li>
-		            <li class="active"><a href="#">Link</a></li>
-		            <li><a href="#">Link</a></li>
-		            <li><a href="#">Link</a></li>
-		            <li>Sidebar</li>
-		            <li><a href="#">Link</a></li>
-		            <li><a href="#">Link</a></li>
-		            <li><a href="#">Link</a></li>
-		            <li>Sidebar</li>
-		            <li><a href="#">Link</a></li>
-		            <li><a href="#">Link</a></li>
+					<li>Categories</li>
+		            <li><a href="#">Furniture</a></li>
+		            <li><a href="#">Fashion</a></li>
+		            <li><a href="#">Books</a></li>
             	</ul>
           	</div><!--/.well -->
 		</div><!--/span-->
