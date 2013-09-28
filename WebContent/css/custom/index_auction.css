@@ -1,15 +1,19 @@
 .bid-input  {
-	width: 70px; 
+	width: 100px; 
 	display: inline;
 }
 
-.back-forth-auction-nav {
+.next-prev-nav {
 	display: inline;
-	float: right
 }
+
+.next-prev-nav-item {
+	float: right;
+}
+
 
 .search-input {
-	height: 39px;
+	height: 30px;
 	width: 150px;
 	display: inline;
 }
@@ -17,4 +21,15 @@
 .auction-nav-bar {
 	margin-left: -30px;
 	margin-right: -28px;
+}
+
+.sort-select {
+	height: 30px;
+	width: 150px;
+	display: inline;
+}
+
+.auction-input {
+	display: inline;
+	float: right;
 }

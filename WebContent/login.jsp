@@ -19,7 +19,7 @@
 	<div id="login" class="container">
       <form class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <input id="formSigninEmail" type="text" class="form-control" placeholder="Email address" autofocus>
+        <input id="formSigninUsername" type="text" class="form-control" placeholder="Username" autofocus>
         <input id="formSigninPassword" type="password" class="form-control" placeholder="Password">
         <label class="checkbox">
           <input id="formSigninRememberme" type="checkbox" value="remember"> Remember me
@@ -31,13 +31,22 @@
     <div id="rego" class="container">
       <form class="form-rego">
         <h2 class="form-rego-heading">Please Register</h2>
-        <input type="text" class="form-control" placeholder="Email address" autofocus>
+        <br/>
         <input type="text" class="form-control" placeholder="User Name" autofocus>
         <input type="password" class="form-control" placeholder="Password" style="width:200px">
         <input type="password" class="form-control" placeholder="Repeat Password" style="width:200px">
+        <br/>
+        <h4 class="form-rego-heading">Personal Info</h4>
+        <input type="text" class="form-control" placeholder="Nick Name" autofocus>
         <input type="text" class="form-control" placeholder="First Name" autofocus>
         <input type="text" class="form-control" placeholder="Last Name" autofocus>
+        <input type="text" class="form-control" placeholder="Email address" autofocus>
         <input type="text" class="form-control" value="" placeholder="BirthDate" data-date-format="mm/dd/yy" id="dp" style="width:150px">
+        <input type="text" class="form-control" placeholder="Address" autofocus>
+        <br/>
+        <h4 class="form-rego-heading">Credit Details</h4>
+        <input type="text" class="form-control" placeholder="Credit Card No." autofocus>
+        
         
         <button id="regoSubmit" class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
       </form>

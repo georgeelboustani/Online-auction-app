@@ -10,55 +10,23 @@
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="${pageContext.request.contextPath}/css/jquery-ui-1.10.3.custom.css" rel="stylesheet" media="screen">
     <link href="${pageContext.request.contextPath}/css/custom/index.css" rel="stylesheet" media="screen">
+    
     <link href="${pageContext.request.contextPath}/css/custom/index_auction.css" rel="stylesheet" media="screen">
+    <link href="${pageContext.request.contextPath}/css/custom/my_bid.css" rel="stylesheet" media="screen">
    		
-    <title>RollBack: Auction Page</title>
+    <title>RollBack: My Bids</title>
 </head>
 <body>
 	<div class="container">
-		<!-- Navbar - from navbar.jsp -->
+		<!-- Navbar -->
 		<jsp:include page="navbar.jsp"/>
 		
 		<!-- content holder for left auctions -->
   		<div class="col-md-9">
-  		
-  			<!-- nav bar between 10 auctions -->
-  			<div class="row auction-nav-bar">
-  				<div class="col-md-8">
-					<form>
-						<p>
- 						<input type="text" class="form-control search-input" placeholder="Search"/>
- 						<button type="button" class="btn btn-warning">
-  							<span class="ui-icon ui-icon-search"></span>
-	  					</button>
-	  					</p>
-  					</form>
-  				</div>
-  				<div class="col-md-4 next-prev-nav">
-  					
-  					<form class="next-prev-nav-item">
-	  					<select class="form-control sort-select">
-						  <option selected>Sort</option>
-						  <option>Bid: Low-High</option>
-						  <option>Bid: High-Low</option>
-						  <option>A-Z</option>
-						  <option>Z-A</option>
-						  <option>Time Left</option>
-						</select>&nbsp;
-						
-	  					<button type="button" class="btn btn-warning">
-	  						<span class="ui-icon ui-icon ui-icon-circle-triangle-w"></span>
-	  					</button>
-	  					<button type="button" class="btn btn-warning">
-	  						<span class="ui-icon ui-icon ui-icon-circle-triangle-e"></span>
-	  					</button>
-	  				</form>
-  				</div>
-  			</div>
   			
   			<!-- auction content -->
 	  		<div class="list-group">
-	           
+	            
 	            <a href="#" class="list-group-item row">
 	            	<div class="col-md-3 list-group-item-text">
 	            		<img data-src="holder.js/140x140" src="${pageContext.request.contextPath}/img/cat.jpg" class="img-circle" alt="140x140" style="width: 140px; height: 140px;">
@@ -83,7 +51,7 @@
 					</div>
 	            </a>
 	            
-	           	<a href="#" class="list-group-item row">
+	            <a href="#" class="list-group-item row">
 	            	<div class="col-md-3 list-group-item-text">
 	            		<img data-src="holder.js/140x140" src="${pageContext.request.contextPath}/img/cat.jpg" class="img-circle" alt="140x140" style="width: 140px; height: 140px;">
 	            	</div>
@@ -96,33 +64,22 @@
 	            		<p>Time Left:<br/><strong>00d 00h 00min</strong></p>
 	            	</div>
 	            	<div class="col-md-3 list-group-item-text">
-	            		<div class="alert alert-danger">
-	            			<p>
-	            				<span><strong>Your Bid:</strong> $4.00</span>
-	            			</p>
-	            		</div>
+	            		<p>
+	            			<div class="input-prepend auction-input">
+							  <span class="add-on">$</span>
+							  <input class="span2 form-control bid-input" id="appendedPrependedInput" type="text">
+							  <button type="button" class="btn btn-sm btn-primary">Bid</button>
+							</div>
+		            		
+	            		</p>
 					</div>
 	            </a>
+
         	</div>
-        	
-        	<!-- nav bar between 10 auctions -->
-  			<div class="row auction-nav-bar">
-  				<div class="col-md-9"></div>
-  				<div class="col-md-3">
-  					<p class="next-prev-nav-item">
-	  					<button type="button" class="btn btn-warning">
-	  						<span class="ui-icon ui-icon ui-icon-circle-triangle-w"></span>
-	  					</button>
-	  					<button type="button" class="btn btn-warning">
-	  						<span class="ui-icon ui-icon ui-icon-circle-triangle-e"></span>
-	  					</button>
-	  				</p>
-  				</div>
-  			</div>
   			
   		</div><!-- end auction placeholder -->
   		
-  		<!-- Sidebar - from Sidebar.jsp -->
+		<!-- Sidebar - from Sidebar.jsp -->
   		<jsp:include page="sidebar.jsp"/>
       	
 	</div><!-- /container -->
