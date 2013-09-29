@@ -25,7 +25,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="#">User Profile</a></li>
-              <li><a href="#">Change Passwords</a></li>
+              <li><a href="#">Change Password</a></li>
             </ul>
           </li>
           <li><a href="../navbar-fixed-top/">Logout</a></li>

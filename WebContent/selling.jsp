@@ -24,6 +24,22 @@
 		<!-- content holder for left auctions -->
   		<div class="col-md-9">
   			
+  			<div class="jumbotron">
+  				<h2>Something to Sell?</h2>
+  				<div class="col-md-6">
+  					<input id="formTitle" type="text" class="form-control" placeholder="Title" autofocus>
+  				</div>
+  				<div class="col-md-6">
+  					<span style="display:inline; font-size:15px;">Category: </span>
+  					<select class="form-control" style="width:250px; display:inline;">
+  						<option></option>
+  						<option></option>
+  						<option></option>
+  						<option></option>
+  					</select>
+  				</div>		
+  			</div>
+  			
   			<!-- auction content -->
 	  		<div class="list-group">
 	            
@@ -51,48 +67,7 @@
 					</div>
 	            </a>
 	            
-	            <a href="#" class="list-group-item row">
-	            	<div class="col-md-3 list-group-item-text">
-	            		<img data-src="holder.js/140x140" src="${pageContext.request.contextPath}/img/cat.jpg" class="img-circle" alt="140x140" style="width: 140px; height: 140px;">
-	            	</div>
-	            	<div class="col-md-4 list-group-item-text">
-	            		<h4>Title Title Title</h4>
-	            		<p>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-	            	</div>
-	            	<div class="col-md-2 list-group-item-text">
-	            		<p>Current Bid:<br/><strong>$4.00</strong></p>
-	            		<p>Time Left:<br/><strong>15min</strong></p>
-	            	</div>
-	            	<div class="col-md-3 list-group-item-text">
-	            		<div class="alert alert-info my-bid-alert">
-	            			<p><span><strong>Leading Bid:</strong> $4.00</span></p>
-	            		</div>
-	            		<div class="input-prepend auction-input">
-						  <span class="add-on">$</span>
-						  <input class="span2 form-control bid-input" id="appendedPrependedInput" type="text">
-						  <button type="button" class="btn btn-sm btn-primary">Raise</button>
-						</div>
-					</div>
-	            </a>
-	            
-	            <a href="#" class="list-group-item row">
-	            	<div class="col-md-3 list-group-item-text">
-	            		<img data-src="holder.js/140x140" src="${pageContext.request.contextPath}/img/cat.jpg" class="img-circle" alt="140x140" style="width: 140px; height: 140px;">
-	            	</div>
-	            	<div class="col-md-4 list-group-item-text">
-	            		<h4>Title Title Title</h4>
-	            		<p>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-	            	</div>
-	            	<div class="col-md-2 list-group-item-text">
-	            		<p>Current Bid:<br/><strong>$4.00</strong></p>
-	            		<p>Time Left:<br/><strong>15min</strong></p>
-	            	</div>
-	            	<div class="col-md-3 list-group-item-text">
-	            		<div class="alert alert-success my-bid-alert">
-	            			<p><span><strong>You've Won the Bid!</p>
-	            		</div>
-					</div>
-	            </a>
+	           
 
         	</div>
   			
