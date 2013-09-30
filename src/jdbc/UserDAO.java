@@ -7,6 +7,8 @@ public interface UserDAO {
 	
 	void addUser(UserDTO user) throws SQLException;
 	
+	void updateUser(UserDTO user) throws SQLException;
+	
 	UserDTO getUserById(int userId) throws SQLException;
 	
 	List<UserDTO> getUserByUserName(String userName) throws SQLException;

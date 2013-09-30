@@ -198,4 +198,36 @@ public class UserDAOImpl implements UserDAO {
 		return user;
 	}
 
+	@Override
+	public void updateUser(UserDTO user) throws SQLException {
+		Connection con = null;
+		try {
+			con = DBConnectionFactory.getConnection();
+			
+			PreparedStatement updateUser = con.prepareStatement("UPDATE " + DBUtils.SCHEMA_NAME + ".user "
+															 + "SET nickname=?,first_name=?,last_name=?,password=?,"
+															 + "email=?,year_of_birth=?"
+															 + "WHERE " + DBUtils.USER_ID + " = " + user.getUid());
+			updateUser.setString(1,user.getNickname());
+			updateUser.setString(2,user.getFirstName());
+			updateUser.setString(3,user.getLastName());
+			updateUser.setString(4,DBUtils.calculateMD5(user.getPassword()));
+			updateUser.setString(5,user.getEmail());
+			updateUser.setDate(6,user.getYearOfBirth());
+			
+			updateUser.executeUpdate();      
+
+		} catch (ServiceLocatorException e) {
+			// TODO do some roll back probably
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO do some roll back probably
+			e.printStackTrace();
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+	}
+
 }
