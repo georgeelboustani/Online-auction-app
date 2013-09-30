@@ -22,11 +22,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.tools.JavaFileObject;
 
-import org.json.JSONObject;
+import mail.MailSender;
+
+import mail.MailSenderService;
+import mail.MailSenderServiceFactory;
+/*import org.json.simple.JSONObject;
 import org.json.JSONStringer;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
-
+*/
 import webactions.WebAction;
 import webactions.WebActionFactory;
 import exceptions.ServiceLocatorException;
@@ -50,6 +54,13 @@ public class ControllerServlet extends HttpServlet {
      */
     public ControllerServlet() {
         super();
+        
+        try {
+			MailSenderServiceFactory.init();
+		} catch (ServiceLocatorException e) {
+			// TODO - what happens if email service can't be initialised
+			e.printStackTrace();
+		}
     }
 
 	/**
@@ -57,6 +68,7 @@ public class ControllerServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.info("ControllerServlet: doGet() invoked");
+		
 		HttpSession session = request.getSession(true);
 		if(session.getAttribute("user") == null){
 			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
@@ -101,13 +113,13 @@ public class ControllerServlet extends HttpServlet {
 		if(request.getParameter("callback") != null){
 			if(request.getParameter("callback").equals("login")){
 				
+				/*
 				try{
 					JSONObject dataObj = (JSONObject) new JSONParser().parse(request.getParameter("data"));
 					String email = dataObj.get("signinEmail").toString();
 					String password = dataObj.get("signinPassword").toString();
-					String rememberMe = dataObj.get("signinRememberme").toString;
+					String rememberMe = dataObj.get("signinRememberme").toString();
 					System.out.println(email + ", " + password + ", " + rememberMe);
-					
 				}catch(ParseException pe){
 					pe.printStackTrace();
 				}
@@ -116,6 +128,7 @@ public class ControllerServlet extends HttpServlet {
 				if (webAction != null) {
 					forwardPage = webAction.execute(request, response, logger);
 				}
+				*/
 			}
 		}
 	}

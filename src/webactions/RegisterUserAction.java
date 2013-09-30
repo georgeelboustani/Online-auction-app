@@ -8,13 +8,16 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import exceptions.ServiceLocatorException;
+import mail.MailSenderService;
+import mail.MailSenderServiceFactory;
 import jdbc.AuctionDAO;
 import jdbc.AuctionDAOImpl;
 import jdbc.UserDAO;
 import jdbc.UserDAOImpl;
 import jdbc.UserDTO;
 
-public class AddUserAction implements WebAction {
+public class RegisterUserAction implements WebAction {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse res, Logger logger) {
@@ -35,10 +38,20 @@ public class AddUserAction implements WebAction {
 		UserDAO userdao = new UserDAOImpl();
 		try {
 			userdao.addUser(user);
+			
+			// TODO - MAIL fix this up so it works
+			MailSenderService mailsender = MailSenderServiceFactory.getMailSenderService();
+			mailsender.sendMail("Our email", 
+								user.getEmail(), 
+								"Welcome" + user.getFirstName(), 
+								(new StringBuffer()).append("Welcome Message name etc" + "activation link"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 			// TODO - sort out handling of this exception
 			return "error.jsp";
+		} catch (ServiceLocatorException e) {
+			// TODO what to do if cant send email???
+			e.printStackTrace();
 		}
 		
 		// TODO - return the next page
