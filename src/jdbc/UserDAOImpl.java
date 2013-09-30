@@ -156,12 +156,12 @@ public class UserDAOImpl implements UserDAO {
 		try {
 			con = DBConnectionFactory.getConnection();
 			PreparedStatement userQuery = con.prepareStatement("SELECT * FROM " + DBUtils.SCHEMA_NAME + "." + DBUtils.USER_TABLE 
-															 + " WHERE ?=? AND ?=?");
+															 + " WHERE "+DBUtils.USER_NAME+"=? AND "+DBUtils.USER_PASSWORD+"=? "
+															 		+ "AND "+DBUtils.USER_ACTIVE+"=TRUE AND "+DBUtils.USER_BAN+"=FALSE;");
 			// TODO - should make username unique in the database
-			userQuery.setString(1,DBUtils.USER_NAME);
-			userQuery.setString(2, username);
-			userQuery.setString(3,DBUtils.USER_PASSWORD);
-			userQuery.setString(4, DBUtils.calculateMD5(password));
+			
+			userQuery.setString(1, username);
+			userQuery.setString(2, DBUtils.calculateMD5(password));
 			
 			// If anything is returned, then the login username and pass is a valid combination
 			isAuthentic = userQuery.executeQuery().next();

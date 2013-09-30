@@ -20,21 +20,19 @@ $(function(){
 	
 	$('#loginSubmit').click(function(event) {
 		var login = new Object();
-		login.signinEmail = $('#formSigninEmail').val();
+		login.signinUsername = $('#formSigninUsername').val();
 		login.signinPassword= $('#formSigninPassword').val();
 		login.signinRememberme = $('#formSigninRememberme').is(':checked');
-     	alert(JSON.stringify(login));
-     	var dataString = "callback=login&data=" + JSON.stringify(login) 
+     	var dataString = "ajax=login&data=" + JSON.stringify(login);
+     	alert(JSON.stringify(dataString));
+     	
      	$.ajax({
      		url: "ControllerServlet",
             type: 'POST',
             dataType: 'json',
             data: dataString,
             success: function (data, status) {
-            	 if (data.redirect) {
-                     // data.redirect contains the string URL to redirect to
-                     window.location.href = data.redirect;
-                 }
+            	
             },error:function(data,status,er) {
             	
             },beforeSend: function(jqXHR, settings){

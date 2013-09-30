@@ -40,7 +40,6 @@ public class HeaderFilter implements Filter {
 		HttpSession session = req.getSession();
 		
 		
-		
 		logger.info("HeaderFilter invoked");
 		chain.doFilter(request, response);
 		
