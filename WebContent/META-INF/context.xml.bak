@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context reloadable="true">
+	<Resource 
+		auth="Container"
+		name="jdbc/postgres"
+		type="javax.sql.DataSource"
+		driverClassName="org.postgresql.Driver"
+		url="jdbc:postgresql://localhost:5923/9321db"
+	    username="george"
+		password=""
+		maxIdle="10"
+		maxActive="200"
+		maxWait="5"
+		removeAbandoned="true"
+		removeAbandonedTimeout="1200"
+	/>
+	<Resource   
+		auth="Container"
+		name="mail/Session"
+        type="javax.mail.Session"
+        mail.smtp.host="smtp.gmail.com"
+        mail.smtp.port="587"
+        mail.smtp.auth="true"
+        mail.smtp.user="georgeelboustani0@gmail.com"
+        mail.smtp.password="pass"
+        mail.smtp.starttls.enable="true"
+    />
+</Context>
