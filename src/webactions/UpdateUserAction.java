@@ -18,13 +18,14 @@ import jdbc.UserDAO;
 import jdbc.UserDAOImpl;
 import jdbc.UserDTO;
 
-public class RegisterUserAction implements WebAction {
+public class UpdateUserAction implements WebAction {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse res, Logger logger) {
 		UserDTO user = new UserDTO();
 		
-		// TODO - parameterise these set's according to the request
+		// TODO - fix these parameter names in case there wrong
+		// TODO - VALIDATE this shit especially dates etc
 		user.setActivated(true);
 		user.setAvatar("path to pic/" + user.getUid());
 		user.setBanned(false);
@@ -34,27 +35,20 @@ public class RegisterUserAction implements WebAction {
 		user.setNickname(req.getParameter("nickname"));
 		user.setPassword(req.getParameter("password"));
 		user.setUsername(req.getParameter("email"));
-		user.setYearOfBirth(new Date(2010, 7, 22));
+		user.setYearOfBirth(new Date(Integer.parseInt(req.getParameter("year")), 
+									 Integer.parseInt(req.getParameter("month")), 
+									 Integer.parseInt(req.getParameter("day"))));
+		
+		// TODO - some how set the user's id based on the session
+		// user.setUserID(session.blahblah);
 		
 		UserDAO userdao = new UserDAOImpl();
 		try {
-			userdao.addUser(user);
-			
-			// TODO - MAIL fix this up so it works
-			MailSenderService mailsender = MailSenderServiceFactory.getMailSenderService();
-			mailsender.sendMail("Our email", 
-								user.getEmail(), 
-								"Welcome" + user.getFirstName(), 
-								(new StringBuffer()).append("Welcome " + user.getFirstName() + " " + user.getLastName() + ",\n" +
-															"Click on the following link to activate your account:\n" +
-														    "<a href=\"http://localhost:8080/webapps/activate.jsp?activation=" + DBUtils.calculateMD5(user.getEmail()) + "\">Activation link</a>"));
+			userdao.updateUser(user);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			// TODO - sort out handling of this exception
 			return "error.jsp";
-		} catch (ServiceLocatorException e) {
-			// TODO what to do if cant send email???
-			e.printStackTrace();
 		}
 		
 		// TODO - return the next page
