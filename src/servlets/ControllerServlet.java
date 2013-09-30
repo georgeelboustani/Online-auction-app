@@ -1,15 +1,6 @@
 package servlets;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.SQLException;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.util.Enumeration;
 import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -17,29 +8,16 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.tools.JavaFileObject;
 
-import mail.MailSender;
-
-import mail.MailSenderService;
 import mail.MailSenderServiceFactory;
 /*import org.json.simple.JSONObject;
 import org.json.JSONStringer;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 */
-import webactions.WebAction;
-import webactions.WebActionFactory;
 import exceptions.ServiceLocatorException;
-import jdbc.AuctionDAO;
-import jdbc.AuctionDAOImpl;
-import jdbc.AuctionDTO;
-import jdbc.DBConnectionFactory;
-
-
 
 /**
  * Servlet implementation class ControllerServlet
