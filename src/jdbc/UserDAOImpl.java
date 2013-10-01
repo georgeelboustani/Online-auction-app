@@ -148,23 +148,26 @@ public class UserDAOImpl implements UserDAO {
 	
 	// TODO - test this out
 	@Override
-	public boolean authenticateLogin(String username, String password) throws SQLException {
-		boolean isAuthentic = false;
+	public int authenticateLogin(String username, String password) throws SQLException {
+		int resultUid = -1;
 		
 		Connection con = null;
 		
 		try {
 			con = DBConnectionFactory.getConnection();
-			PreparedStatement userQuery = con.prepareStatement("SELECT * FROM " + DBUtils.SCHEMA_NAME + "." + DBUtils.USER_TABLE 
-															 + " WHERE ?=? AND ?=?");
+			PreparedStatement userQuery = con.prepareStatement("SELECT uid FROM " + DBUtils.SCHEMA_NAME + "." + DBUtils.USER_TABLE 
+															 + " WHERE "+DBUtils.USER_NAME+"=? AND "+DBUtils.USER_PASSWORD+"=? "
+															 		+ "AND "+DBUtils.USER_ACTIVE+"=TRUE AND "+DBUtils.USER_BAN+"=FALSE;");
 			// TODO - should make username unique in the database
-			userQuery.setString(1,DBUtils.USER_NAME);
-			userQuery.setString(2, username);
-			userQuery.setString(3,DBUtils.USER_PASSWORD);
-			userQuery.setString(4, DBUtils.calculateMD5(password));
+			
+			userQuery.setString(1, username);
+			userQuery.setString(2, DBUtils.calculateMD5(password));
 			
 			// If anything is returned, then the login username and pass is a valid combination
-			isAuthentic = userQuery.executeQuery().next();
+			ResultSet rs = userQuery.executeQuery();
+			if(rs.next()){
+				resultUid = rs.getInt("uid");
+			}
 		} catch (ServiceLocatorException e) {
 			// TODO do some roll back probably
 			e.printStackTrace();
@@ -177,7 +180,7 @@ public class UserDAOImpl implements UserDAO {
 			}
 		}
 		
-		return isAuthentic;
+		return resultUid;
 	}
 	
 	private UserDTO generateUserDTO(ResultSet rs) throws SQLException {

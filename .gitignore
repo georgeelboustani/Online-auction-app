@@ -1,4 +1,4 @@
 .classpath
-
 /build
 /bin
+/WebContent/META-INF/context.xml

@@ -1,14 +1,6 @@
 package mail;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.logging.Logger;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-
 import exceptions.MailSenderException;
 import exceptions.ServiceLocatorException;
 

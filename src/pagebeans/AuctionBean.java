@@ -1,6 +1,5 @@
 package pagebeans;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import jdbc.AuctionDTO;

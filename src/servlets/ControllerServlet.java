@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -11,18 +13,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
+import webactions.WebActionAjax;
+import webactions.WebActionFactory;
 import mail.MailSenderServiceFactory;
-/*import org.json.simple.JSONObject;
-import org.json.JSONStringer;
-import org.json.simple.JSONValue;
-import org.json.simple.parser.JSONParser;
-*/
 import exceptions.ServiceLocatorException;
+
 
 /**
  * Servlet implementation class ControllerServlet
  */
-@WebServlet(name="ControllerServlet",urlPatterns={"/ControllerServlet","/","/home"})
+@WebServlet("/ControllerServlet")
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	final Logger logger = Logger.getLogger(this.getClass().getName());
@@ -46,11 +48,11 @@ public class ControllerServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.info("ControllerServlet: doGet() invoked");
-		
 		HttpSession session = request.getSession(true);
-		if(session.getAttribute("user") == null){
-			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-			rd.forward(request, response);
+		
+		if(session.getAttribute("user_uid") == null){
+//			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+//			rd.forward(request, response);
 		}
 		
 		if(request.getParameter("action") != null){
@@ -65,11 +67,6 @@ public class ControllerServlet extends HttpServlet {
 				forwardPage = "index.jsp";
 			}
 			
-			// TODO - why when i uncomment the forward, shit breaks??
-			RequestDispatcher rd = request.getRequestDispatcher(forwardPage);
-			rd.forward(request, response);
-		}else if(request.getParameter("callback") != null){
-			//callback for ajax
 		}
 		
 	}
@@ -79,35 +76,33 @@ public class ControllerServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.info("ControllerServlet: doPost() invoked");
-		System.out.println(request.getParameter("data"));
-		
 		HttpSession session = request.getSession(true);
-		
-		if(session.getAttribute("user") == null){
-//			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-//			rd.forward(request, response);
-		}
-		
-		if(request.getParameter("callback") != null){
-			if(request.getParameter("callback").equals("login")){
-				
-				/*
-				try{
-					JSONObject dataObj = (JSONObject) new JSONParser().parse(request.getParameter("data"));
-					String email = dataObj.get("signinEmail").toString();
-					String password = dataObj.get("signinPassword").toString();
-					String rememberMe = dataObj.get("signinRememberme").toString();
-					System.out.println(email + ", " + password + ", " + rememberMe);
-				}catch(ParseException pe){
-					pe.printStackTrace();
-				}
-				
-				WebAction webAction = WebActionFactory.getAction("");
-				if (webAction != null) {
-					forwardPage = webAction.execute(request, response, logger);
-				}
-				*/
+		PrintWriter out = response.getWriter();
+        
+		response.setContentType("text/html");
+        response.setHeader("Cache-control", "no-cache, no-store");
+        response.setHeader("Pragma", "no-cache");
+        response.setHeader("Expires", "-1");
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+        response.setHeader("Access-Control-Max-Age", "86400");
+
+		if(request.getParameter("ajax") != null){
+			
+			Map<String, Object> returnData = null;
+			WebActionAjax webActionAjax = WebActionFactory.getAjaxAction(request.getParameter("ajax"));
+			if (webActionAjax != null) {
+				returnData = webActionAjax.executeAjax(request, response, logger);
 			}
+			
+			String jsonResponse = new Gson().toJson(returnData);
+			out.write(jsonResponse);
+			out.flush();
+			out.close();
+			    
+		}else if(request.getParameter("action") != null){
+			
 		}
 	}
 }
