@@ -75,3 +75,7 @@ body {
 .form-rego input {
   margin-bottom: 5px;
 }
+
+.form-rego label.error {
+	color: red;
+}

@@ -42,7 +42,8 @@ public class ControllerServlet extends HttpServlet {
         
         // start the auction monitor pools
 		auctionMonitor = AuctionMonitorPoolFactory.getAuctionMonitorService();
-		auctionMonitor.run();
+		
+		// auctionMonitor.run();
         
         try {
 			MailSenderServiceFactory.init();
