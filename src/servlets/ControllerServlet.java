@@ -33,17 +33,23 @@ public class ControllerServlet extends HttpServlet {
 	final Logger logger = Logger.getLogger(this.getClass().getName());
 	
 	private AuctionMonitorPool auctionMonitor;
-	
+	private Thread monitorThread;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ControllerServlet() {
         super();
+    }
+    
+    @Override
+    public void init() throws ServletException {
+    	super.init();
         
-        // start the auction monitor pools
+    	// start the auction monitor pools
 		auctionMonitor = AuctionMonitorPoolFactory.getAuctionMonitorService();
-		
-		// auctionMonitor.run();
+		monitorThread = new Thread(auctionMonitor);
+		monitorThread.setDaemon(true);
+		monitorThread.start();
         
         try {
 			MailSenderServiceFactory.init();
@@ -116,11 +122,5 @@ public class ControllerServlet extends HttpServlet {
 		}else if(request.getParameter("action") != null){
 			
 		}
-	}
-	
-	@Override
-	public void destroy() {
-		super.destroy();
-		auctionMonitor.stopMonitoring();
 	}
 }

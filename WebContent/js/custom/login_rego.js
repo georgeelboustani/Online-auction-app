@@ -130,7 +130,7 @@ $().ready( function(){
 			var register = new Object();
 			register.username = $('#formRegoUsername').val();
 			register.password = $('#formRegoPassword').val();
-			register.repeatPassword = $('#formRegoRepeatPassword').val();
+			register.confirmPassword = $('#formRegoRepeatPassword').val();
 			register.nickName = $('#formRegoNickName').val();
 			register.firstName = $('#formRegoFirstName').val();
 			register.lastName = $('#formRegoLastName').val();
@@ -138,7 +138,8 @@ $().ready( function(){
 			register.birthdate = $('#formRegoBirthDate').val();
 			register.address = $('#formRegoAddress').val();
 			register.creditcardnum = $('#formRegoCreditCardNo').val();
-			var registerDataString = "ajax=user_register&data=" + JSON.stringify(register);
+			
+			var registerDataString = "ajax=addUser&data=" + JSON.stringify(register);
 			alert(registerDataString);
 			
 			$.ajax({

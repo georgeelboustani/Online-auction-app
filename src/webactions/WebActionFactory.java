@@ -15,12 +15,12 @@ public class WebActionFactory {
 	private WebActionFactory() {
 		postActionMap = new HashMap<String, WebActionPost>();
 		postActionMap.put("addAuction", new AddAuctionAction());
-		postActionMap.put("addUser", new RegisterUserAction());
 		postActionMap.put("updateUser", new UpdateUserAction());
 		// TODO - add more action mappings
 		
 		ajaxActionMap = new HashMap<String, WebActionAjax>();
 		ajaxActionMap.put("login", new LoginAction());
+		postActionMap.put("addUser", new RegisterUserAction());
 	}
 	
 	public static WebActionPost getPostAction(String action) {

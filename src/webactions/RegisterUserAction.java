@@ -22,6 +22,9 @@ public class RegisterUserAction implements WebActionPost {
 
 	@Override
 	public String executePost(HttpServletRequest req, HttpServletResponse res, Logger logger) {
+		
+		
+		
 		UserDTO user = new UserDTO();
 		
 		// TODO - parameterise these set's according to the request
