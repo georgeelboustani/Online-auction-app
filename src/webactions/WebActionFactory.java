@@ -17,6 +17,7 @@ public class WebActionFactory {
 		postActionMap.put("addAuction", new AddAuctionAction());
 		postActionMap.put("addUser", new RegisterUserAction());
 		postActionMap.put("updateUser", new UpdateUserAction());
+		postActionMap.put("placeBid", new UpdateUserAction());
 		// TODO - add more action mappings
 		
 		ajaxActionMap = new HashMap<String, WebActionAjax>();

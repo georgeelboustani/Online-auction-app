@@ -21,6 +21,7 @@ public class MailSenderServiceFactory {
 		}
 	}
 	
+	// For initialisation at web app startup. called in controller constructor
 	public static void init() throws ServiceLocatorException {
 		if(factory==null)
 			factory = new MailSenderServiceFactory();
