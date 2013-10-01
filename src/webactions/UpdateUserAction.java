@@ -18,10 +18,10 @@ import jdbc.UserDAO;
 import jdbc.UserDAOImpl;
 import jdbc.UserDTO;
 
-public class UpdateUserAction implements WebAction {
+public class UpdateUserAction implements WebActionPost {
 
 	@Override
-	public String execute(HttpServletRequest req, HttpServletResponse res, Logger logger) {
+	public String executePost(HttpServletRequest req, HttpServletResponse res, Logger logger) {
 		UserDTO user = new UserDTO();
 		
 		// TODO - fix these parameter names in case there wrong

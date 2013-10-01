@@ -12,10 +12,10 @@ import jdbc.AuctionDAO;
 import jdbc.AuctionDAOImpl;
 import jdbc.AuctionDTO;
 
-public class AddAuctionAction implements WebAction {
+public class AddAuctionAction implements WebActionPost {
 
 	@Override
-	public String execute(HttpServletRequest req, HttpServletResponse res, Logger logger) {
+	public String executePost(HttpServletRequest req, HttpServletResponse res, Logger logger) {
 		AuctionDTO auc = new AuctionDTO();
 		
 		// TODO - replace all the constant parameters with the values from the request parameters. hopefully there all there :s

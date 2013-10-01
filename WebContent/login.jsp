@@ -21,10 +21,7 @@
         <h2 class="form-signin-heading">Please sign in</h2>
         <input id="formSigninUsername" type="text" class="form-control" placeholder="Username" autofocus>
         <input id="formSigninPassword" type="password" class="form-control" placeholder="Password">
-        <label class="checkbox">
-          <input id="formSigninRememberme" type="checkbox" value="remember"> Remember me
-        </label>
-        <button id="loginSubmit" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button id="loginSubmit" class="btn btn-lg btn-primary btn-block">Sign in</button>
       </form>
     </div>
     

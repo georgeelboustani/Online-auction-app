@@ -4,7 +4,7 @@ public class ForLogin {
 	
 	private String signinUsername;
 	private String signinPassword;
-	private boolean signinRememberme;
+//	private boolean signinRememberme;
 	
 	public String getUserName(){
 		return signinUsername;
@@ -14,8 +14,8 @@ public class ForLogin {
 		return signinPassword;
 	}
 	
-	public boolean getRememberMe(){
-		return signinRememberme;
-	}
+//	public boolean getRememberMe(){
+//		return signinRememberme;
+//	}
 	
 }

@@ -1,4 +1,4 @@
-$(function(){
+$().ready( function(){
 	$( "#choice" ).buttonset();
 	$('#dp').datepicker({
 	    beforeShow: function(input, inst)
@@ -17,28 +17,21 @@ $(function(){
 			$('#rego').show("blind",1000);
 		}
 	});
-	
+
 	$('#loginSubmit').click(function(event) {
 		var login = new Object();
 		login.signinUsername = $('#formSigninUsername').val();
 		login.signinPassword= $('#formSigninPassword').val();
-		login.signinRememberme = $('#formSigninRememberme').is(':checked');
+		
      	var dataString = "ajax=login&data=" + JSON.stringify(login);
-     	alert(JSON.stringify(dataString));
      	
      	$.ajax({
      		url: "ControllerServlet",
             type: 'POST',
             dataType: 'json',
             data: dataString,
-            success: function (data, status) {
-            	
-            },error:function(data,status,er) {
-            	
-            },beforeSend: function(jqXHR, settings){
-            	
-            },complete: function(jqXHR, textStatus){
-            	
+            success: function(data) {
+            	alert("success: " + data);
             }
      	});
     });
