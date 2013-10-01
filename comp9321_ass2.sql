@@ -84,7 +84,7 @@ CREATE TABLE auction_bid (
     aid integer NOT NULL,
     bid double precision NOT NULL
 );
-
+ALTER TABLE auction_bid ADD CONSTRAINT unique_bid_constraint UNIQUE(uid,aid,bid);
 
 ALTER TABLE public.auction_bid OWNER TO postgres;
 

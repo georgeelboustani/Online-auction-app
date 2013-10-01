@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import auctions.AuctionMonitorPool;
+import auctions.AuctionMonitorPoolFactory;
+
 import com.google.gson.Gson;
 
 import webactions.WebActionAjax;
@@ -29,11 +32,17 @@ public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	final Logger logger = Logger.getLogger(this.getClass().getName());
 	
+	private AuctionMonitorPool auctionMonitor;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ControllerServlet() {
         super();
+        
+        // start the auction monitor pools
+		auctionMonitor = AuctionMonitorPoolFactory.getAuctionMonitorService();
+		auctionMonitor.run();
         
         try {
 			MailSenderServiceFactory.init();
@@ -104,5 +113,11 @@ public class ControllerServlet extends HttpServlet {
 		}else if(request.getParameter("action") != null){
 			
 		}
+	}
+	
+	@Override
+	public void destroy() {
+		super.destroy();
+		auctionMonitor.stopMonitoring();
 	}
 }

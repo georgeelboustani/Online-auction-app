@@ -99,4 +99,11 @@ public class AuctionDTO {
 	public void setAuctionHalt(boolean auctionHalt) {
 		this.auctionHalt = auctionHalt;
 	}
+	
+	@Override
+	public String toString() {
+		return aid + " " + auctionCategory + " " + auctionDescription + " " + auctionImage + " " + auctionOwnerId + " " + 
+			   auctionPostageDetails + " " + auctionReservePrice + " " + auctionTitle + " " + biddingIncrement + " " + 
+			   biddingStartPrice + " " + auctionCloseTime + " " + auctionHalt + " " + auctionStartTime;
+	}
 }

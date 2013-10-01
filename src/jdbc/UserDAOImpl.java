@@ -50,7 +50,7 @@ public class UserDAOImpl implements UserDAO {
 	// TODO - not tested yet
 	@Override
 	public UserDTO getUserById(int userId) throws SQLException {
-		UserDTO user = new UserDTO();
+		UserDTO user = null;
 		Connection con = null;
 		try {
 			con = DBConnectionFactory.getConnection();
@@ -60,10 +60,9 @@ public class UserDAOImpl implements UserDAO {
 			userQuery.setInt(1,userId);
 			
 			ResultSet rs = userQuery.executeQuery();
-			rs.next();
-			
-			user = generateUserDTO(rs);
-			
+			if (rs.next()) {
+				user = generateUserDTO(rs);
+			}
 		} catch (ServiceLocatorException e) {
 			// TODO do some roll back probably
 			e.printStackTrace();
@@ -182,24 +181,6 @@ public class UserDAOImpl implements UserDAO {
 		
 		return resultUid;
 	}
-	
-	private UserDTO generateUserDTO(ResultSet rs) throws SQLException {
-		UserDTO user = new UserDTO();
-		
-		user.setUid(rs.getInt(DBUtils.USER_ID));
-		user.setUsername(rs.getString(DBUtils.USER_NAME));
-		user.setNickname(rs.getString(DBUtils.USER_NICKNAME));
-		user.setFirstName(rs.getString(DBUtils.USER_FIRST_NAME));
-		user.setLastName(rs.getString(DBUtils.USER_LAST_NAME));
-		user.setPassword(rs.getString(DBUtils.USER_PASSWORD));
-		user.setEmail(rs.getString(DBUtils.USER_EMAIL));
-		user.setYearOfBirth(rs.getDate(DBUtils.USER_DOB));
-		user.setAvatar(rs.getString(DBUtils.USER_AVATAR));
-		user.setActivated(rs.getBoolean(DBUtils.USER_ACTIVE));
-		user.setBanned(rs.getBoolean(DBUtils.USER_BAN));
-		
-		return user;
-	}
 
 	@Override
 	public void updateUser(UserDTO user) throws SQLException {
@@ -231,6 +212,24 @@ public class UserDAOImpl implements UserDAO {
 				con.close();
 			}
 		}
+	}
+	
+	private UserDTO generateUserDTO(ResultSet rs) throws SQLException {
+		UserDTO user = new UserDTO();
+		
+		user.setUid(rs.getInt(DBUtils.USER_ID));
+		user.setUsername(rs.getString(DBUtils.USER_NAME));
+		user.setNickname(rs.getString(DBUtils.USER_NICKNAME));
+		user.setFirstName(rs.getString(DBUtils.USER_FIRST_NAME));
+		user.setLastName(rs.getString(DBUtils.USER_LAST_NAME));
+		user.setPassword(rs.getString(DBUtils.USER_PASSWORD));
+		user.setEmail(rs.getString(DBUtils.USER_EMAIL));
+		user.setYearOfBirth(rs.getDate(DBUtils.USER_DOB));
+		user.setAvatar(rs.getString(DBUtils.USER_AVATAR));
+		user.setActivated(rs.getBoolean(DBUtils.USER_ACTIVE));
+		user.setBanned(rs.getBoolean(DBUtils.USER_BAN));
+		
+		return user;
 	}
 
 }

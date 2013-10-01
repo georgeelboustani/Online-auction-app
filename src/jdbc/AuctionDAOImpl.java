@@ -91,16 +91,16 @@ public class AuctionDAOImpl implements AuctionDAO {
 	
 	// TODO - test this
 	@Override
-	public List<AuctionDTO> getAuctionByItemType(String auctionCategory) throws SQLException {
+	public List<AuctionDTO> getActiveAuctionByCategory(String auctionCategory) throws SQLException {
 		List<AuctionDTO> auctions = new ArrayList<AuctionDTO>();
 		Connection con = null;
 		try {
 			con = DBConnectionFactory.getConnection();
 			
 			PreparedStatement userQuery = con.prepareStatement("SELECT * FROM " + DBUtils.AUCTION_TABLE
-															 + " WHERE ?=?");
-			userQuery.setString(1,DBUtils.AUC_CATEGORY);
-			userQuery.setString(2,auctionCategory);
+															 + " WHERE " + DBUtils.AUC_CATEGORY + "=? AND auction_halt=?");
+			userQuery.setString(1,auctionCategory);
+			userQuery.setBoolean(2,false);
 			
 			ResultSet rs = userQuery.executeQuery();
 			while (rs.next()) {
@@ -155,6 +155,7 @@ public class AuctionDAOImpl implements AuctionDAO {
 	private AuctionDTO generateAuctionDTO(ResultSet rs) throws SQLException {
 		AuctionDTO auction = new AuctionDTO();
 		
+		auction.setAid(rs.getInt(DBUtils.AUC_ID));
 		auction.setAuctionOwnerId(rs.getInt(DBUtils.AUC_OWNER_ID));
 		auction.setAuctionTitle(rs.getString(DBUtils.AUC_TITLE));
 		auction.setAuctionCategory(rs.getString(DBUtils.AUC_CATEGORY));
@@ -162,7 +163,7 @@ public class AuctionDAOImpl implements AuctionDAO {
 		auction.setAuctionDescription(rs.getString(DBUtils.AUC_DESC));
 		auction.setAuctionPostageDetails(rs.getString(DBUtils.AUC_POSTAGE));
 		auction.setAuctionReservePrice(rs.getDouble(DBUtils.AUC_RESERVE));
-		auction.setBiddingStartPrice(rs.getDouble(DBUtils.AUC_START));
+		auction.setBiddingStartPrice(rs.getDouble(DBUtils.AUC_BIDDING_START));
 		auction.setBiddingIncrement(rs.getDouble(DBUtils.AUC_BID_INCREMENT));
 		auction.setAuctionStartTime(rs.getTimestamp(DBUtils.AUC_START));
 		auction.setAuctionCloseTime(rs.getTimestamp(DBUtils.AUC_CLOSE));
@@ -171,4 +172,60 @@ public class AuctionDAOImpl implements AuctionDAO {
 		return auction;
 	}
 
+	@Override
+	public List<String> getAuctionCategories() throws SQLException {
+		List<String> categories = new ArrayList<String>();
+		Connection con = null;
+		try {
+			con = DBConnectionFactory.getConnection();
+			
+			PreparedStatement userQuery = con.prepareStatement("SELECT distinct(auction_category) FROM " + DBUtils.AUCTION_TABLE);
+			
+			ResultSet rs = userQuery.executeQuery();
+			while (rs.next()) {
+				categories.add(rs.getString(1));
+			}
+			
+		} catch (ServiceLocatorException e) {
+			// TODO do some roll back probably
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO do some roll back probably
+			e.printStackTrace();
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+		
+		return categories;
+	}
+
+	@Override
+	public void closeAuction(int aucId) throws SQLException {
+		Connection con = null;
+		try {
+			con = DBConnectionFactory.getConnection();
+			
+			PreparedStatement updateUser = con.prepareStatement("UPDATE auction_item "
+															 + "SET auction_halt=?,"
+															 + "WHERE aid = ?");
+			updateUser.setBoolean(1,true);
+			updateUser.setInt(2,aucId);
+			
+			updateUser.executeUpdate();      
+
+		} catch (ServiceLocatorException e) {
+			// TODO do some roll back probably
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO do some roll back probably
+			e.printStackTrace();
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+	}
+	
 }

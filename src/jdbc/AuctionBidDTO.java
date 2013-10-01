@@ -1,17 +1,10 @@
 package jdbc;
 
 public class AuctionBidDTO {
-	private int bidId;
 	private int auctionId;
 	private int userId;
 	private double bidAmount;
 	
-	public int getBidId() {
-		return bidId;
-	}
-	public void setBidId(int bidId) {
-		this.bidId = bidId;
-	}
 	public int getAuctionId() {
 		return auctionId;
 	}
