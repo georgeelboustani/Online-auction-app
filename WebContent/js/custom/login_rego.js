@@ -6,6 +6,7 @@ $().ready( function(){
 	});
 	/* initial hide for registration content */
 	$('#rego').hide();
+	$('#formSigninAlert').hide();
 	
 	/* radio button switch between content */
 	$('#choice').click(function(){
@@ -31,7 +32,12 @@ $().ready( function(){
             dataType: 'json',
             data: dataString,
             success: function(data) {
-            	alert("success: " + data);
+            	if(data.success){
+            		window.location.replace(data.redirect);
+            	}else{
+            		$('#formSigninAlert').show().html('<div class="alert alert-danger">'+
+            				data.message+'</div>');
+            	}
             }
      	});
     });
