@@ -50,23 +50,21 @@ public class ControllerServlet extends HttpServlet {
 		logger.info("ControllerServlet: doGet() invoked");
 		HttpSession session = request.getSession(true);
 		
-		if(session.getAttribute("user_uid") == null){
-//			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-//			rd.forward(request, response);
-		}
-		
 		if(request.getParameter("action") != null){
 			// TODO - what should the default be => 
 			// index.jsp with a jsp guard that redirects to login.jsp
 			String forwardPage = "index.jsp";
 			String action = request.getParameter("action");
 			
-			if(action.equals("login")){
+			if("login".equals(action)){
 				forwardPage = "login.jsp";
-			}else if(action.equals("home")){
-				forwardPage = "index.jsp";
+			}else if("logout".equals(action)){
+				session.invalidate();
+				forwardPage = "login.jsp";
 			}
 			
+			RequestDispatcher rd = request.getRequestDispatcher(forwardPage);
+			rd.forward(request, response);
 		}
 		
 	}
@@ -76,10 +74,10 @@ public class ControllerServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.info("ControllerServlet: doPost() invoked");
-		HttpSession session = request.getSession(true);
+		
 		PrintWriter out = response.getWriter();
         
-		response.setContentType("text/html");
+		response.setContentType("application/json");
         response.setHeader("Cache-control", "no-cache, no-store");
         response.setHeader("Pragma", "no-cache");
         response.setHeader("Expires", "-1");
@@ -97,6 +95,10 @@ public class ControllerServlet extends HttpServlet {
 			}
 			
 			String jsonResponse = new Gson().toJson(returnData);
+
+			//TODO: remove the below debug statement
+			System.out.println(jsonResponse);
+			
 			out.write(jsonResponse);
 			out.flush();
 			out.close();

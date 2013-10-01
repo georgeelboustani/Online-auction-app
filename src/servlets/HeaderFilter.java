@@ -34,13 +34,17 @@ public class HeaderFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, 
 			FilterChain chain) throws IOException, ServletException {
+		logger.info("HeaderFilter invoked");
 		//Create cross site session hash to 
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
-		HttpSession session = req.getSession();
+		HttpSession session = req.getSession(true);
+		
+	    if(session.getAttribute("user_uid") == null){
+	    	res.sendRedirect("login.jsp");
+	    }
 		
 		
-		logger.info("HeaderFilter invoked");
 		chain.doFilter(request, response);
 		
 	}

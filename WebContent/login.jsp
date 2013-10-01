@@ -17,16 +17,17 @@
 <body>
 	
 	<div id="login" class="container">
-      <form class="form-signin">
+      <div class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
         <input id="formSigninUsername" type="text" class="form-control" placeholder="Username" autofocus>
         <input id="formSigninPassword" type="password" class="form-control" placeholder="Password">
+        <div id="formSigninAlert"></div>
         <button id="loginSubmit" class="btn btn-lg btn-primary btn-block">Sign in</button>
-      </form>
+      </div>
     </div>
     
     <div id="rego" class="container">
-      <form class="form-rego">
+      <div class="form-rego">
         <h2 class="form-rego-heading">Please Register</h2>
         <br/>
         <input type="text" class="form-control" placeholder="User Name" autofocus>
@@ -46,19 +47,17 @@
         
         
         <button id="regoSubmit" class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-      </form>
+      </div>
     </div>
     
     <div class="switch-container">
-	   	<form>
+	   	<div>
 			<div id="choice">
 			 	<input type="radio" id="choice1" name="radio" checked="checked" /><label for="choice1">Login</label>
 				<input type="radio" id="choice2" name="radio" /><label for="choice2">Register</label>
 			</div>
-		</form>
+		</div>
 	</div>
-    
-    
     
     
     <!-- Bootstrap core JavaScript

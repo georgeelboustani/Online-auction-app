@@ -38,7 +38,7 @@ public class LoginAction implements WebActionAjax {
 	    	resultUID = userDAOImpl.authenticateLogin(loginData.getUserName(), loginData.getPassword());
 	    } catch (SQLException sqle) {
 			sqle.printStackTrace();
-			resultMap.put("error", true);
+			resultMap.put("success", false);
 			resultMap.put("message", "An SQLException has occured...");
 			resultMap.put("redirect", "error.jsp");
 			
@@ -52,12 +52,12 @@ public class LoginAction implements WebActionAjax {
 	    	
 	    	//success message
 	    	resultMap.put("success", true);
-			resultMap.put("message", "login successful");
+			resultMap.put("message", "Login Successful");
 			resultMap.put("redirect", "index.jsp"); //login sucessful, go to index home page
 			return resultMap; 
 	    }else{
 	    	resultMap.put("success", false);
-	    	resultMap.put("message", "login unsuccessful");
+	    	resultMap.put("message", "Login Unsuccessful");
 			resultMap.put("redirect", "login.jsp"); //login sucessful, go to index home page
 	    	return resultMap; //login unsuccessful, go back to login page
 	    }

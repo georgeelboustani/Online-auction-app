@@ -11,9 +11,9 @@
           <ul class="nav navbar-nav navbar-right">
           	
           <li class="active">
-          	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Auctions <b class="caret"></b></a>
+          	<a href="${pageContext.request.contextPath}/index.jsp" class="dropdown-toggle" data-toggle="dropdown">Auctions <b class="caret"></b></a>
 		<ul class="dropdown-menu">
-            <li><a href="#">All Auctions</a></li>
+            <li><a href="${pageContext.request.contextPath}/index.jsp">All Auctions</a></li>
             <li><a href="#">My Bids</a></li>
             <li><a href="#">Selling</a></li>
             <li class="divider"></li>
@@ -28,7 +28,7 @@
               <li><a href="#">Change Password</a></li>
             </ul>
           </li>
-          <li><a href="../navbar-fixed-top/">Logout</a></li>
+          <li><a href="${pageContext.request.contextPath}/login.jsp?action=logout">Logout</a></li>
         </ul>
       </div>
       
