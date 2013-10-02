@@ -1,6 +1,6 @@
 package model;
 
-public class ForRegister {
+public class ForRegistration {
 	
 	private String username;
 	private String password;

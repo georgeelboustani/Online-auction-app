@@ -20,7 +20,7 @@ public class WebActionFactory {
 		
 		ajaxActionMap = new HashMap<String, WebActionAjax>();
 		ajaxActionMap.put("login", new LoginAction());
-		postActionMap.put("addUser", new RegisterUserAction());
+		ajaxActionMap.put("addUser", new RegisterUserAction());
 	}
 	
 	public static WebActionPost getPostAction(String action) {

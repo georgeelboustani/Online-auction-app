@@ -1,9 +1,13 @@
 package jdbc;
 
 import java.sql.Date;
+import javax.validation.constraints.NotNull;
 
 public class UserDTO {
+	
+	@NotNull
 	private int uid;
+	
 	private String username;
 	private String nickname;
 	private String firstName;
