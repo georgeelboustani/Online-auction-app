@@ -13,16 +13,17 @@ public class WebActionFactory {
 	private static HashMap<String,WebActionAjax> ajaxActionMap;
 	
 	private WebActionFactory() {
+		// TODO - add more action mappings
 		gpActionMap = new HashMap<String, WebActionGP>();
 		gpActionMap.put("addAuction", new AddAuctionAction());
 		gpActionMap.put("updateUser", new UpdateUserAction());
+		gpActionMap.put("login", new LoginAction());
 		gpActionMap.put("logout", new LogoutAction());
 		gpActionMap.put("searchAuction", new SearchAction());
 		gpActionMap.put("viewAuction", new ViewAuctionAction());
-		// TODO - add more action mappings
 		
 		ajaxActionMap = new HashMap<String, WebActionAjax>();
-		ajaxActionMap.put("login", new LoginAction());
+		ajaxActionMap.put("authenticate", new AuthenticateAction());
 		ajaxActionMap.put("addUser", new RegisterUserAction());
 		ajaxActionMap.put("placeBid", new PlaceBidAction());
 	}

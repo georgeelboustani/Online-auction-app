@@ -18,7 +18,7 @@ import auctions.AuctionMonitorPoolFactory;
 
 import com.google.gson.Gson;
 
-import webactions.LoginAction;
+import webactions.AuthenticateAction;
 import webactions.WebActionAjax;
 import webactions.WebActionFactory;
 import webactions.WebActionGP;
@@ -29,7 +29,7 @@ import exceptions.ServiceLocatorException;
 /**
  * Servlet implementation class ControllerServlet
  */
-@WebServlet("/ControllerServlet")
+@WebServlet(name="ControllerServlet",urlPatterns={"/ControllerServlet"})
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	final Logger logger = Logger.getLogger(this.getClass().getName());
@@ -67,13 +67,16 @@ public class ControllerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.info("ControllerServlet: doGet() invoked");
 		HttpSession session = request.getSession(true);
-
+		
 		if(request.getParameter("action") != null){
 			// TODO - what should the default be => 
 			// index.jsp with a jsp guard that redirects to login.jsp
 			String forwardPage = "index.jsp";
 			
 			String action = request.getParameter("action");
+			//TODO - remove the println
+			System.out.println(action);
+			
 			WebActionGP webAction = WebActionFactory.getGPAction(action);
 			if (webAction != null) {
 				forwardPage = webAction.executeAction(request, response, logger);
@@ -101,8 +104,8 @@ public class ControllerServlet extends HttpServlet {
         response.setHeader("Access-Control-Allow-Methods", "POST");
         response.setHeader("Access-Control-Allow-Headers", "Content-Type");
         response.setHeader("Access-Control-Max-Age", "86400");
-
-		if(request.getParameter("ajax") != null){
+        
+        if(request.getParameter("ajax") != null){
 			
 			Map<String, Object> returnData = null;
 			WebActionAjax webActionAjax = WebActionFactory.getAjaxAction(request.getParameter("ajax"));

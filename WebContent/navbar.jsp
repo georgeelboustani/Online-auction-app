@@ -28,7 +28,7 @@
               <li><a href="#">Change Password</a></li>
             </ul>
           </li>
-          <li><a href="${pageContext.request.contextPath}/login.jsp?action=logout">Logout</a></li>
+          <li><a href="${pageContext.request.contextPath}/controller?action=logout">Logout</a></li>
         </ul>
       </div>
       

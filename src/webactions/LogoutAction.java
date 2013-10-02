@@ -11,8 +11,11 @@ public class LogoutAction implements WebActionGP {
 	@Override
 	public String executeAction(HttpServletRequest req, HttpServletResponse res,
 			Logger logger) {
-		HttpSession session = req.getSession(true);
+		
+		System.out.println("ITS LOGGING OUT");
+		HttpSession session = req.getSession(false);
 		session.invalidate();
+		
 		return "login.jsp";
 	}
 
