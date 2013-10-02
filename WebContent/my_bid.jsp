@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.Hashtable" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="auctionDTO" class="jdbc.AuctionDTO" scope="session" />    
+<jsp:useBean id="myBidBean" class="pagebeans.MyBidBean" scope="session" />
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,75 +33,64 @@
   			<!-- auction content -->
 	  		<div class="list-group">
 	            
-	            <a href="#" class="list-group-item row">
-	            	<div class="col-md-3 list-group-item-text">
-	            		<img data-src="holder.js/140x140" src="${pageContext.request.contextPath}/img/cat.jpg" class="img-circle" alt="140x140" style="width: 140px; height: 140px;">
-	            	</div>
-	            	<div class="col-md-4 list-group-item-text">
-	            		<h4>Title Title Title</h4>
-	            		<p>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-	            	</div>
-	            	<div class="col-md-2 list-group-item-text">
-	            		<p>Current Bid:<br/><strong>$3.50</strong></p>
-	            		<p>Time Left:<br/><strong>60min</strong></p>
-	            	</div>
-	            	<div class="col-md-3 list-group-item-text">
-	            		<div class="alert alert-danger my-bid-alert">
-	            			<p><span><strong>Failed Bid:</strong> $3.00</span></p>
-	            		</div>
-	            		<div class="input-prepend auction-input">
-						  <span class="add-on">$</span>
-						  <input class="span2 form-control bid-input" id="appendedPrependedInput" type="text">
-						  <button type="button" class="btn btn-sm btn-primary">Raise</button>
-						</div>
-					</div>
-	            </a>
-	            
-	            <a href="#" class="list-group-item row">
-	            	<div class="col-md-3 list-group-item-text">
-	            		<img data-src="holder.js/140x140" src="${pageContext.request.contextPath}/img/cat.jpg" class="img-circle" alt="140x140" style="width: 140px; height: 140px;">
-	            	</div>
-	            	<div class="col-md-4 list-group-item-text">
-	            		<h4>Title Title Title</h4>
-	            		<p>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-	            	</div>
-	            	<div class="col-md-2 list-group-item-text">
-	            		<p>Current Bid:<br/><strong>$4.00</strong></p>
-	            		<p>Time Left:<br/><strong>15min</strong></p>
-	            	</div>
-	            	<div class="col-md-3 list-group-item-text">
-	            		<div class="alert alert-info my-bid-alert">
-	            			<p><span><strong>Leading Bid:</strong> $4.00</span></p>
-	            		</div>
-	            		<div class="input-prepend auction-input">
-						  <span class="add-on">$</span>
-						  <input class="span2 form-control bid-input" id="appendedPrependedInput" type="text">
-						  <button type="button" class="btn btn-sm btn-primary">Raise</button>
-						</div>
-					</div>
-	            </a>
-	            
-	            <a href="#" class="list-group-item row">
-	            	<div class="col-md-3 list-group-item-text">
-	            		<img data-src="holder.js/140x140" src="${pageContext.request.contextPath}/img/cat.jpg" class="img-circle" alt="140x140" style="width: 140px; height: 140px;">
-	            	</div>
-	            	<div class="col-md-4 list-group-item-text">
-	            		<h4>Title Title Title</h4>
-	            		<p>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-	            	</div>
-	            	<div class="col-md-2 list-group-item-text">
-	            		<p>Current Bid:<br/><strong>$4.00</strong></p>
-	            		<p>Time Left:<br/><strong>15min</strong></p>
-	            	</div>
-	            	<div class="col-md-3 list-group-item-text">
-	            		<div class="alert alert-success my-bid-alert">
-	            			<p><span><strong>You've Won the Bid!</p>
-	            		</div>
-					</div>
-	            </a>
-
+	    		<c:choose>
+					<c:when test="${myBidBean.displayError}">
+						${myBidBean.errorMessage}
+					</c:when>
+					
+					<c:otherwise>
+						<c:set var="count" value="0" scope="page" />
+			           	<c:forEach var="auction" items="${myBidBean.auctions}" >	
+				            <a href="#" class="list-group-item row">
+				            	<div class="col-md-3 list-group-item-text">
+				            		<img data-src="holder.js/140x140" src="${pageContext.request.contextPath}/img/cat.jpg" class="img-circle" alt="140x140" style="width: 140px; height: 140px;">
+				            	</div>
+				            	<div class="col-md-4 list-group-item-text">
+				            		<h4>${auction.auctionTitle} <c:if test="${myBidBean.highestBidder[count]}"> {Current Bid Leader}</c:if></h4>
+				            		<p>${auction.auctionDescription}</p>
+				            	</div>
+				            	<div class="col-md-2 list-group-item-text">
+				            		<p>Current Bid:<br/><strong>${myBidBean.bids[count]}</strong></p>
+				            		<p>Time Left:<br/><strong>${myBidBean.times[count]} mins</strong></p>
+				            	</div>
+				            	<div class="col-md-3 list-group-item-text">
+				            		<p>
+				            			<!--  
+				            			<div class="alert alert-danger my-bid-alert">
+					            			<p><span><strong>Failed Bid:</strong> $3.00</span></p>
+					            		</div>
+					            		<div class="alert alert-success my-bid-alert">
+					            			<p><span><strong>Winning Bid:</strong> $4.00</span></p>
+					            		</div> 
+					            		-->
+				            			<div class="input-prepend auction-input">
+										  <span class="add-on">$</span>
+										  <input class="span2 form-control bid-input" id="appendedPrependedInput" type="text">
+										  <button type="button" class="btn btn-sm btn-primary">Bid</button>
+										</div>
+				            		</p>
+								</div>
+				            </a>
+			            	<c:set var="count" value="${count + 1}" scope="page"/>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+				
+				<!-- nav bar between 10 auctions -->
+	  			<div class="row auction-nav-bar">
+	  				<div class="col-md-9"></div>
+	  				<div class="col-md-3">
+	  					<p class="next-prev-nav-item">
+		  					<button type="button" class="btn btn-warning">
+		  						<span class="ui-icon ui-icon ui-icon-circle-triangle-w"></span>
+		  					</button>
+		  					<button type="button" class="btn btn-warning">
+		  						<span class="ui-icon ui-icon ui-icon-circle-triangle-e"></span>
+		  					</button>
+		  				</p>
+	  				</div>
+	  			</div>
         	</div>
-  			
   		</div><!-- end auction placeholder -->
   		
 		<!-- Sidebar - from Sidebar.jsp -->

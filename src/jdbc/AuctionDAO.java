@@ -18,6 +18,10 @@ public interface AuctionDAO {
 	void closeAuction(int aucId) throws SQLException;
 
 	List<AuctionDTO> wordSearchAuctionsByDescription(String searchString, boolean ascending) throws SQLException;
+
+	List<AuctionDTO> getActiveAuctionsWhereUserParticipated(int userId) throws SQLException;
+
+	List<AuctionDTO> getUserActiveAuctions(int userId) throws SQLException;
 	
 	// TODO - Add more shit we need from the auction table
 	

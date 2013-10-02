@@ -21,7 +21,10 @@ public class WebActionFactory {
 		gpActionMap.put("logout", new LogoutAction());
 		gpActionMap.put("searchAuction", new SearchAction());
 		gpActionMap.put("viewAuction", new ViewAuctionAction());
-		
+		gpActionMap.put("viewMyBid", new ViewMyBidAction());
+		gpActionMap.put("viewSelling", new ViewSellingAction());
+
+		// TODO - add more action mappings
 		ajaxActionMap = new HashMap<String, WebActionAjax>();
 		ajaxActionMap.put("authenticate", new AuthenticateAction());
 		ajaxActionMap.put("addUser", new RegisterUserAction());

@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pagebeans.SearchBean;
+import pagebeans.SellingBean;
 import jdbc.AuctionBidDAO;
 import jdbc.AuctionBidDAOImpl;
 import jdbc.AuctionBidDTO;
@@ -17,20 +17,16 @@ import jdbc.AuctionDAO;
 import jdbc.AuctionDAOImpl;
 import jdbc.AuctionDTO;
 
-public class SearchAction implements WebActionGP {
+public class ViewSellingAction implements WebActionGP {
 
 	@Override
-	public String executeAction(HttpServletRequest req, HttpServletResponse res,
-			Logger logger) {
+	public String executeAction(HttpServletRequest req, HttpServletResponse res, Logger logger) {
 		
-		String searchString = req.getParameter("searchString");
-		if (searchString == null) {
-			searchString = "";
-		}
 		AuctionDAO auctionDao = new AuctionDAOImpl();
 		List<AuctionDTO> auctions = new ArrayList<AuctionDTO>();
+		int userId = LoginUtils.getUserId(req);
 		try {
-			auctions = auctionDao.wordSearchAuctionsByDescription(searchString,true);
+			auctions = auctionDao.getUserActiveAuctions(userId);
 		} catch (SQLException e) {
 			// TODO - make an error message somehow about unable to get auctions
 			e.printStackTrace();
@@ -65,19 +61,19 @@ public class SearchAction implements WebActionGP {
 			}
 		}
 		
-		SearchBean search = new SearchBean();
+		SellingBean sellingBean = new SellingBean();
 		if (auctions.size() == 0) {
-			search.setDisplayError(true);
-			search.setErrorMessage("No results found for the given search string: " + searchString);
+			sellingBean.setDisplayError(true);
+			sellingBean.setErrorMessage("Sorry we can't find any auctions owned by you");
 		} else {
-			search.setAuctions(auctions);
-			search.setBids(bids);
-			search.setTimes(times);
-			search.setDisplayError(false);
+			sellingBean.setAuctions(auctions);
+			sellingBean.setBids(bids);
+			sellingBean.setTimes(times);
+			sellingBean.setDisplayError(false);
 		}	
-		req.getSession().setAttribute("searchBean", search);
+		req.getSession().setAttribute("sellingBean", sellingBean);
 		
-		return "index.jsp";
+		return "selling.jsp";
 	}
 
 }
