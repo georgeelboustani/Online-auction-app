@@ -54,8 +54,9 @@ public class HeaderFilter implements Filter {
 		
 		
 		if(req.getMethod().equalsIgnoreCase("GET")){ 
-			if(session.getAttribute("user_uid") == null){
-				if(!"/login.jsp".equals(req.getServletPath())){
+			if(!"/login.jsp".equals(req.getServletPath()) 
+					&& !"/error.jsp".equals(req.getServletPath())){
+				if(session.getAttribute("user_uid") == null){
 					request.getRequestDispatcher("/login.jsp").forward(request,
 							response);
 				}
