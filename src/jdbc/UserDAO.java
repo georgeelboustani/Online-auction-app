@@ -9,6 +9,8 @@ public interface UserDAO {
 	
 	void updateUser(UserDTO user) throws SQLException;
 	
+	void banUser(int userId) throws SQLException;
+	
 	UserDTO getUserById(int userId) throws SQLException;
 	
 	List<UserDTO> getUserByUserName(String userName) throws SQLException;

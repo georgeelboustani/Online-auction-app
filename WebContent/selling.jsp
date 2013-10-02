@@ -49,8 +49,8 @@
   			<!-- auction content -->
 	  		<div class="list-group">
 	            <c:choose>
-					<c:when test="${searchBean.displayError}">
-						${searchBean.errorMessage}
+					<c:when test="${sellingBean.displayError}">
+						${sellingBean.errorMessage}
 					</c:when>
 					
 					<c:otherwise>

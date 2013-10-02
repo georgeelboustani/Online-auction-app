@@ -7,12 +7,19 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import exceptions.ServiceLocatorException;
+import mail.MailSenderService;
+import mail.MailSenderServiceFactory;
+import mail.MailUtils;
 import jdbc.AuctionBidDAO;
 import jdbc.AuctionBidDAOImpl;
 import jdbc.AuctionBidDTO;
 import jdbc.AuctionDAO;
 import jdbc.AuctionDAOImpl;
 import jdbc.AuctionDTO;
+import jdbc.UserDAO;
+import jdbc.UserDAOImpl;
+import jdbc.UserDTO;
 
 public class PlaceBidAction implements WebActionAjax {
 
@@ -45,6 +52,27 @@ public class PlaceBidAction implements WebActionAjax {
 						bidDto.setUserId(uid);
 					
 						bidDao.placeBid(bidDto);
+						
+						try {
+							MailSenderService mailsender = MailSenderServiceFactory.getMailSenderService();
+							UserDAO userDao = new UserDAOImpl();
+							
+							if (highestBid != null) {
+								UserDTO prevWinner = userDao.getUserById(highestBid.getUserId());
+								StringBuffer text = new StringBuffer("Woops "+prevWinner.getFirstName()+",\nYou have lost the lead in the following auction:\n");
+								text.append(auction.getAuctionTitle()+"\nThe new highest bid is $"+newBid+"\nThanks\nRollback team");
+								mailsender.sendMail(MailUtils.OUR_EMAIL, prevWinner.getEmail(), "Beaten at auction: "+auction.getAuctionTitle(), text);
+							}
+							
+							UserDTO currentUser = userDao.getUserById(LoginUtils.getUserId(req));
+							StringBuffer text = new StringBuffer("Congrats " + currentUser.getFirstName()+",\nYou have gained the lead in the following auction:\n");
+							text.append(auction.getAuctionTitle()+"\nThe new highest bid is $"+newBid+"\nThanks\nRollback team");
+							mailsender.sendMail(MailUtils.OUR_EMAIL, currentUser.getEmail(), "Taken the lead: "+auction.getAuctionTitle(), text);
+							
+						} catch (ServiceLocatorException e) {
+							// To bad cant send mail
+							e.printStackTrace();
+						}
 					}
 				} else {
 					// Auction doesnt exist

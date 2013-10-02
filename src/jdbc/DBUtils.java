@@ -53,6 +53,10 @@ public class DBUtils {
 	public static String CARD_EXPIRY = "card_expiry";
 	public static String CARD_CSC_NUM = "card_csc_num";
 	
+	public static void main(String[] argv) {
+		System.out.println(calculateMD5("pass"));
+	}
+	
 	public static String calculateMD5(String key) {
 		String original = key;
 		MessageDigest md;
