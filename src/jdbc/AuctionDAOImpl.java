@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 import exceptions.ServiceLocatorException;
 
@@ -276,6 +277,74 @@ public class AuctionDAOImpl implements AuctionDAO {
 		}
 		
 		// This list is ordered in ascending order
+		return auctions;
+	}
+
+	@Override
+	public List<AuctionDTO> getActiveAuctionsWhereUserParticipated(int userId)
+			throws SQLException {
+		
+		List<AuctionDTO> auctions = new ArrayList<AuctionDTO>();
+		Connection con = null;
+		try {
+			con = DBConnectionFactory.getConnection();
+			
+			PreparedStatement userQuery = con.prepareStatement("SELECT distinct(ai.aid) FROM auction_item as ai, auction_bid as ab " + 
+															   "WHERE ai.auction_halt=false and ab.aid=ai.aid and ab.uid=?");
+			userQuery.setInt(1,userId);
+
+			ResultSet rs = userQuery.executeQuery();
+			while (rs.next()) {
+				auctions.add(this.getAuctionById(rs.getInt(1)));
+			}
+			
+		} catch (ServiceLocatorException e) {
+			// TODO do some roll back probably
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO do some roll back probably
+			e.printStackTrace();
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+		
+		return auctions;
+	}
+
+	@Override
+	public List<AuctionDTO> getUserActiveAuctions(int userId)
+			throws SQLException {
+		
+		List<AuctionDTO> auctions = new ArrayList<AuctionDTO>();
+		Connection con = null;
+		try {
+			con = DBConnectionFactory.getConnection();
+			
+			PreparedStatement userQuery = con.prepareStatement("SELECT * FROM " + DBUtils.AUCTION_TABLE + 
+															   " WHERE " + DBUtils.AUC_OWNER_ID + "=?" +
+															   " AND " + DBUtils.AUC_HALT + "=false");
+			
+			userQuery.setInt(1, userId);
+			
+			ResultSet rs = userQuery.executeQuery();
+			while (rs.next()) {
+				auctions.add(generateAuctionDTO(rs));
+			}
+			
+		} catch (ServiceLocatorException e) {
+			// TODO do some roll back probably
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO do some roll back probably
+			e.printStackTrace();
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+		
 		return auctions;
 	}
 	

@@ -11,11 +11,7 @@
     <link href="${pageContext.request.contextPath}/css/signinandrego.css" rel="stylesheet" media="screen">
     <link href="${pageContext.request.contextPath}/css/jquery-ui-1.10.3.custom.css" rel="stylesheet" media="screen">
     
-    
-   		
-   		<script src="${pageContext.request.contextPath}/js/custom/login_regoform.js"></script>
-   		
-    <title>RollBack: Auction Page</title>
+    <title>RollBack: Profile Page</title>
 </head>
 <body>
 	<div class="container">
