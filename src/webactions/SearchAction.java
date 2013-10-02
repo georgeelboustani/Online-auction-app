@@ -25,7 +25,9 @@ public class SearchAction implements WebActionGP {
 		
 		// TODO - make sure this is the parameter name
 		String searchString = req.getParameter("searchString");
-		
+		if (searchString == null) {
+			searchString = "";
+		}
 		AuctionDAO auctionDao = new AuctionDAOImpl();
 		List<AuctionDTO> auctions = new ArrayList<AuctionDTO>();
 		try {
@@ -49,7 +51,7 @@ public class SearchAction implements WebActionGP {
 				timeLeft = closeTime.getTime() - currentTime.getTime();
 			}
 			
-			times.add(timeLeft);
+			times.add(timeLeft/(1000*60));
 			
 			AuctionBidDAO bidDao = new AuctionBidDAOImpl();
 			try {

@@ -237,7 +237,7 @@ public class AuctionDAOImpl implements AuctionDAO {
 		try {
 			con = DBConnectionFactory.getConnection();
 			
-			List<String> searchWords = Arrays.asList(searchString.split(" ,"));
+			List<String> searchWords = Arrays.asList(searchString.split(" "));
 			
 			StringBuffer queryString = new StringBuffer();
 			queryString.append("SELECT * FROM " + DBUtils.AUCTION_TABLE + " WHERE auction_halt=false");

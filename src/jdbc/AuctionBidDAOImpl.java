@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,6 +81,37 @@ public class AuctionBidDAOImpl implements AuctionBidDAO {
 		bid.setUserId(rs.getInt(DBUtils.AUCBID_USER_ID));
 		
 		return bid;
+	}
+
+	@Override
+	public void placeBid(AuctionBidDTO bid) throws SQLException {
+		// TODO finish adding auction
+		Connection con = null;
+		try {
+			con = DBConnectionFactory.getConnection();
+
+			PreparedStatement updateAuc = con.prepareStatement("INSERT into " + DBUtils.AUCTION_BID_TABLE + 
+															   " (uid,aid,bid)" +
+															   " values(?,?,?)");
+			
+			updateAuc.setInt(1,bid.getUserId());
+			updateAuc.setInt(2,bid.getAuctionId());
+			updateAuc.setDouble(3,bid.getBidAmount());
+			
+			updateAuc.executeUpdate();      
+			
+		} catch (ServiceLocatorException e) {
+			// TODO do some roll back probably
+			e.printStackTrace();
+		} catch (SQLIntegrityConstraintViolationException integrity) {
+			throw integrity;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
 	}
 
 }

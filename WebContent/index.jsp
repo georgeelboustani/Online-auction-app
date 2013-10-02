@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.Hashtable" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="auctionDTO" class="jdbc.AuctionDTO" scope="session" />    
 <jsp:useBean id="searchBean" class="pagebeans.SearchBean" scope="session" />
 	
@@ -30,10 +31,10 @@
   			<!-- nav bar between 10 auctions -->
   			<div class="row auction-nav-bar">
   				<div class="col-md-8">
-					<form>
+					<form action="controller?action=searchAuction" method="post">
 						<p>
- 						<input type="text" class="form-control search-input" placeholder="Search"/>
- 						<button type="button" class="btn btn-warning">
+ 						<input type="text" name="searchString" class="form-control search-input" placeholder="Search"/>
+ 						<button  type="submit" class="btn btn-warning">
   							<span class="ui-icon ui-icon-search"></span>
 	  					</button>
 	  					</p>
