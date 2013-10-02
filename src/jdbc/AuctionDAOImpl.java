@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import exceptions.ServiceLocatorException;
@@ -226,6 +227,56 @@ public class AuctionDAOImpl implements AuctionDAO {
 				con.close();
 			}
 		}
+	}
+
+	@Override
+	public List<AuctionDTO> wordSearchAuctionsByDescription(String searchString, boolean ascending) throws SQLException {
+		List<AuctionDTO> auctions = new ArrayList<AuctionDTO>();
+		
+		Connection con = null;
+		try {
+			con = DBConnectionFactory.getConnection();
+			
+			List<String> searchWords = Arrays.asList(searchString.split(" ,"));
+			
+			StringBuffer queryString = new StringBuffer();
+			queryString.append("SELECT * FROM " + DBUtils.AUCTION_TABLE + " WHERE auction_halt=false");
+			for (String word: searchWords) {
+				queryString.append(" AND " + DBUtils.AUC_DESC + " LIKE ?");
+			}
+			
+			String order = "";
+			if (!ascending) {
+				order = "desc";
+			}
+			queryString.append(" ORDER BY " + DBUtils.AUC_CLOSE + " " + order);
+			
+			PreparedStatement userQuery = con.prepareStatement(queryString.toString());
+			int i = 1;
+			for (String word: searchWords) {
+				userQuery.setString(i, "%"+word+"%");
+				i++;
+			}
+			
+			ResultSet rs = userQuery.executeQuery();
+			while (rs.next()) {
+				auctions.add(generateAuctionDTO(rs));
+			}
+			
+		} catch (ServiceLocatorException e) {
+			// TODO do some roll back probably
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO do some roll back probably
+			e.printStackTrace();
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+		
+		// This list is ordered in ascending order
+		return auctions;
 	}
 	
 }

@@ -18,10 +18,10 @@ import jdbc.UserDAO;
 import jdbc.UserDAOImpl;
 import jdbc.UserDTO;
 
-public class RegisterUserAction implements WebActionPost {
+public class RegisterUserAction implements WebActionGP {
 
 	@Override
-	public String executePost(HttpServletRequest req, HttpServletResponse res, Logger logger) {
+	public String executeAction(HttpServletRequest req, HttpServletResponse res, Logger logger) {
 		UserDTO user = new UserDTO();
 		
 		// TODO - parameterise these set's according to the request
