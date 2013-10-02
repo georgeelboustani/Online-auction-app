@@ -301,4 +301,36 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
+	@Override
+	public void activateUser(String username, String checksum)
+			throws SQLException {
+		
+		Connection con = null;
+		try {
+			con = DBConnectionFactory.getConnection();
+			
+			PreparedStatement updateUser = con.prepareStatement("UPDATE " + DBUtils.SCHEMA_NAME + ".user "
+															 + "SET activate = ? "
+															 + "WHERE " + DBUtils.USER_NAME + " = ? AND " 
+															 + DBUtils.USER_CHECKSUM + " = ? ;");
+			updateUser.setBoolean(1, true);
+			updateUser.setString(2, username);
+			updateUser.setString(3, checksum);
+			
+			updateUser.executeUpdate();      
+
+		} catch (ServiceLocatorException e) {
+			// TODO do some roll back probably
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO do some roll back probably
+			e.printStackTrace();
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+		
+	}
+
 }

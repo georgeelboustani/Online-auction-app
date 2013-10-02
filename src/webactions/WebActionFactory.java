@@ -25,6 +25,7 @@ public class WebActionFactory {
 		gpActionMap.put("viewSelling", new ViewSellingAction());
 		gpActionMap.put("banUser", new BanUserAction());
 		gpActionMap.put("haltAuction", new HaltAuctionAction());
+		gpActionMap.put("activation", new UserActivationAction());
 
 		// TODO - add more action mappings
 		ajaxActionMap = new HashMap<String, WebActionAjax>();

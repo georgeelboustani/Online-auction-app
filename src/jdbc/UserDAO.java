@@ -21,6 +21,6 @@ public interface UserDAO {
 
 	int getNumUserByUserName(String username) throws SQLException;
 
-	
+	void activateUser(String username, String checksum) throws SQLException;
 	// Add more shit that we need to perform on user table
 }

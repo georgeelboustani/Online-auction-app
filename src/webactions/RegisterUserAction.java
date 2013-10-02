@@ -99,8 +99,9 @@ public class RegisterUserAction implements WebActionAjax {
 					
 					
 					//TODO: remove debug script
-					System.out.println("inside email activation link:\nhttp://"+req.getServerName()+":"+req.getServerPort()+req.getContextPath() +
-																    "/controller?action=activation&checksum=" + user.getCheckSum());
+					System.out.println("inside email activation link:\n"+
+							"http://"+req.getServerName()+":"+req.getServerPort()+req.getContextPath() +
+							    "/controller?action=activation&username="+user.getUsername()+"&checksum=" + user.getCheckSum());
 					
 					
 					MailSenderService mailsender = MailSenderServiceFactory.getMailSenderService();
@@ -111,7 +112,7 @@ public class RegisterUserAction implements WebActionAjax {
 										(new StringBuffer()).append("Welcome " + user.getFirstName() + " " + user.getLastName() + ",\n" +
 																	"Click on the following link to activate your account:\n" +
 																    "<a href=\"http://"+req.getServerName()+":"+req.getServerPort()+req.getContextPath() +
-																    "/controller?action=activation&id="+user.getUid()+"&checksum=" + user.getCheckSum() + "\">Activation link</a>"));
+																    "/controller?action=activation&username="+user.getUsername()+"&checksum=" + user.getCheckSum() + "\">Activation link</a>"));
 				
 				} catch (ServiceLocatorException e) {
 					e.printStackTrace();
