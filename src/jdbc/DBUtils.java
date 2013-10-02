@@ -41,17 +41,12 @@ public class DBUtils {
 	public static String USER_AVATAR = "avatar";
 	public static String USER_ACTIVE = "activate";
 	public static String USER_BAN = "ban";
+	public static String USER_CREDIT_CARD_NUM = "credit_card_num";
+	public static String USER_CHECKSUM = "activate_hashsum";
 	
 	public static String ADMIN_TABLE = "user_admin";
 	public static String ADMIN_UID = "uid";
 	
-	public static String CREDITCARD_TABLE = "creditcard";
-	public static String CC_ID = "ccid";
-	public static String CC_OWNER_ID = "card_owner_uid";
-	public static String CARD_NUM = "card_num";
-	public static String CARD_NAME = "card_name";
-	public static String CARD_EXPIRY = "card_expiry";
-	public static String CARD_CSC_NUM = "card_csc_num";
 	
 	public static String calculateMD5(String key) {
 		String original = key;

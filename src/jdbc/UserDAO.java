@@ -16,6 +16,9 @@ public interface UserDAO {
 	List<UserDTO> getAllUsers() throws SQLException;
 	
 	int authenticateLogin(String username, String password) throws SQLException;
+
+	int getNumUserByUserName(String username) throws SQLException;
+
 	
 	// Add more shit that we need to perform on user table
 }

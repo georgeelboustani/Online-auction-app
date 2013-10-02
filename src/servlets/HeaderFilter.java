@@ -18,6 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import exceptions.ServiceLocatorException;
+import mail.MailSenderServiceFactory;
+
 /**
  * Servlet Filter implementation class HeaderFilter
  */
@@ -47,11 +50,6 @@ public class HeaderFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = req.getSession(true);
-		
-		//TODO: remove the bottom 
-		System.out.println(req.getServletPath());
-		System.out.println(req.getMethod());
-		
 		
 		if(req.getMethod().equalsIgnoreCase("GET")){ 
 			if(!"/login.jsp".equals(req.getServletPath()) 

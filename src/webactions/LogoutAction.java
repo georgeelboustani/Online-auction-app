@@ -12,7 +12,6 @@ public class LogoutAction implements WebActionGP {
 	public String executeAction(HttpServletRequest req, HttpServletResponse res,
 			Logger logger) {
 		
-		System.out.println("ITS LOGGING OUT");
 		HttpSession session = req.getSession(false);
 		session.invalidate();
 		

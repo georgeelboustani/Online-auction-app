@@ -33,17 +33,21 @@
   			<div class="jumbotron">
   				<h2>Something to Sell?</h2>
   				<div class="col-md-6">
-  					<input id="formTitle" type="text" class="form-control" placeholder="Title" autofocus>
+  					<input id="formTitle" type="text" class="form-control" placeholder="Title" autofocus />
+  					<input id="formImage" type="file" class="form-control" placeholder="Upload Image" autofocus />
+  					
   				</div>
+  				
   				<div class="col-md-6">
   					<span style="display:inline; font-size:15px;">Category: </span>
   					<select class="form-control" style="width:250px; display:inline;">
-  						<option></option>
-  						<option></option>
-  						<option></option>
-  						<option></option>
+  						<option>Select</option>
+  						<option>Furniture</option>
+  						<option>Fashion</option>
+  						<option>Books</option>
   					</select>
-  				</div>		
+  					<input id="formImage" type="file" class="form-control" placeholder="Upload Image" autofocus />
+  				</div>
   			</div>
   			
   			<!-- auction content -->

@@ -19,8 +19,8 @@ public class UserDAOImpl implements UserDAO {
 			
 			PreparedStatement updateUser = con.prepareStatement("INSERT into " + DBUtils.SCHEMA_NAME + ".user "
 															 + "(username,nickname,first_name,last_name,password,"
-															 + "email,year_of_birth,avatar_img,activate,ban)"
-															 + " values (?,?,?,?,?,?,?,?,?,?)");
+															 + "email,year_of_birth,avatar_img,activate,ban,credit_card_num,activate_hashsum)"
+															 + " values (?,?,?,?,?,?,?,?,?,?,?,?)");
 			updateUser.setString(1,user.getUsername());
 			updateUser.setString(2,user.getNickname());
 			updateUser.setString(3,user.getFirstName());
@@ -31,6 +31,8 @@ public class UserDAOImpl implements UserDAO {
 			updateUser.setString(8,user.getAvatar());
 			updateUser.setBoolean(9,user.getActivated());
 			updateUser.setBoolean(10,user.getBanned());
+			updateUser.setString(11,user.getCreditCardNum());
+			updateUser.setString(12,user.getCheckSum());
 			
 			updateUser.executeUpdate();      
 
@@ -112,6 +114,40 @@ public class UserDAOImpl implements UserDAO {
 		
 		return users;
 	}
+	
+	// TODO - not tested yet
+		@Override
+		public int getNumUserByUserName(String username) throws SQLException {
+			int returnNumber = 0;
+			Connection con = null;
+			
+			try {
+				con = DBConnectionFactory.getConnection();
+				
+				PreparedStatement userQuery = con.prepareStatement("SELECT COUNT(*) AS result FROM " + DBUtils.SCHEMA_NAME + "." + DBUtils.USER_TABLE
+																 + " WHERE username=?");
+				
+				userQuery.setString(1, username);
+				
+				ResultSet rs = userQuery.executeQuery();
+				if(rs.next()){
+					returnNumber = rs.getInt("result");
+				}
+				
+			} catch (ServiceLocatorException e) {
+				// TODO do some roll back probably
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO do some roll back probably
+				e.printStackTrace();
+			} finally {
+				if (con != null) {
+					con.close();
+				}
+			}
+			
+			return returnNumber;
+		}
 
 	// TODO - not tested yet
 	@Override
@@ -181,7 +217,8 @@ public class UserDAOImpl implements UserDAO {
 		
 		return resultUid;
 	}
-
+	
+	
 	@Override
 	public void updateUser(UserDTO user) throws SQLException {
 		Connection con = null;
@@ -228,6 +265,8 @@ public class UserDAOImpl implements UserDAO {
 		user.setAvatar(rs.getString(DBUtils.USER_AVATAR));
 		user.setActivated(rs.getBoolean(DBUtils.USER_ACTIVE));
 		user.setBanned(rs.getBoolean(DBUtils.USER_BAN));
+		user.setCreditCardNum(rs.getString(DBUtils.USER_CREDIT_CARD_NUM));
+		user.setCheckSum(rs.getString(DBUtils.USER_CHECKSUM));
 		
 		return user;
 	}

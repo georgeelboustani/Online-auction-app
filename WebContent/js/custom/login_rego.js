@@ -139,9 +139,7 @@ $().ready( function(){
 			register.address = $('#formRegoAddress').val();
 			register.creditcardnum = $('#formRegoCreditCardNo').val();
 			
-			var registerDataString = "ajax=addUser&data=" + JSON.stringify(register);
-			alert(registerDataString);
-			
+			var registerDataString = "ajax=addUser&data=" + JSON.stringify(register);			
 			$.ajax({
 	     		url: "controller",
 	            type: 'POST',
@@ -150,6 +148,9 @@ $().ready( function(){
 	            success: function(data) {
 	            	if(data.success){
 	            		$('#formRegoAlert').show().html('<div class="alert alert-danger">'+data.message+'</div>');
+	            		setTimeout(function() {
+	            			window.location.href = data.redirect;
+	            		}, 2000);
 	            	}else{
 	            		$('#formRegoAlert').show().html('<div class="alert alert-danger">'+data.message+'</div>');
 	            	}
