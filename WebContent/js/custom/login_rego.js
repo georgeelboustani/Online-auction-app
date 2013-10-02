@@ -1,15 +1,14 @@
 $().ready( function(){
 	
 //	//disable form submission on enter
-//	$('form').bind("keyup", function(e) {
-//		  var code = e.keyCode || e.which; 
-//		  if (code  == 13) {               
-//		    e.preventDefault();
-//		    return false;
-//		  }
-//		});
-//	
-//	$('form').submit(false);
+	$('form').bind("keyup", function(e) {
+		  var code = e.keyCode || e.which; 
+		  if (code  == 13) {               
+		    e.preventDefault();
+		    return false;
+		  }
+		});
+	$('form').submit(false);
 	
 	$( "#choice" ).buttonset();
 	
@@ -40,9 +39,10 @@ $().ready( function(){
 		var login = new Object();
 		login.signinUsername = $('#formSigninUsername').val();
 		login.signinPassword= $('#formSigninPassword').val();
-     	var loginDataString = "ajax=login&data=" + JSON.stringify(login);
+     	var loginDataString = "ajax=authenticate&data=" + JSON.stringify(login);
+     	
      	$.ajax({
-     		url: "ControllerServlet",
+     		url: "controller",
             type: 'POST',
             dataType: 'json',
             data: loginDataString,
@@ -143,7 +143,7 @@ $().ready( function(){
 			alert(registerDataString);
 			
 			$.ajax({
-	     		url: "ControllerServlet",
+	     		url: "controller",
 	            type: 'POST',
 	            dataType: 'json',
 	            data: registerDataString,

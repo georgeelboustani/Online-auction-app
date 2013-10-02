@@ -18,9 +18,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * Servlet Filter implementation class HeaderFilter
+ */
+@WebFilter(dispatcherTypes = {
+				DispatcherType.REQUEST, 
+				DispatcherType.FORWARD,
+		}
+					, urlPatterns = { "*.jsp" })
 public class HeaderFilter implements Filter {
 	final Logger logger = Logger.getLogger(this.getClass().getName());
-	private ArrayList<String> urlList;
 
 	/**
 	 * @see Filter#destroy()
@@ -36,16 +43,25 @@ public class HeaderFilter implements Filter {
 			FilterChain chain) throws IOException, ServletException {
 		logger.info("HeaderFilter invoked");
 		//Create cross site session hash to 
+		chain.doFilter(request, response);
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = req.getSession(true);
 		
-	    if(session.getAttribute("user_uid") == null){
-	    	res.sendRedirect("login.jsp");
-	    }
+		//TODO: remove the bottom 
+		System.out.println(req.getServletPath());
+		System.out.println(req.getMethod());
 		
 		
-		chain.doFilter(request, response);
+		if(req.getMethod().equalsIgnoreCase("GET")){ 
+			if(session.getAttribute("user_uid") == null){
+				if(!"/login.jsp".equals(req.getServletPath())){
+					request.getRequestDispatcher("/login.jsp").forward(request,
+							response);
+				}
+			}
+		}
+		
 		
 	}
 
