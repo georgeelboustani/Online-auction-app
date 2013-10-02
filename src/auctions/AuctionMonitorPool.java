@@ -144,7 +144,6 @@ public class AuctionMonitorPool implements Runnable {
 	static Logger logger = Logger.getLogger(AuctionMonitorPool.class.getName());
 	
 	private ThreadPoolExecutor executor;
-	private boolean stopMonitoring = false;
 	
 	public AuctionMonitorPool() {
 		BlockingQueue<Runnable> auctionQueue = new ArrayBlockingQueue<Runnable>(10);
@@ -159,7 +158,7 @@ public class AuctionMonitorPool implements Runnable {
 	@Override
 	public void run() {
 		logger.info("Auction monitor started succesfully");
-		while (!stopMonitoring) {
+		while (true) {
 			try {
 				List<String> categories = (new AuctionDAOImpl()).getAuctionCategories();
 				for (String category: categories) {
@@ -176,9 +175,5 @@ public class AuctionMonitorPool implements Runnable {
 				e.printStackTrace();
 			}
 		}
-	}
-	
-	public void stopMonitoring() {
-		stopMonitoring = true;
 	}
 }

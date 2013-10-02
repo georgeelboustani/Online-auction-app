@@ -9,6 +9,8 @@ public interface AuctionBidDAO {
 	
 	AuctionBidDTO getHighestBid(int auctionId) throws SQLException;
 	
+	void placeBid(AuctionBidDTO bid) throws SQLException;
+	
 	// TODO - add more functions we need from the bid table
 	
 }

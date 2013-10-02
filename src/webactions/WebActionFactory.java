@@ -9,26 +9,31 @@ public class WebActionFactory {
 	static Logger logger = Logger.getLogger(DBConnectionFactory.class.getName());
 	
 	private static WebActionFactory factory = null;
-	private static HashMap<String,WebActionPost> postActionMap;
+	private static HashMap<String,WebActionGP> gpActionMap;
 	private static HashMap<String,WebActionAjax> ajaxActionMap;
 	
 	private WebActionFactory() {
-		postActionMap = new HashMap<String, WebActionPost>();
-		postActionMap.put("addAuction", new AddAuctionAction());
-		postActionMap.put("updateUser", new UpdateUserAction());
+		gpActionMap = new HashMap<String, WebActionGP>();
+		gpActionMap.put("addAuction", new AddAuctionAction());
+		gpActionMap.put("updateUser", new UpdateUserAction());
+		gpActionMap.put("logout", new LogoutAction());
+		gpActionMap.put("searchAuction", new SearchAction());
+		gpActionMap.put("viewAuction", new ViewAuctionAction());
 		// TODO - add more action mappings
 		
 		ajaxActionMap = new HashMap<String, WebActionAjax>();
 		ajaxActionMap.put("login", new LoginAction());
 		ajaxActionMap.put("addUser", new RegisterUserAction());
+		ajaxActionMap.put("placeBid", new PlaceBidAction());
 	}
 	
-	public static WebActionPost getPostAction(String action) {
+	// Get the Get or Post action
+	public static WebActionGP getGPAction(String action) {
 		if(factory==null) {
 			factory = new WebActionFactory();
 		}
 		
-		return postActionMap.get(action);
+		return gpActionMap.get(action);
 	}
 	
 	public static WebActionAjax getAjaxAction(String action) {

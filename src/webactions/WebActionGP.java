@@ -4,8 +4,8 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public interface WebActionPost {
+public interface WebActionGP {
 	
-	String executePost(HttpServletRequest req, HttpServletResponse res, Logger logger);
+	String executeAction(HttpServletRequest req, HttpServletResponse res, Logger logger);
 	
 }

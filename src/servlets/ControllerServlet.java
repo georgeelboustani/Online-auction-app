@@ -18,8 +18,10 @@ import auctions.AuctionMonitorPoolFactory;
 
 import com.google.gson.Gson;
 
+import webactions.LoginAction;
 import webactions.WebActionAjax;
 import webactions.WebActionFactory;
+import webactions.WebActionGP;
 import mail.MailSenderServiceFactory;
 import exceptions.ServiceLocatorException;
 
@@ -65,18 +67,16 @@ public class ControllerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.info("ControllerServlet: doGet() invoked");
 		HttpSession session = request.getSession(true);
-		
+
 		if(request.getParameter("action") != null){
 			// TODO - what should the default be => 
 			// index.jsp with a jsp guard that redirects to login.jsp
 			String forwardPage = "index.jsp";
-			String action = request.getParameter("action");
 			
-			if("login".equals(action)){
-				forwardPage = "login.jsp";
-			}else if("logout".equals(action)){
-				session.invalidate();
-				forwardPage = "login.jsp";
+			String action = request.getParameter("action");
+			WebActionGP webAction = WebActionFactory.getGPAction(action);
+			if (webAction != null) {
+				forwardPage = webAction.executeAction(request, response, logger);
 			}
 			
 			RequestDispatcher rd = request.getRequestDispatcher(forwardPage);
@@ -120,7 +120,18 @@ public class ControllerServlet extends HttpServlet {
 			out.close();
 			    
 		}else if(request.getParameter("action") != null){
+			// TODO - what should the default be => 
+			// index.jsp with a jsp guard that redirects to login.jsp
+			String forwardPage = "index.jsp";
 			
+			String action = request.getParameter("action");
+			WebActionGP webAction = WebActionFactory.getGPAction(action);
+			if (webAction != null) {
+				forwardPage = webAction.executeAction(request, response, logger);
+			}
+			
+			RequestDispatcher rd = request.getRequestDispatcher(forwardPage);
+			rd.forward(request, response);
 		}
 	}
 }

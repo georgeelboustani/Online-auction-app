@@ -16,6 +16,8 @@ public interface AuctionDAO {
 	List<String> getAuctionCategories() throws SQLException;
 	
 	void closeAuction(int aucId) throws SQLException;
+
+	List<AuctionDTO> wordSearchAuctionsByDescription(String searchString, boolean ascending) throws SQLException;
 	
 	// TODO - Add more shit we need from the auction table
 	

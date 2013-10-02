@@ -25,6 +25,7 @@ import jdbc.UserDAO;
 import jdbc.UserDAOImpl;
 import jdbc.UserDTO;
 
+
 public class RegisterUserAction implements WebActionAjax {
 	
 	@Override
@@ -41,6 +42,7 @@ public class RegisterUserAction implements WebActionAjax {
 			return resultMap;
 		}
 		
+
 		UserDTO user = new UserDTO();
 		
 		// TODO - parameterise these set's according to the request
@@ -85,21 +87,21 @@ public class RegisterUserAction implements WebActionAjax {
 	
 	private boolean validateRegistration(ForRegistration regoData, Map<String, Object> resultMap){
 		boolean pass = true;
-		String msg = "";
-		Pattern wordPattern = Pattern.compile("^[a-zA-Z_0-9]*$");
-		
-		if(regoData.getUsername().contains(" ") || regoData.getUsername().equals("") 
-				|| wordPattern.matcher(regoData.getUsername()).find()){
-			pass = false;
-		}else{
-			
-		}
-		
-		
-		
-		resultMap.put("success", false);
-		resultMap.put("message", "An SQLException has occured...");
-		resultMap.put("redirect", "error.jsp");
+//		String msg = "";
+//		Pattern wordPattern = Pattern.compile("^[a-zA-Z_0-9]*$");
+//		
+//		if(regoData.getUsername().contains(" ") || regoData.getUsername().equals("") 
+//				|| wordPattern.matcher(regoData.getUsername()).find()){
+//			pass = false;
+//		}else{
+//			
+//		}
+//		
+//		
+//		
+//		resultMap.put("success", false);
+//		resultMap.put("message", "An SQLException has occured...");
+//		resultMap.put("redirect", "error.jsp");
 		
 		return false;
 	}

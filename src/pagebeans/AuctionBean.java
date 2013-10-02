@@ -1,19 +1,41 @@
 package pagebeans;
 
-import java.util.List;
+import java.io.Serializable;
 
 import jdbc.AuctionDTO;
 
-public class AuctionBean {
+public class AuctionBean implements Serializable{
+	private static final long serialVersionUID = 3L;
 	
-	private List<AuctionDTO> auctions;
-
-	public List<AuctionDTO> getAuctions() {
-		return auctions;
+	private AuctionDTO auction;
+	private long timeLeft;
+	private boolean displayError;
+	private String errorMessage;
+	
+	public long getTimeLeft() {
+		return timeLeft;
 	}
-
-	public void setAuctions(List<AuctionDTO> auctions) {
-		this.auctions = auctions;
+	public void setTimeLeft(long timeLeft) {
+		this.timeLeft = timeLeft;
 	}
+	public AuctionDTO getAuction() {
+		return auction;
+	}
+	public void setAuction(AuctionDTO auction) {
+		this.auction = auction;
+	}
+	public boolean getDisplayError() {
+		return displayError;
+	}
+	public void setDisplayError(boolean displayError) {
+		this.displayError = displayError;
+	}
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
+	
 	
 }

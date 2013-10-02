@@ -1,10 +1,13 @@
 package jdbc;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 
-public class AuctionDTO {
+public class AuctionDTO implements Serializable {
+	private static final long serialVersionUID = 2L;
+	
 	private int aid;
 	private int auctionOwnerId;
 	private String auctionTitle;
@@ -18,8 +21,6 @@ public class AuctionDTO {
 	private Timestamp  auctionStartTime;
 	private Timestamp auctionCloseTime;
 	private boolean auctionHalt;
-	
-	// private List<BidDTO> bids; // we can add this if useful. otherwise better off using DAO to get them
 	
 	public int getAid() {
 		return aid;
