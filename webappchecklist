@@ -29,5 +29,5 @@ Auction Completion(3):
 Admin Functionality(2 and 3 and 2):
 [ ]	admin has seperate login
 [ ]	can view auction and halt them, notify auction owner
-[-]	admin can ban user, which halts all their auctions
+[ ]	admin can ban user, which halts all their auctions
 [-]	banned user cant start auctions

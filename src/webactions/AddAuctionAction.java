@@ -22,6 +22,10 @@ public class AddAuctionAction implements WebActionGP {
 		int userId = LoginUtils.getUserId(req);
 		UserDAO userDao = new UserDAOImpl();
 		try {
+			
+			// TODO - prices cant be negative, increment must be greater then 0, reserve not zero, 
+			// TODO - closing time > current time (> 3mins and < 60mins), auction starts when user clicks button
+			
 			UserDTO user = userDao.getUserById(userId);
 			
 			if (user == null || user.getBanned()) {
