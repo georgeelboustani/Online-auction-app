@@ -14,20 +14,20 @@ Offer item for auction(3):
 [ ]	validate form data server-side
 
 Bidding(3 and 5):
-[ ]	Search for items, results only currently open auctions
+[-]	Search for items, results only currently open auctions
 [ ]	click on item in list, takes to item page showing all info, including winning bid atm
 	---
-[ ]	user enters bid (>= current bid + increment)
+[-]	user enters bid (>= current bid + increment)
 [ ]	if too low, or auction has ended on submit, alert the user. otherwise show success message, and refresh page with new winning bid.
-[ ]	notify new bid placer and previous winning bid placer by email
+[-]	notify new bid placer and previous winning bid placer by email
 [ ]	validate form data server-side
 
 Auction Completion(3):
-[ ]	(winning bid >= reserve) notify winning bid, and item owner by email. also place message on their profile page
+[ ]	(winning bid >= reserve) notify winning bid, and item owner by email. also place message on their profile page
 [ ]	(winning bid < reserve) notify owner by email, he then logs in and can accept or reject winning bid. notify winning bid by email either way
 
 Admin Functionality(2 and 3 and 2):
 [ ]	admin has seperate login
 [ ]	can view auction and halt them, notify auction owner
-[ ]	admin can ban user, which halts all their auctions
-[ ]	banned user cant start auctions
+[ ]	admin can ban user, which halts all their auctions
+[-]	banned user cant start auctions

@@ -48,6 +48,10 @@ public class DBUtils {
 	public static String ADMIN_UID = "uid";
 	
 	
+	public static void main(String[] argv) {
+		System.out.println(calculateMD5("pass"));
+	}
+	
 	public static String calculateMD5(String key) {
 		String original = key;
 		MessageDigest md;

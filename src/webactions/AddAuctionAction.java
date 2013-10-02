@@ -11,38 +11,58 @@ import javax.servlet.http.HttpServletResponse;
 import jdbc.AuctionDAO;
 import jdbc.AuctionDAOImpl;
 import jdbc.AuctionDTO;
+import jdbc.UserDAO;
+import jdbc.UserDAOImpl;
+import jdbc.UserDTO;
 
 public class AddAuctionAction implements WebActionGP {
 
 	@Override
 	public String executeAction(HttpServletRequest req, HttpServletResponse res, Logger logger) {
-		AuctionDTO auc = new AuctionDTO();
-		
-		// TODO - replace all the constant parameters with the values from the request parameters. hopefully there all there :s
-		auc.setAuctionCategory("electronics");
-		auc.setAuctionCloseTime(new Timestamp(2010, 5, 13, 4, 34, 2, 0));
-		auc.setAuctionDescription("blah batteries");
-		auc.setAuctionHalt(false);
-		auc.setAuctionImage("blah");
-		auc.setAuctionOwnerId(2);
-		auc.setAuctionPostageDetails("somewhere rd");
-		auc.setAuctionReservePrice(20);
-		auc.setAuctionStartTime(new Timestamp(2010, 4, 13, 4, 34, 2, 0));
-		auc.setAuctionTitle("batteries");
-		auc.setBiddingIncrement(1);
-		auc.setBiddingStartPrice(10);
-		
-		AuctionDAO aucdao = new AuctionDAOImpl();
+		int userId = LoginUtils.getUserId(req);
+		UserDAO userDao = new UserDAOImpl();
 		try {
-			aucdao.addAuction(auc);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			// TODO - sort out handling of this exception
-			return "error.jsp";
+			
+			// TODO - prices cant be negative, increment must be greater then 0, reserve not zero, 
+			// TODO - closing time > current time (> 3mins and < 60mins), auction starts when user clicks button
+			
+			UserDTO user = userDao.getUserById(userId);
+			
+			if (user == null || user.getBanned()) {
+				// Do nothing i guess?
+			} else {
+				AuctionDTO auc = new AuctionDTO();
+				
+				// TODO - fix this shit up with parameter from request
+				auc.setAuctionCategory("electronics");
+				auc.setAuctionCloseTime(new Timestamp(2010, 5, 13, 4, 34, 2, 0));
+				auc.setAuctionDescription("blah batteries");
+				auc.setAuctionHalt(false);
+				auc.setAuctionImage("blah");
+				auc.setAuctionOwnerId(2);
+				auc.setAuctionPostageDetails("somewhere rd");
+				auc.setAuctionReservePrice(20);
+				auc.setAuctionStartTime(new Timestamp(2010, 4, 13, 4, 34, 2, 0));
+				auc.setAuctionTitle("batteries");
+				auc.setBiddingIncrement(1);
+				auc.setBiddingStartPrice(10);
+				
+				AuctionDAO aucdao = new AuctionDAOImpl();
+				try {
+					aucdao.addAuction(auc);
+				} catch (SQLException e) {
+					e.printStackTrace();
+					// TODO - sort out handling of this exception
+					return "error.jsp";
+				}
+				
+				return "selling.jsp";
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		
-		// TODO - return the next page
 		return "index.jsp";
 	}
-
 }

@@ -9,6 +9,10 @@ import java.util.List;
 
 import exceptions.ServiceLocatorException;
 
+/* Manual insert
+ * insert into public.user (username,nickname,first_name,last_name,password,email,year_of_birth,avatar_img,activate,ban) values ('user','','user1','','1a1dc91c907325c69271ddf0c944bc72','blah@hotmail.com','3910-08-22','','true','false');
+ */
+
 public class UserDAOImpl implements UserDAO {
 	
 	@Override
@@ -269,6 +273,32 @@ public class UserDAOImpl implements UserDAO {
 		user.setCheckSum(rs.getString(DBUtils.USER_CHECKSUM));
 		
 		return user;
+	}
+
+	@Override
+	public void banUser(int userId) throws SQLException {
+		Connection con = null;
+		try {
+			con = DBConnectionFactory.getConnection();
+			
+			PreparedStatement updateUser = con.prepareStatement("UPDATE " + DBUtils.SCHEMA_NAME + ".user "
+															 + "SET ban=?"
+															 + "WHERE " + DBUtils.USER_ID + " = " + userId);
+			updateUser.setBoolean(1,true);
+			
+			updateUser.executeUpdate();      
+
+		} catch (ServiceLocatorException e) {
+			// TODO do some roll back probably
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO do some roll back probably
+			e.printStackTrace();
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
 	}
 
 }
