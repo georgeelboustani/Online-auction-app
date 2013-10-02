@@ -23,7 +23,6 @@ public class LoginAction implements WebActionAjax {
 
 	@Override
 	public Map<String, Object> executeAjax(HttpServletRequest req, HttpServletResponse res, Logger logger) {
-		// TODO - we need to verify the user
 		logger.info("WebAction => Doing Authentication");
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		

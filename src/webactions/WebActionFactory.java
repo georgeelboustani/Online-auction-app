@@ -15,7 +15,6 @@ public class WebActionFactory {
 	private WebActionFactory() {
 		gpActionMap = new HashMap<String, WebActionGP>();
 		gpActionMap.put("addAuction", new AddAuctionAction());
-		gpActionMap.put("addUser", new RegisterUserAction());
 		gpActionMap.put("updateUser", new UpdateUserAction());
 		gpActionMap.put("logout", new LogoutAction());
 		gpActionMap.put("searchAuction", new SearchAction());
@@ -26,6 +25,7 @@ public class WebActionFactory {
 		
 		ajaxActionMap = new HashMap<String, WebActionAjax>();
 		ajaxActionMap.put("login", new LoginAction());
+		ajaxActionMap.put("addUser", new RegisterUserAction());
 		ajaxActionMap.put("placeBid", new PlaceBidAction());
 	}
 	

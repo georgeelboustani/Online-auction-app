@@ -2,8 +2,12 @@ package jdbc;
 
 import java.sql.Date;
 
+
 public class UserDTO {
+	
+	
 	private int uid;
+	
 	private String username;
 	private String nickname;
 	private String firstName;

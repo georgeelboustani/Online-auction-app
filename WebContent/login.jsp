@@ -27,27 +27,30 @@
     </div>
     
     <div id="rego" class="container">
-      <div class="form-rego">
+      
+      <form class="form-rego" id="regoForm" method="get" action="">
         <h2 class="form-rego-heading">Please Register</h2>
         <br/>
-        <input type="text" class="form-control" placeholder="User Name" autofocus>
-        <input type="password" class="form-control" placeholder="Password" style="width:200px">
-        <input type="password" class="form-control" placeholder="Repeat Password" style="width:200px">
+        <input id="formRegoUsername" name="formRegoUsername" type="text" class="form-control" placeholder="User Name" autofocus />
+        <input id="formRegoPassword" name="formRegoPassword" type="password" class="form-control" placeholder="Password" style="width:200px" />
+        <input id="formRegoConfirmPassword" name="formRegoConfirmPassword" type="password" class="form-control" placeholder="Confirm Password" style="width:200px" />
+        
         <br/>
         <h4 class="form-rego-heading">Personal Info</h4>
-        <input type="text" class="form-control" placeholder="Nick Name" autofocus>
-        <input type="text" class="form-control" placeholder="First Name" autofocus>
-        <input type="text" class="form-control" placeholder="Last Name" autofocus>
-        <input type="text" class="form-control" placeholder="Email address" autofocus>
-        <input type="text" class="form-control" value="" placeholder="BirthDate" data-date-format="mm/dd/yy" id="dp" style="width:150px">
-        <input type="text" class="form-control" placeholder="Address" autofocus>
+        <input id="formRegoNickName" name="formRegoNickName" type="text" class="form-control" placeholder="Nick Name" autofocus />
+        <input id="formRegoFirstName" name="formRegoFirstName" type="text" class="form-control" placeholder="First Name" autofocus />
+        <input id="formRegoLastName" name="formRegoLastName" type="text" class="form-control" placeholder="Last Name" autofocus />
+        <input id="formRegoEmail" name="formRegoEmail" type="email" class="form-control" placeholder="Email address" autofocus />
+        <input id="formRegoBirthDate" name="formRegoBirthDate" type="text" class="form-control" value="" placeholder="BirthDate" data-date-format="mm/dd/yy" id="dp" style="width:150px" />
+        <input id="formRegoAddress" name="formRegoAddress" type="text" class="form-control" placeholder="Address" autofocus />
+        
         <br/>
         <h4 class="form-rego-heading">Credit Details</h4>
-        <input type="text" class="form-control" placeholder="Credit Card No." autofocus>
+        <input id="formRegoCreditCardNo" name="formRegoCreditCardNo" type="text" class="form-control" placeholder="Credit Card No." autofocus />
         
-        
-        <button id="regoSubmit" class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-      </div>
+        <div id="formRegoAlert"></div>
+      	<button id="regoSubmit" type="submit" class="btn btn-lg btn-primary btn-block">Register</button>
+      </form>
     </div>
     
     <div class="switch-container">
@@ -66,6 +69,8 @@
 	<script src="${pageContext.request.contextPath}/js/jquery-1.10.2.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap-switch.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/additional-methods.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.3.custom.min.js"></script>
 	<!-- custom scripts -->
 	<script src="${pageContext.request.contextPath}/js/custom/login_rego.js"></script>
