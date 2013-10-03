@@ -209,9 +209,9 @@ public class AuctionDAOImpl implements AuctionDAO {
 		try {
 			con = DBConnectionFactory.getConnection();
 			
-			PreparedStatement updateUser = con.prepareStatement("UPDATE auction_item "
-															 + "SET auction_halt=?,"
-															 + "WHERE aid = ?");
+			PreparedStatement updateUser = con.prepareStatement("UPDATE auction_item"
+															 + " SET auction_halt=?"
+															 + " WHERE aid = ?");
 			updateUser.setBoolean(1,true);
 			updateUser.setInt(2,aucId);
 			
