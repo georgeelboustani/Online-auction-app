@@ -21,6 +21,7 @@
 .auction-nav-bar {
 	margin-left: -30px;
 	margin-right: -28px;
+	margin-top: 10px;
 }
 
 .sort-select {
@@ -37,4 +38,47 @@
 .my-alert-success {
 	width: 110px;
 	float: right;	
+}
+
+.auction-desc-box {
+	position: relative;
+	overflow: hidden;
+	display: block;
+}
+
+.auction-item-header {
+	font-size: 21px;
+	overflow: hidden;
+	font-weight:bold;
+	margin-bottom: 5px;
+}
+
+.auction-item-desc {
+	position: relative;
+    display: block;
+    height: 7em;
+    overflow: hidden;
+    margin-top:	10px;				
+}
+
+.auction-item-desc .text{
+	color:                      #999;
+    width:                      204px;
+    overflow:                   hidden;
+    line-height:                1;
+    text-align:                 justify;
+}
+
+ .auction-item-desc .text:after {
+	content:                    ' ';
+    position:                   absolute;
+    display:                    block;
+    width:                      100%;
+    height:                     1em;
+    bottom:                     0px;
+    left:                       0px;
+}
+
+.auction-details-button {
+	margin-top: 10px;
 }

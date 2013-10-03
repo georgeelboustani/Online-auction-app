@@ -1,5 +1,9 @@
 $().ready( function(){
 	
+	$.validator.addMethod("money", function (value, element) {
+		return this.optional(element) || /^(\d+)(\.\d{1,2})?$/.test(value);
+		}, "currency format (e.g. 0.99)");
+	
 	$("#sellingForm").validate({
 		rules: {
 			formTitle: "required",
@@ -9,17 +13,21 @@ $().ready( function(){
 			formStartPrice: {
 				required: true,
 				number: true,
-				min: 0.10
+				min: 0.10,
+				money: true
+				
 			},
 			formReservePrice: {
 				required: true,
 				number: true,
-				min: 0.10
+				min: 0.10,
+				money: true
 			},
 			formMinBid: {
 				required: true,
 				number: true,
-				min: 0.10
+				min: 0.10,
+				money: true
 			},
 			formDuration: {
 				required: true,
@@ -39,16 +47,16 @@ $().ready( function(){
 			},
 			formReservePrice: {
 				required: "required*",
-				number: "only in decimal format",
+				number: "numero decimal only",
 				min: "min of 0.10"
 			},
 			formMinBid: {
 				required: "required*",
-				number: "only in decimal format"
+				number: "numero decimal only"
 			},
 			formDuration: {
 				required: "required",
-				digits: "only numbers allowed",
+				digits: "numero decimal only",
 				range: "range from 3min to 60mins"
 			}
 		},
