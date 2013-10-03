@@ -43,7 +43,6 @@ public class RegisterUserAction implements WebActionAjax {
 		
 		UserDTO user = new UserDTO();
 		
-		// TODO - parameterise these set's according to the request
 		user.setActivated(false);
 		user.setBanned(false);
 		user.setEmail(regoData.getEmail());
@@ -95,9 +94,6 @@ public class RegisterUserAction implements WebActionAjax {
 				UserDAO userdao = new UserDAOImpl();
 				try {
 					userdao.addUser(user);
-					
-					// TODO - MAIL fix this up so it works
-					
 					
 					//TODO: remove debug script
 					System.out.println("inside email activation link:\n"+
