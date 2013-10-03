@@ -9,8 +9,8 @@ import java.util.List;
 
 import exceptions.ServiceLocatorException;
 
-/* Manual insert
- * insert into public.user (username,nickname,first_name,last_name,password,email,year_of_birth,activate,ban) values ('user','','user1','','1a1dc91c907325c69271ddf0c944bc72','blah@hotmail.com','3910-08-22','','true','false');
+/* Admin Manual insert
+ * insert into public.user (username,nickname,first_name,last_name,password,email,year_of_birth,activate,ban,is_admin) values ('admin','','user1','','5f4dcc3b5aa765d61d8327deb882cf99','blah@hotmail.com','3910-08-22','true','false','true');
  */
 
 public class UserDAOImpl implements UserDAO {
@@ -23,8 +23,8 @@ public class UserDAOImpl implements UserDAO {
 			
 			PreparedStatement updateUser = con.prepareStatement("INSERT into " + DBUtils.SCHEMA_NAME + ".user "
 															 + "(username,nickname,first_name,last_name,password,"
-															 + "email,year_of_birth,activate,ban,credit_card_num,activate_hashsum)"
-															 + " values (?,?,?,?,?,?,?,?,?,?,?)");
+															 + "email,year_of_birth,activate,ban,credit_card_num,activate_hashsum,isAdmin)"
+															 + " values (?,?,?,?,?,?,?,?,?,?,?,?)");
 			updateUser.setString(1,user.getUsername());
 			updateUser.setString(2,user.getNickname());
 			updateUser.setString(3,user.getFirstName());
@@ -36,6 +36,7 @@ public class UserDAOImpl implements UserDAO {
 			updateUser.setBoolean(9,user.getBanned());
 			updateUser.setString(10,user.getCreditCardNum());
 			updateUser.setString(11,user.getCheckSum());
+			updateUser.setBoolean(12, false);
 			
 			updateUser.executeUpdate();      
 
@@ -85,8 +86,8 @@ public class UserDAOImpl implements UserDAO {
 
 	// TODO - not tested yet
 	@Override
-	public List<UserDTO> getUserByUserName(String username) throws SQLException {
-		List<UserDTO> users = new ArrayList<UserDTO>();
+	public UserDTO getUserByUserName(String username) throws SQLException {
+		UserDTO user = null;
 		
 		Connection con = null;
 		
@@ -94,13 +95,12 @@ public class UserDAOImpl implements UserDAO {
 			con = DBConnectionFactory.getConnection();
 			
 			PreparedStatement userQuery = con.prepareStatement("SELECT * FROM " + DBUtils.SCHEMA_NAME + "." + DBUtils.USER_TABLE
-															 + " WHERE ?=?");
-			userQuery.setString(1,DBUtils.USER_NAME);
-			userQuery.setString(2, username);
+															 + " WHERE "+DBUtils.USER_NAME+"=?");
+			userQuery.setString(1, username);
 			
 			ResultSet rs = userQuery.executeQuery();
-			while (rs.next()) {
-				users.add(generateUserDTO(rs));
+			if (rs.next()) {
+				user = generateUserDTO(rs);
 			}
 			
 		} catch (ServiceLocatorException e) {
@@ -115,7 +115,7 @@ public class UserDAOImpl implements UserDAO {
 			}
 		}
 		
-		return users;
+		return user;
 	}
 	
 	// TODO - not tested yet
@@ -270,6 +270,7 @@ public class UserDAOImpl implements UserDAO {
 		user.setBanned(rs.getBoolean(DBUtils.USER_BAN));
 		user.setCreditCardNum(rs.getString(DBUtils.USER_CREDIT_CARD_NUM));
 		user.setCheckSum(rs.getString(DBUtils.USER_CHECKSUM));
+		user.setIsAdmin(rs.getBoolean(DBUtils.USER_IS_ADMIN));
 		
 		return user;
 	}

@@ -52,7 +52,8 @@ public class HeaderFilter implements Filter {
 		HttpSession session = req.getSession(true);
 		
 		if(req.getMethod().equalsIgnoreCase("GET")){ 
-			if(!"/login.jsp".equals(req.getServletPath()) 
+			if(!req.getServletPath().contains("action=adminLogin") &&
+					!"/login.jsp".equals(req.getServletPath()) 
 					&& !"/error.jsp".equals(req.getServletPath())){
 				if(session.getAttribute("user_uid") == null){
 					request.getRequestDispatcher("/login.jsp").forward(request,

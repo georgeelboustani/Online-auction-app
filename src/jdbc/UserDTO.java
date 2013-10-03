@@ -25,7 +25,14 @@ public class UserDTO {
 	private boolean banned;
 	private String creditCardNum;
 	private String activateChecksum;
+	private boolean isAdmin;
 	
+	public boolean getIsAdmin() {
+		return isAdmin;
+	}
+	public void setIsAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
 	@Digits(integer=10, fraction=0)
 	public int getUid() {
 		return uid;
