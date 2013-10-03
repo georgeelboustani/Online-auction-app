@@ -31,15 +31,21 @@
   		<div class="col-md-9 well">
   		  	<h2 class="form-selling-heading">Something to Sell?</h2>		
 			<div class="col-md-6 form-">
-				<input id="formTitle" type="text" class="form-control form-selling-input" placeholder="Title" autofocus />
-				<span style="display:inline; font-size:15px;">Category: </span>
-				<select id="formCategory" class="form-control form-selling-input" style="width:250px; display:inline;">
-					<option>Select</option>
-					<option>Furniture</option>
-					<option>Fashion</option>
-					<option>Books</option>
-				</select>
-				<input id="formImage" type="file" class="form-control form-selling-input" placeholder="Upload Image" autofocus />
+					
+					<input id="formTitle" type="text" class="form-control form-selling-input" placeholder="Title" autofocus />
+				
+					<span style="display:inline; font-size:15px;">Category: </span>
+					<select id="formCategory" class="form-control form-selling-input form-selling-with-title" display:inline;">
+						<option>Select</option>
+						<option>Furniture</option>
+						<option>Fashion</option>
+						<option>Books</option>
+					</select>
+				</p>
+				<p>	
+					<span style="display:inline; font-size:15px;">Image: </span>
+					<input id="formImage" type="file" class="form-control form-selling-input" placeholder="Upload Image" autofocus />
+				</p>
 			</div>
 			
 			<div class="col-md-6">

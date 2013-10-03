@@ -10,7 +10,7 @@ import java.util.List;
 import exceptions.ServiceLocatorException;
 
 /* Manual insert
- * insert into public.user (username,nickname,first_name,last_name,password,email,year_of_birth,avatar_img,activate,ban) values ('user','','user1','','1a1dc91c907325c69271ddf0c944bc72','blah@hotmail.com','3910-08-22','','true','false');
+ * insert into public.user (username,nickname,first_name,last_name,password,email,year_of_birth,activate,ban) values ('user','','user1','','1a1dc91c907325c69271ddf0c944bc72','blah@hotmail.com','3910-08-22','','true','false');
  */
 
 public class UserDAOImpl implements UserDAO {
@@ -23,8 +23,8 @@ public class UserDAOImpl implements UserDAO {
 			
 			PreparedStatement updateUser = con.prepareStatement("INSERT into " + DBUtils.SCHEMA_NAME + ".user "
 															 + "(username,nickname,first_name,last_name,password,"
-															 + "email,year_of_birth,avatar_img,activate,ban,credit_card_num,activate_hashsum)"
-															 + " values (?,?,?,?,?,?,?,?,?,?,?,?)");
+															 + "email,year_of_birth,activate,ban,credit_card_num,activate_hashsum)"
+															 + " values (?,?,?,?,?,?,?,?,?,?,?)");
 			updateUser.setString(1,user.getUsername());
 			updateUser.setString(2,user.getNickname());
 			updateUser.setString(3,user.getFirstName());
@@ -32,7 +32,7 @@ public class UserDAOImpl implements UserDAO {
 			updateUser.setString(5,DBUtils.calculateMD5(user.getPassword()));
 			updateUser.setString(6,user.getEmail());
 			updateUser.setDate(7,user.getYearOfBirth());
-			updateUser.setString(8,user.getAvatar());
+			
 			updateUser.setBoolean(9,user.getActivated());
 			updateUser.setBoolean(10,user.getBanned());
 			updateUser.setString(11,user.getCreditCardNum());
@@ -266,7 +266,7 @@ public class UserDAOImpl implements UserDAO {
 		user.setPassword(rs.getString(DBUtils.USER_PASSWORD));
 		user.setEmail(rs.getString(DBUtils.USER_EMAIL));
 		user.setYearOfBirth(rs.getDate(DBUtils.USER_DOB));
-		user.setAvatar(rs.getString(DBUtils.USER_AVATAR));
+		
 		user.setActivated(rs.getBoolean(DBUtils.USER_ACTIVE));
 		user.setBanned(rs.getBoolean(DBUtils.USER_BAN));
 		user.setCreditCardNum(rs.getString(DBUtils.USER_CREDIT_CARD_NUM));

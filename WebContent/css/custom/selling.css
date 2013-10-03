@@ -29,4 +29,9 @@ body {
 
 .form-selling-input {
 	margin-bottom: 10px;
+	display: inline;
+}
+
+.form-selling-with-title {
+	display: inline;
 }
