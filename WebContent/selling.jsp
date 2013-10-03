@@ -28,49 +28,54 @@
 		<jsp:include page="navbar.jsp"/>
 		
 		<!-- content placeholder for auctions -->
-  		<div class="col-md-9 well">
-  		  	<h2 class="form-selling-heading">Something to Sell?</h2>		
-			<div class="col-md-6 form-">
-				<p>
-					<span style="display:inline; font-size:15px;">Title:</span>
-					<input id="formTitle" type="text" class="form-control form-selling-input" placeholder="e.g. Its a Boat!" autofocus />
-				</p>
-				<p>	
-					<span style="display:inline; font-size:15px;">Category:</span>
-					<select id="formCategory" class="form-control form-selling-input form-selling-with-title" display:inline;">
-						<option>Select</option>
-						<option>Furniture</option>
-						<option>Fashion</option>
-						<option>Books</option>
-					</select>
-				</p>
-				<p>	
-					<span style="display:inline; font-size:15px;">Image:</span>
-					<input id="formImage" type="file" class="form-control form-selling-input" placeholder="Upload Image" autofocus />
-				</p>
-				
-				<div class="col-md-6"><span style="display:inline; font-size:15px;">Starting Price:</span></div>
-				<div class="col-md-6"><input id="formStartPrice" type="text" class="form-control form-selling-input form-selling-with-price" placeholder="0.00" autofocus /></div>
-				<div class="col-md-6"><span style="display:inline; font-size:15px;">Reserve Price:</span></div>
-				<div class="col-md-6"><input id="formReservePrice" type="text" class="form-control form-selling-input form-selling-with-price" placeholder="0.00" autofocus /></div>
-				
-			</div>
-			
-			<div class="col-md-6">
-				<p>
-					<span style="display:inline; font-size:15px;">Item Description:</span>
-					<textarea id="formItemDescription" class="form-control form-selling-input" placeholder="e.g. A boat with wings!" autofocus></textarea>
-				</p>
-				<p>
-					<span style="display:inline; font-size:15px;">Postage Description:</span>
-					<textarea id="formPostageDescription" class="form-control form-selling-input" placeholder="e.g. The boat will be shipped on a boat" autofocus></textarea>
-				</p>
-				<div class="col-md-6"><span style="display:inline; font-size:15px;">Duration:</span><br/><span style="font-size:10px">(min:3mins max:60mins):</span></div>
-				<div class="col-md-6"><input id="formDuration" type="text" class="form-control form-selling-input" autofocus value="10"/></div>
-				<div class="col-md-6"><span style="display:inline; font-size:15px;">Min Bid Increment:</span><br/><span style="font-size:10px">(min 0.10)</span></div>
-				<div class="col-md-6"><input id="formMinBid" type="text" class="form-control form-selling-input form-selling-with-price" placeholder="0.10" autofocus /></div>
-			</div>
-  			
+  		<div class="col-md-9">
+	  		<div class="well">
+	  			<h2 class="form-selling-heading">Something to Sell?</h2>
+	  			<form id="sellingForm" method="GET" action="">		
+					<div class="col-md-6">
+						<p>
+							<span style="display:inline; font-size:15px;">Title:</span>
+							<input id="formTitle" name="formTitle" type="text" class="form-control form-selling-input" placeholder="e.g. Its a Boat!" autofocus />
+						</p>
+						<p>	
+							<span style="display:inline; font-size:15px;">Category:</span>
+							<select id="formCategory" name="formCategory" class="form-control form-selling-input form-selling-with-title" display:inline;">
+								<option value="">Select</option>
+								<option value="Furniture">Furniture</option>
+								<option value="Fashion">Fashion</option>
+								<option value="Books">Books</option>
+							</select>
+						</p>
+						<p>	
+							<span style="display:inline; font-size:15px;">Image:</span>
+							<input id="formImage" name="formImage" type="file" class="form-control form-selling-input" placeholder="Upload Image" autofocus />
+						</p>
+						
+						<div class="col-md-6"><span style="display:inline; font-size:15px;">Starting Price:</span></div>
+						<div class="col-md-6"><input id="formStartPrice" name="formStartPrice" type="text" class="form-control form-selling-input form-selling-with-price" placeholder="0.00" autofocus /></div>
+						
+						<div class="col-md-6"><span style="display:inline; font-size:15px;">Reserve Price:</span></div>
+						<div class="col-md-6"><input id="formReservePrice" name="formReservePrice" type="text" class="form-control form-selling-input form-selling-with-price" placeholder="0.00" autofocus /></div>
+					</div>
+					
+					<div class="col-md-6">
+						<p>
+							<span style="display:inline; font-size:15px;">Item Description:</span>
+							<textarea id="formItemDescription" name="formItemDescription" class="form-control form-selling-input" placeholder="e.g. A boat with wings!" autofocus></textarea>
+						</p>
+						<p>
+							<span style="display:inline; font-size:15px;">Postage Description:</span>
+							<textarea id="formPostageDescription" name="formPostageDescription" class="form-control form-selling-input" placeholder="e.g. The boat will be shipped on a boat" autofocus></textarea>
+						</p>
+						<div class="col-md-6"><span style="display:inline; font-size:15px;">Duration:</span><br/><span style="font-size:10px">(min:3mins max:60mins):</span></div>
+						<div class="col-md-6"><input id="formDuration" name="formDuration" type="text" class="form-control form-selling-input" autofocus value="10"/></div>
+						<div class="col-md-6"><span style="display:inline; font-size:15px;">Min Bid Increment:</span><br/><span style="font-size:10px">(min 0.10)</span></div>
+						<div class="col-md-6"><input id="formMinBid" name="formMinBid" type="text" class="form-control form-selling-input form-selling-with-price" placeholder="0.10" autofocus /></div>
+					</div>
+		  			<button id="formSubmitItem" type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
+		  			<div id="formSellingAlert"></div>
+	  			</form>
+  			</div>
   			
   			<!-- auction content -->
 	  		<div class="list-group">
@@ -115,9 +120,11 @@
 	<script src="${pageContext.request.contextPath}/js/jquery-1.10.2.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap-switch.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/additional-methods.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.3.custom.min.js"></script>
 	
 	<!-- custom scripts -->
-	
+	<script src="${pageContext.request.contextPath}/js/custom/selling.js"></script>
 </body>
 </html>

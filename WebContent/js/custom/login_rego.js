@@ -1,6 +1,6 @@
 $().ready( function(){
 	
-//	//disable form submission on enter
+//disable form submission on enter
 	$('form').bind("keyup", function(e) {
 		  var code = e.keyCode || e.which; 
 		  if (code  == 13) {               
@@ -96,7 +96,7 @@ $().ready( function(){
 			formRegoLastName: "Please enter your Last Name",
 			formRegoNickName: "Please enter your Nick Name",
 			formRegoBirthDate: {
-				required: "Please enter your Birth Date",
+				required: "Please enter your Birth Date"
 			},
 			formRegoAddress: {
 				required: "Please enter your Address",
@@ -145,7 +145,7 @@ $().ready( function(){
 	            data: registerDataString,
 	            success: function(data) {
 	            	if(data.success){
-	            		$('#formRegoAlert').show().html('<div class="alert alert-danger">'+data.message+'</div>');
+	            		$('#formRegoAlert').show().html('<div class="alert alert-success">'+data.message+'</div>');
 	            		setTimeout(function() {
 	            			window.location.href = data.redirect;
 	            		}, 2000);
