@@ -32,11 +32,10 @@ public class UserDAOImpl implements UserDAO {
 			updateUser.setString(5,DBUtils.calculateMD5(user.getPassword()));
 			updateUser.setString(6,user.getEmail());
 			updateUser.setDate(7,user.getYearOfBirth());
-			
-			updateUser.setBoolean(9,user.getActivated());
-			updateUser.setBoolean(10,user.getBanned());
-			updateUser.setString(11,user.getCreditCardNum());
-			updateUser.setString(12,user.getCheckSum());
+			updateUser.setBoolean(8,user.getActivated());
+			updateUser.setBoolean(9,user.getBanned());
+			updateUser.setString(10,user.getCreditCardNum());
+			updateUser.setString(11,user.getCheckSum());
 			
 			updateUser.executeUpdate();      
 

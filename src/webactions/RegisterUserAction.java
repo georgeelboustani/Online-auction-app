@@ -18,11 +18,12 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
 import com.google.gson.Gson;
+
 import exceptions.ServiceLocatorException;
 import mail.MailSenderService;
 import mail.MailSenderServiceFactory;
+import mail.MailUtils;
 import model.ForRegistration;
-
 import jdbc.DBUtils;
 import jdbc.UserDAO;
 import jdbc.UserDAOImpl;
@@ -42,7 +43,6 @@ public class RegisterUserAction implements WebActionAjax {
 		
 		UserDTO user = new UserDTO();
 		
-		// TODO - parameterise these set's according to the request
 		user.setActivated(false);
 		user.setBanned(false);
 		user.setEmail(regoData.getEmail());
@@ -95,9 +95,6 @@ public class RegisterUserAction implements WebActionAjax {
 				try {
 					userdao.addUser(user);
 					
-					// TODO - MAIL fix this up so it works
-					
-					
 					//TODO: remove debug script
 					System.out.println("inside email activation link:\n"+
 							"http://"+req.getServerName()+":"+req.getServerPort()+req.getContextPath() +
@@ -106,7 +103,7 @@ public class RegisterUserAction implements WebActionAjax {
 					
 					MailSenderService mailsender = MailSenderServiceFactory.getMailSenderService();
 					
-					mailsender.sendMail("Our email", 
+					mailsender.sendMail(MailUtils.OUR_EMAIL, 
 										user.getEmail(), 
 										"Welcome" + user.getFirstName(), 
 										(new StringBuffer()).append("Welcome " + user.getFirstName() + " " + user.getLastName() + ",\n" +

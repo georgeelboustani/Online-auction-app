@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import jdbc.DBConnectionFactory;
 import auctions.AuctionMonitorPool;
 import auctions.AuctionMonitorPoolFactory;
 
@@ -46,7 +48,7 @@ public class ControllerServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
     	super.init();
-        
+    	
     	// start the auction monitor pools
 		auctionMonitor = AuctionMonitorPoolFactory.getAuctionMonitorService();
 		monitorThread = new Thread(auctionMonitor);
