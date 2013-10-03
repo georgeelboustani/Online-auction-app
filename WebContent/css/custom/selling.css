@@ -35,3 +35,7 @@ body {
 .form-selling-with-title {
 	display: inline;
 }
+
+.form-selling-with-price {
+	width: 40%;
+}
