@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import jdbc.DBConnectionFactory;
 import jdbc.UserDAO;
 import jdbc.UserDAOImpl;
+import jdbc.UserDTO;
 import model.ForLogin;
 
 import com.google.gson.Gson;
@@ -32,9 +33,10 @@ public class AuthenticateAction implements WebActionAjax {
 	    
 	    UserDAO userDAOImpl = new UserDAOImpl();
 	    int resultUID = -1;
-	    
+	    UserDTO user = null;
 	    try {
 	    	resultUID = userDAOImpl.authenticateLogin(loginData.getUserName(), loginData.getPassword());
+	    	user = userDAOImpl.getUserById(resultUID);
 	    } catch (SQLException sqle) {
 			sqle.printStackTrace();
 			resultMap.put("success", false);
@@ -44,7 +46,7 @@ public class AuthenticateAction implements WebActionAjax {
 			return resultMap;
 		}
 	    
-	    if(resultUID > -1){
+	    if(resultUID > -1 && user != null && !user.getIsAdmin()){
 	    	//start user session
 	    	HttpSession sess = req.getSession(true);
 	    	sess.setAttribute("user_uid", resultUID);
@@ -56,7 +58,11 @@ public class AuthenticateAction implements WebActionAjax {
 			return resultMap; 
 	    }else{
 	    	resultMap.put("success", false);
-	    	resultMap.put("message", "Authentication Unsuccessful");
+	    	String adminMessage = "";
+	    	if (user.getIsAdmin()) {
+	    		adminMessage = "Cannot login as admin from this page";
+	    	}
+	    	resultMap.put("message", "Authentication Unsuccessful"+": " + adminMessage);
 			resultMap.put("redirect", "login.jsp"); //login sucessful, go to index home page
 	    	return resultMap; //login unsuccessful, go back to login page
 	    }

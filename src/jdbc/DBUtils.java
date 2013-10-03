@@ -43,13 +43,14 @@ public class DBUtils {
 	public static String USER_BAN = "ban";
 	public static String USER_CREDIT_CARD_NUM = "credit_card_num";
 	public static String USER_CHECKSUM = "activate_hashsum";
+	public static String USER_IS_ADMIN = "is_admin";
 	
 	public static String ADMIN_TABLE = "user_admin";
 	public static String ADMIN_UID = "uid";
 	
 	
 	public static void main(String[] argv) {
-		System.out.println(calculateMD5("pass"));
+		System.out.println(calculateMD5("password"));
 	}
 	
 	public static String calculateMD5(String key) {

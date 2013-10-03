@@ -30,8 +30,21 @@ public class AuthenticateAdminAction implements WebActionGP {
 	    
 	    try {
 	    	UserDTO user = userDAOImpl.getUserByUserName(username);
-	    	// TODO - finish this
+	    	if (user == null || !user.getIsAdmin()) {
+	    		return "login.jsp";
+	    	}
+	    	
 	    	resultUID = userDAOImpl.authenticateLogin(username,password);
+	    	
+	    	if(resultUID > -1){
+		    	//start user session
+		    	HttpSession sess = req.getSession(true);
+		    	sess.setAttribute("user_uid", resultUID);
+
+		    	return "index.jsp"; 
+		    }else{
+		    	return "login.jsp"; //login unsuccessful, go back to login page
+		    }
 	    	
 	    } catch (SQLException sqle) {
 			sqle.printStackTrace();
