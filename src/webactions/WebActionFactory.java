@@ -18,6 +18,7 @@ public class WebActionFactory {
 		gpActionMap.put("addAuction", new AddAuctionAction());
 		gpActionMap.put("updateUser", new UpdateUserAction());
 		gpActionMap.put("login", new LoginAction());
+		gpActionMap.put("adminLogin", new AuthenticateAdminAction());
 		gpActionMap.put("logout", new LogoutAction());
 		gpActionMap.put("searchAuction", new SearchAction());
 		gpActionMap.put("viewAuction", new ViewAuctionAction());

@@ -13,7 +13,7 @@ public interface UserDAO {
 	
 	UserDTO getUserById(int userId) throws SQLException;
 	
-	List<UserDTO> getUserByUserName(String userName) throws SQLException;
+	UserDTO getUserByUserName(String userName) throws SQLException;
 	
 	List<UserDTO> getAllUsers() throws SQLException;
 	

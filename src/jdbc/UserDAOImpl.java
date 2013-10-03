@@ -85,8 +85,8 @@ public class UserDAOImpl implements UserDAO {
 
 	// TODO - not tested yet
 	@Override
-	public List<UserDTO> getUserByUserName(String username) throws SQLException {
-		List<UserDTO> users = new ArrayList<UserDTO>();
+	public UserDTO getUserByUserName(String username) throws SQLException {
+		UserDTO user = null;
 		
 		Connection con = null;
 		
@@ -94,13 +94,12 @@ public class UserDAOImpl implements UserDAO {
 			con = DBConnectionFactory.getConnection();
 			
 			PreparedStatement userQuery = con.prepareStatement("SELECT * FROM " + DBUtils.SCHEMA_NAME + "." + DBUtils.USER_TABLE
-															 + " WHERE ?=?");
-			userQuery.setString(1,DBUtils.USER_NAME);
-			userQuery.setString(2, username);
+															 + " WHERE "+DBUtils.USER_NAME+"=?");
+			userQuery.setString(1, username);
 			
 			ResultSet rs = userQuery.executeQuery();
-			while (rs.next()) {
-				users.add(generateUserDTO(rs));
+			if (rs.next()) {
+				user = generateUserDTO(rs);
 			}
 			
 		} catch (ServiceLocatorException e) {
@@ -115,7 +114,7 @@ public class UserDAOImpl implements UserDAO {
 			}
 		}
 		
-		return users;
+		return user;
 	}
 	
 	// TODO - not tested yet
