@@ -18,11 +18,12 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
 import com.google.gson.Gson;
+
 import exceptions.ServiceLocatorException;
 import mail.MailSenderService;
 import mail.MailSenderServiceFactory;
+import mail.MailUtils;
 import model.ForRegistration;
-
 import jdbc.DBUtils;
 import jdbc.UserDAO;
 import jdbc.UserDAOImpl;
@@ -106,7 +107,7 @@ public class RegisterUserAction implements WebActionAjax {
 					
 					MailSenderService mailsender = MailSenderServiceFactory.getMailSenderService();
 					
-					mailsender.sendMail("Our email", 
+					mailsender.sendMail(MailUtils.OUR_EMAIL, 
 										user.getEmail(), 
 										"Welcome" + user.getFirstName(), 
 										(new StringBuffer()).append("Welcome " + user.getFirstName() + " " + user.getLastName() + ",\n" +
