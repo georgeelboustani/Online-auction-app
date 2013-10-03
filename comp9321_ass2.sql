@@ -4,7 +4,26 @@
 
 -- Dumped from database version 9.0.7
 -- Dumped by pg_dump version 9.0.7
--- Started on 2013-10-03 13:32:12 SGT
+-- Started on 2013-10-03 13:33:53 SGT
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = off;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET escape_string_warning = off;
+
+--
+-- TOC entry 1817 (class 1262 OID 45036)
+-- Name: 9321db; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE "9321db" WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'C' LC_CTYPE = 'C';
+
+
+ALTER DATABASE "9321db" OWNER TO postgres;
+
+\connect "9321db"
 
 SET statement_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -284,7 +303,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2013-10-03 13:32:12 SGT
+-- Completed on 2013-10-03 13:33:53 SGT
 
 --
 -- PostgreSQL database dump complete
