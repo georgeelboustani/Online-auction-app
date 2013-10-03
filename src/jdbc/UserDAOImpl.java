@@ -10,7 +10,7 @@ import java.util.List;
 import exceptions.ServiceLocatorException;
 
 /* Manual insert
- * insert into public.user (username,nickname,first_name,last_name,password,email,year_of_birth,avatar_img,activate,ban) values ('user','','user1','','1a1dc91c907325c69271ddf0c944bc72','blah@hotmail.com','3910-08-22','','true','false');
+ * insert into public.user (username,nickname,first_name,last_name,password,email,year_of_birth,activate,ban) values ('user','','user1','','1a1dc91c907325c69271ddf0c944bc72','blah@hotmail.com','3910-08-22','','true','false');
  */
 
 public class UserDAOImpl implements UserDAO {
@@ -264,7 +264,7 @@ public class UserDAOImpl implements UserDAO {
 		user.setPassword(rs.getString(DBUtils.USER_PASSWORD));
 		user.setEmail(rs.getString(DBUtils.USER_EMAIL));
 		user.setYearOfBirth(rs.getDate(DBUtils.USER_DOB));
-		user.setAvatar(rs.getString(DBUtils.USER_AVATAR));
+		
 		user.setActivated(rs.getBoolean(DBUtils.USER_ACTIVE));
 		user.setBanned(rs.getBoolean(DBUtils.USER_BAN));
 		user.setCreditCardNum(rs.getString(DBUtils.USER_CREDIT_CARD_NUM));

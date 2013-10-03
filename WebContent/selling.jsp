@@ -31,19 +31,44 @@
   		<div class="col-md-9 well">
   		  	<h2 class="form-selling-heading">Something to Sell?</h2>		
 			<div class="col-md-6 form-">
-				<input id="formTitle" type="text" class="form-control form-selling-input" placeholder="Title" autofocus />
-				<span style="display:inline; font-size:15px;">Category: </span>
-				<select id="formCategory" class="form-control form-selling-input" style="width:250px; display:inline;">
-					<option>Select</option>
-					<option>Furniture</option>
-					<option>Fashion</option>
-					<option>Books</option>
-				</select>
-				<input id="formImage" type="file" class="form-control form-selling-input" placeholder="Upload Image" autofocus />
+				<p>
+					<span style="display:inline; font-size:15px;">Title:</span>
+					<input id="formTitle" type="text" class="form-control form-selling-input" placeholder="e.g. Its a Boat!" autofocus />
+				</p>
+				<p>	
+					<span style="display:inline; font-size:15px;">Category:</span>
+					<select id="formCategory" class="form-control form-selling-input form-selling-with-title" display:inline;">
+						<option>Select</option>
+						<option>Furniture</option>
+						<option>Fashion</option>
+						<option>Books</option>
+					</select>
+				</p>
+				<p>	
+					<span style="display:inline; font-size:15px;">Image:</span>
+					<input id="formImage" type="file" class="form-control form-selling-input" placeholder="Upload Image" autofocus />
+				</p>
+				
+				<div class="col-md-6"><span style="display:inline; font-size:15px;">Starting Price:</span></div>
+				<div class="col-md-6"><input id="formStartPrice" type="text" class="form-control form-selling-input form-selling-with-price" placeholder="0.00" autofocus /></div>
+				<div class="col-md-6"><span style="display:inline; font-size:15px;">Reserve Price:</span></div>
+				<div class="col-md-6"><input id="formReservePrice" type="text" class="form-control form-selling-input form-selling-with-price" placeholder="0.00" autofocus /></div>
+				
 			</div>
 			
 			<div class="col-md-6">
-				<input id="formImage" type="file" class="form-control form-selling-input" placeholder="Upload Image" autofocus />
+				<p>
+					<span style="display:inline; font-size:15px;">Item Description:</span>
+					<textarea id="formItemDescription" class="form-control form-selling-input" placeholder="e.g. A boat with wings!" autofocus></textarea>
+				</p>
+				<p>
+					<span style="display:inline; font-size:15px;">Postage Description:</span>
+					<textarea id="formPostageDescription" class="form-control form-selling-input" placeholder="e.g. The boat will be shipped on a boat" autofocus></textarea>
+				</p>
+				<div class="col-md-6"><span style="display:inline; font-size:15px;">Duration:</span><br/><span style="font-size:10px">(min:3mins max:60mins):</span></div>
+				<div class="col-md-6"><input id="formDuration" type="text" class="form-control form-selling-input" autofocus value="10"/></div>
+				<div class="col-md-6"><span style="display:inline; font-size:15px;">Min Bid Increment:</span><br/><span style="font-size:10px">(min 0.10)</span></div>
+				<div class="col-md-6"><input id="formMinBid" type="text" class="form-control form-selling-input form-selling-with-price" placeholder="0.10" autofocus /></div>
 			</div>
   			
   			

@@ -21,7 +21,6 @@ public class UserDTO {
 	private String password;
 	private String email;
 	private Date yearOfBirth;
-	private String avatar;
 	private boolean activated;
 	private boolean banned;
 	private String creditCardNum;
@@ -102,12 +101,6 @@ public class UserDTO {
 	}
 	
 	
-	public String getAvatar() {
-		return avatar;
-	}
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
-	}
 	public boolean getActivated() {
 		return activated;
 	}

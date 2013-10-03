@@ -27,7 +27,6 @@ public class UpdateUserAction implements WebActionGP {
 		// TODO - fix these parameter names in case there wrong
 		// TODO - VALIDATE this shit especially dates etc
 		user.setActivated(true);
-		user.setAvatar("path to pic/" + user.getUid());
 		user.setBanned(false);
 		user.setEmail(req.getParameter("email"));
 		user.setFirstName(req.getParameter("firstname"));
