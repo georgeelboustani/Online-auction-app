@@ -18,37 +18,34 @@
     <link href="${pageContext.request.contextPath}/css/custom/index.css" rel="stylesheet" media="screen">
     
     <link href="${pageContext.request.contextPath}/css/custom/index_auction.css" rel="stylesheet" media="screen">
-    <link href="${pageContext.request.contextPath}/css/custom/my_bid.css" rel="stylesheet" media="screen">
+    <link href="${pageContext.request.contextPath}/css/custom/selling.css" rel="stylesheet" media="screen">
    		
-    <title>RollBack: My Bids</title>
+    <title>RollBack: My Stuff for Sale</title>
 </head>
 <body>
 	<div class="container">
 		<!-- Navbar -->
 		<jsp:include page="navbar.jsp"/>
 		
-		<!-- content holder for left auctions -->
-  		<div class="col-md-9">
+		<!-- content placeholder for auctions -->
+  		<div class="col-md-9 well">
+  		  	<h2 class="form-selling-heading">Something to Sell?</h2>		
+			<div class="col-md-6 form-">
+				<input id="formTitle" type="text" class="form-control form-selling-input" placeholder="Title" autofocus />
+				<span style="display:inline; font-size:15px;">Category: </span>
+				<select id="formCategory" class="form-control form-selling-input" style="width:250px; display:inline;">
+					<option>Select</option>
+					<option>Furniture</option>
+					<option>Fashion</option>
+					<option>Books</option>
+				</select>
+				<input id="formImage" type="file" class="form-control form-selling-input" placeholder="Upload Image" autofocus />
+			</div>
+			
+			<div class="col-md-6">
+				<input id="formImage" type="file" class="form-control form-selling-input" placeholder="Upload Image" autofocus />
+			</div>
   			
-  			<div class="jumbotron">
-  				<h2>Something to Sell?</h2>
-  				<div class="col-md-6">
-  					<input id="formTitle" type="text" class="form-control" placeholder="Title" autofocus />
-  					<input id="formImage" type="file" class="form-control" placeholder="Upload Image" autofocus />
-  					
-  				</div>
-  				
-  				<div class="col-md-6">
-  					<span style="display:inline; font-size:15px;">Category: </span>
-  					<select class="form-control" style="width:250px; display:inline;">
-  						<option>Select</option>
-  						<option>Furniture</option>
-  						<option>Fashion</option>
-  						<option>Books</option>
-  					</select>
-  					<input id="formImage" type="file" class="form-control" placeholder="Upload Image" autofocus />
-  				</div>
-  			</div>
   			
   			<!-- auction content -->
 	  		<div class="list-group">

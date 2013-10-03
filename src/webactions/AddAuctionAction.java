@@ -63,6 +63,6 @@ public class AddAuctionAction implements WebActionGP {
 			e1.printStackTrace();
 		}
 		
-		return "index.jsp";
+		return "selling.jsp";
 	}
 }

@@ -64,7 +64,6 @@ $().ready( function(){
 			formRegoLastName: "required",
 			formRegoBirthDate: {
 				required: true,
-				date: true
 			},
 			formRegoUsername: {
 				required: true,
@@ -98,7 +97,6 @@ $().ready( function(){
 			formRegoNickName: "Please enter your Nick Name",
 			formRegoBirthDate: {
 				required: "Please enter your Birth Date",
-				date: "Your birth date must be of the right format (e.g. 01/01/2011)"
 			},
 			formRegoAddress: {
 				required: "Please enter your Address",

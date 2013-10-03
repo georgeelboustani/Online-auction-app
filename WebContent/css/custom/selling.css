@@ -1,0 +1,32 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.form-selling {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.form-selling .form-signin-heading,
+.form-selling .checkbox {
+  margin-bottom: 10px;
+}
+.form-selling .checkbox {
+  font-weight: normal;
+}
+
+.form-selling .form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.form-selling-input {
+	margin-bottom: 10px;
+}
