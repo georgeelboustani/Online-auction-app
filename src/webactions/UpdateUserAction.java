@@ -21,7 +21,6 @@ import pagebeans.UpdateBean;
 
 import com.google.gson.Gson;
 
-
 import model.ForUserUpdate;
 import jdbc.UserDAO;
 import jdbc.UserDAOImpl;
@@ -40,6 +39,8 @@ public class UpdateUserAction implements WebActionAjax {
 		
 		UpdateBean updateBean = new UpdateBean();
 		
+		int uid = LoginUtils.getUserId(req);
+		updateBean.setUid(uid);
 		updateBean.setFirstName(updateData.getFirstName());
 		updateBean.setLastName(updateData.getLastName());
 		updateBean.setNickname(updateData.getNickName());

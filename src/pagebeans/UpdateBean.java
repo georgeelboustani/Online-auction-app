@@ -22,7 +22,7 @@ public class UpdateBean {
 	public int getUid() {
 		return this.uid;
 	}
-	public void setIsAdmin(int uid) {
+	public void setUid(int uid) {
 		this.uid = uid;
 	}
 	
