@@ -48,7 +48,7 @@
 						</p>
 						<p>	
 							<span style="display:inline; font-size:15px;">Image:</span>
-							<input id="formImage" name="formImage" type="file" onchange="handleFiles(this.files)" class="form-control form-selling-input" placeholder="Upload Image" autofocus />
+							<input id="formImage" name="formImage" type="text" class="form-control form-selling-input" placeholder="Enter Image URL" autofocus />
 						</p>
 						
 						<div class="col-md-6"><span style="display:inline; font-size:15px;">Starting Price:</span></div>
@@ -89,7 +89,7 @@
 			           	<c:forEach var="auction" items="${sellingBean.auctions}" >	
 				            <a href="#" class="list-group-item row">
 				            	<div class="col-md-3 list-group-item-text">
-				            		<img data-src="holder.js/140x140" src="${pageContext.request.contextPath}/img/cat.jpg" class="img-circle" alt="140x140" style="width: 140px; height: 140px;">
+				            		<img data-src="holder.js/140x140" src="${auction.auctionImage}" class="img-circle" alt="140x140" style="width: 140px; height: 140px;">
 				            	</div>
 				            	<div class="col-md-4 list-group-item-text">
 				            		<h4>${auction.auctionTitle}</h4>

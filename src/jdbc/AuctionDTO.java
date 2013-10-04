@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -56,6 +57,8 @@ public class AuctionDTO implements Serializable {
 		this.auctionCategory = auctionCategory;
 	}
 	
+	@NotNull(message = "Image URL is compulsory")
+	@NotBlank(message = "Image URL is compulsory")
 	public String getAuctionImage() {
 		return auctionImage;
 	}

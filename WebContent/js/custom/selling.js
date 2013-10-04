@@ -15,7 +15,6 @@ $().ready( function(){
 				number: true,
 				min: 0.10,
 				money: true
-				
 			},
 			formReservePrice: {
 				required: true,
@@ -33,39 +32,46 @@ $().ready( function(){
 				required: true,
 				digits: true,
 				range: [3, 60]
+			},
+			formImage: {
+				required: true,
+				url: true,
 			}
 		},
 		messages: {
-			formTitle: "required*",
-			formCategory: "required*",
-			formItemDescription: "required*",
-			formPostageDescription: "required*",			
+			formTitle: "title required",
+			formCategory: "category required",
+			formItemDescription: "item desc required",
+			formPostageDescription: "postage desc required",			
 			formStartPrice: {
-				required: "required*",
+				required: "start pricerequired",
 				number: "only in decimal format",
 				min: "min of 0.10"
 			},
 			formReservePrice: {
-				required: "required*",
+				required: "reserve price required",
 				number: "numero decimal only",
 				min: "min of 0.10"
 			},
 			formMinBid: {
-				required: "required*",
+				required: "minimum bid required",
 				number: "numero decimal only"
 			},
 			formDuration: {
-				required: "required",
+				required: "duration required",
 				digits: "numero decimal only",
 				range: "range from 3min to 60mins"
+			},
+			formImage: {
+				required: "image url required",
+				url: "malform url detected",
 			}
 		},
 		submitHandler: function(form) {
 			var auction = new Object();
 			auction.title = $('#formTitle').val();
 			auction.category = $('#formCategory').val();
-			auction.image = $('#formImage').val(); //DO THIS LATER
-			
+			auction.image = $('#formImage').val();
 			auction.itemDesc = $('#formItemDescription').val();
 			auction.postageDesc = $('#formPostageDescription').val();
 			auction.startPrice = $('#formStartPrice').val();

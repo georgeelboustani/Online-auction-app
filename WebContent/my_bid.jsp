@@ -43,7 +43,7 @@
 			           	<c:forEach var="auction" items="${myBidBean.auctions}" >	
 				            <a href="#" class="list-group-item row">
 				            	<div class="col-md-3 list-group-item-text">
-				            		<img data-src="holder.js/140x140" src="${pageContext.request.contextPath}/img/cat.jpg" class="img-circle" alt="140x140" style="width: 140px; height: 140px;">
+				            		<img data-src="holder.js/140x140" src="${auction.auctionImage}" class="img-circle" alt="140x140" style="width: 140px; height: 140px;">
 				            	</div>
 				            	<div class="col-md-4 list-group-item-text">
 				            		<h4>${auction.auctionTitle} <c:if test="${myBidBean.highestBidder[count]}"> {Current Bid Leader}</c:if></h4>

@@ -70,15 +70,12 @@ public class AddAuctionAction implements WebActionAjax {
 				auc.setAuctionOwnerId(userId);
 				auc.setAuctionTitle(aucData.getTitle());
 				auc.setAuctionCategory(aucData.getCategory());
-				
 				auc.setAuctionImage(aucData.getImage());
-				
 				auc.setAuctionDescription(aucData.getItemDesc());
 				auc.setAuctionPostageDetails(aucData.getPostageDesc());
 				auc.setBiddingStartPrice(Double.parseDouble(aucData.getStartPrice()));
 				auc.setAuctionReservePrice(Double.parseDouble(aucData.getReservePrice()));
 				auc.setBiddingIncrement(Double.parseDouble(aucData.getMinBid()));
-				
 				
 				java.util.Date date= new java.util.Date();
 				Timestamp startTime = new Timestamp(date.getTime());

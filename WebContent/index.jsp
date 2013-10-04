@@ -77,7 +77,7 @@
 			           	<c:forEach var="auction" items="${searchBean.auctions}" >	
 				            <a href="#" class="list-group-item row">
 				            	<div class="col-md-3 list-group-item-text">
-				            		<img data-src="holder.js/140x140" src="${pageContext.request.contextPath}/img/cat.jpg" class="img-circle" alt="140x140" style="width: 140px; height: 140px;">
+				            		<img data-src="holder.js/140x140" src="${auction.auctionImage}" class="img-circle" alt="140x140" style="width: 140px; height: 140px;">
 				            	</div>
 				            	<div class="col-md-4 list-group-item-text auction-desc-box">
 				            		<span class="auction-item-header">${auction.auctionTitle}</span>
