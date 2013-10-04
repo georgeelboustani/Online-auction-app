@@ -132,6 +132,9 @@ public class UserDTO {
 		this.creditCardNum = creditCardNum;
 	}
 	
+	public String getSecureCreditCardNum(){
+		return this.creditCardNum.substring(Math.max(this.creditCardNum.length() - 3, 0));
+	}
 	
 	public String getCheckSum(){
 		return this.activateChecksum;
@@ -140,8 +143,6 @@ public class UserDTO {
 		this.activateChecksum = activateChecksum;
 	}
 	
-	@NotNull(message = "CreditCardNum is compulsory")
-	@NotBlank(message = "CreditCardNum is compulsory")
 	public String getAddress(){
 		return this.address;
 	}
