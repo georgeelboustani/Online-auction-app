@@ -48,7 +48,10 @@ $().ready( function(){
             data: loginDataString,
             success: function(data) {
             	if(data.success){
-            		window.location.replace(data.redirect);
+            		$('#formSigninAlert').show().html('<div class="alert alert-success">'+data.message+'</div>');
+            		setTimeout(function() {
+            			window.location.href = data.redirect;
+            		}, 1000);
             	}else{
             		$('#formSigninAlert').show().html('<div class="alert alert-danger">'+data.message+'</div>');
             	}
