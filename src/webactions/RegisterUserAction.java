@@ -94,7 +94,7 @@ public class RegisterUserAction implements WebActionAjax {
 				UserDAO userdao = new UserDAOImpl();
 				try {
 					userdao.addUser(user);
-					
+					System.out.println("It goes in..");
 					//TODO: remove debug script
 					System.out.println("inside email activation link:\n"+
 							"http://"+req.getServerName()+":"+req.getServerPort()+req.getContextPath() +

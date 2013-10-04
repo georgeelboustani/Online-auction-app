@@ -30,7 +30,7 @@ public class BanUserAction implements WebActionGP {
 			reasons = "No reason";
 		}
 		
-		int userId = LoginUtils.getUserId(req);
+		int userId = Integer.parseInt(req.getParameter("ban_uid"));
 		try {
 			UserDTO user = userDao.getUserById(userId);
 			
