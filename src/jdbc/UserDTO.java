@@ -21,11 +21,11 @@ public class UserDTO {
 	private String password;
 	private String email;
 	private Date yearOfBirth;
-	private boolean activated;
-	private boolean banned;
+	private boolean activated = false;
+	private boolean banned = false;
 	private String creditCardNum;
 	private String activateChecksum;
-	private boolean isAdmin;
+	private boolean isAdmin = false;
 	
 	public boolean getIsAdmin() {
 		return isAdmin;
