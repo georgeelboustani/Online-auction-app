@@ -3,7 +3,7 @@
 <%@ page import="java.util.Hashtable" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:useBean id="auctionDTO" class="jdbc.AuctionDTO" scope="session" />    
+<jsp:useBean id="auctionDTO" class="jdbc.AuctionDTO" scope="session" />
 <jsp:useBean id="searchBean" class="pagebeans.SearchBean" scope="session" />
 	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -43,6 +43,7 @@
   					</form>
   				</div>
   				<div class="col-md-4 next-prev-nav">
+  						
   					<!-- 
   					<form class="next-prev-nav-item">
 	  					<select class="form-control sort-select">
@@ -85,6 +86,7 @@
 				            		</div>
 				            	</div>
 				            	<div class="col-md-2 list-group-item-text">
+				            		<p>Starting Price:<br/><strong>${auction.biddingStartPrice}</strong></p>
 				            		<p>Current Bid:<br/><strong>${searchBean.bids[count]}</strong></p>
 				            		<p>Time Left:<br/><strong>${searchBean.times[count]} mins</strong></p>
 				            	</div>
@@ -98,10 +100,22 @@
 					            			<p><span><strong>Winning Bid:</strong> $4.00</span></p>
 					            		</div> 
 					            		-->
+					            		<!-- jstl valid suggestion to first bid -->
+					            		<c:set var="suggestedBid" value="0.0"/>
+					            		<c:choose>
+					            			<c:when test="${ (searchBean.bids[count]) < (auction.biddingStartPrice) || (searchBean.bids[count] == 0.0) }">  
+								        		<c:set var="suggestedBid" value="${auction.biddingStartPrice}"/>
+								        	</c:when>
+								        	<c:otherwise>
+								        		<c:set var="suggestedBid" value="${(searchBean.bids[count] + auction.biddingIncrement)}"/>
+								        	</c:otherwise>
+								        </c:choose>
+								             
+										          
 				            			<div id="auction-bid" class="input-prepend auction-input">
 										  	<span class="add-on">$</span>
-										  	<input class="span2 form-control bid-input" id="appendedPrependedInput" type="text">
-										  	<button id="auction-bid-button" type="button" class="btn btn-sm btn-primary">Bid</button>
+										  	<input class="span2 form-control bid-input" id="bid_input_${auction.aid}" type="text" value="${suggestedBid}">
+										  	<button id="auction-bid-button" type="button" class="btn btn-sm btn-primary" onclick="doBid(${auction.aid}, ${searchBean.bids[count]}, ${auction.biddingIncrement}); return false;">Bid</button>
 										</div>
 				            		</p>
 				            		<p>
@@ -110,7 +124,7 @@
 										</div>
 				            		</p>
 								</div>
-								
+								<div id="bidAlert_${auction.aid}"></div>
 				            </a>
 			            	<c:set var="count" value="${count + 1}" scope="page"/>
 						</c:forEach>
