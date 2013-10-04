@@ -1,0 +1,15 @@
+.auction-item-header {
+	font-size: 21px;
+	font-weight:bold;
+	
+}
+
+.description-title{
+	font-weight:bold;
+}
+
+.bid-input  {
+	width: 200px; 
+	display: inline;
+	
+}
