@@ -48,7 +48,7 @@
 						</p>
 						<p>	
 							<span style="display:inline; font-size:15px;">Image:</span>
-							<input id="formImage" name="formImage" type="file" class="form-control form-selling-input" placeholder="Upload Image" autofocus />
+							<input id="formImage" name="formImage" type="file" onchange="handleFiles(this.files)" class="form-control form-selling-input" placeholder="Upload Image" autofocus />
 						</p>
 						
 						<div class="col-md-6"><span style="display:inline; font-size:15px;">Starting Price:</span></div>

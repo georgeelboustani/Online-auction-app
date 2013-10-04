@@ -19,7 +19,7 @@
     	
     
 	    <div class="col-md-6">
-	    	<button onclick="history.back()">Back to Previous Page</button>
+	    	<button onclick="window.location='controller?action=searchAuction'">Back to index page</button>
 	    	<p><h1>404 Page Not Found.</h1></p>
 	    	<p><b>Error code:</b> ${pageContext.errorData.statusCode}</p>
 	    	<p><b>Request URI:</b> ${pageContext.request.scheme}://${header.host}${pageContext.errorData.requestURI}</p><br />
