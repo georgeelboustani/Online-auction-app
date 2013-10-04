@@ -92,3 +92,7 @@ $().ready( function(){
 		}
 	});
 });
+function getDetails(aid){
+	event.preventDefault();
+	window.location.href = "controller?action=viewAuction&auctionId="+aid;
+}

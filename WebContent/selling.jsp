@@ -99,6 +99,11 @@
 				            		<p>Current Bid:<br/><strong>${sellingBean.bids[count]}</strong></p>
 				            		<p>Time Left:<br/><strong>${sellingBean.times[count]} mins</strong></p>
 				            	</div>
+			            		<p>
+			            			<div class="input-prepend auction-input">
+										<button type="button" id="auction-details-button" class="btn btn-sm btn-primary auction-details-button" onclick="getDetails(${auction.aid}); return false;">Show Details</button>
+									</div>
+			            		</p>
 				            </a>
 			            	<c:set var="count" value="${count + 1}" scope="page"/>
 						</c:forEach>

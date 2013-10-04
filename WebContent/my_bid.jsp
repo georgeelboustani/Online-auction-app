@@ -70,6 +70,11 @@
 										</div>
 				            		</p>
 								</div>
+			            		<p>
+			            			<div class="input-prepend auction-input">
+										<button type="button" id="auction-details-button" class="btn btn-sm btn-primary auction-details-button" onclick="getDetails(${auction.aid}); return false;">Show Details</button>
+									</div>
+			            		</p>
 				            </a>
 			            	<c:set var="count" value="${count + 1}" scope="page"/>
 						</c:forEach>
@@ -108,6 +113,6 @@
 	<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.3.custom.min.js"></script>
 	
 	<!-- custom scripts -->
-	
+	<script src="${pageContext.request.contextPath}/js/custom/my_bid.js"></script>
 </body>
 </html>

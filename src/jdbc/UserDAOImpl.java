@@ -23,7 +23,7 @@ public class UserDAOImpl implements UserDAO {
 			
 			PreparedStatement updateUser = con.prepareStatement("INSERT into " + DBUtils.SCHEMA_NAME + ".user "
 															 + "(username,nickname,first_name,last_name,password,"
-															 + "email,year_of_birth,activate,ban,credit_card_num,activate_hashsum,isAdmin)"
+															 + "email,year_of_birth,activate,ban,credit_card_num,activate_hashsum,is_admin)"
 															 + " values (?,?,?,?,?,?,?,?,?,?,?,?)");
 			updateUser.setString(1,user.getUsername());
 			updateUser.setString(2,user.getNickname());

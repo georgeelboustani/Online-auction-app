@@ -32,22 +32,29 @@
 	 			<img data-src="holder.js/140x140" src="${pageContext.request.contextPath}/img/cat.jpg" class="img-circle" alt="140x140" style="width: 140px; height: 140px;">
 		    </div>
 		    <div class="col-md-9">
-				<p><h3>Title Title Title</h3></p>
-		        <p><span class="description-title">Auction Title:</span><br/><span class="text">${auctionBean.auction.auctionTitle}</span></p>
-		        <p><span class="description-title">Auction Description:</span><br/><span class="text">${auctionBean.auction.auctionDescription}</span></p>
-		        <p><span class="description-title">Auction Category:</span><br/><span class="text">${auctionBean.auction.auctionCategory}</span></p>
-		        <p><span class="description-title">Auction Postage Details:</span><br/><span class="text">${auctionBean.auction.auctionPostageDetails}</span></p>
-		        <p><span class="description-title">Auction Title:</span><br/><span class="text">${auctionBean.auction.auctionTitle}</span></p>
-		        <p><span class="description-title">Auction Title:</span><br/><span class="text">${auctionBean.auction.auctionTitle}</span></p>  	
-		        <p>Current Bid:<br/><strong> ${auctionBean.highestBid}</strong></p>
-		        <p>Increment:<br/><strong> ${auctionBean.auction.biddingIncrement}</strong></p>
-		        <p>Time Left:<br/><strong> ${auctionBean.timeLeft}</strong></p>
-		         	
-		        <div id="auction-bid" class="input-prepend auction-input">
-				  	<span class="add-on">$</span>
-				  	<input class="span2 form-control bid-input" id="appendedPrependedInput" type="text">
-				  	<button id="auction-bid-button" type="button" class="btn btn-sm btn-primary">Bid</button>
-				</div>
+		    	<c:choose>
+					<c:when test="${auctionBean.displayError}">
+						${auctionBean.errorMessage}
+					</c:when>
+					
+					<c:otherwise>
+						<p><h3>${auctionBean.auction.auctionTitle}</h3></p>
+				        <p><span class="description-title">Auction Description:</span><br/><span class="text">${auctionBean.auction.auctionDescription}</span></p>
+				        <p><span class="description-title">Auction Category:</span><br/><span class="text">${auctionBean.auction.auctionCategory}</span></p>
+				        <p><span class="description-title">Auction Postage Details:</span><br/><span class="text">${auctionBean.auction.auctionPostageDetails}</span></p>
+				        <p><span class="description-title">Auction Title:</span><br/><span class="text">${auctionBean.auction.auctionTitle}</span></p>
+				        <p><span class="description-title">Auction Title:</span><br/><span class="text">${auctionBean.auction.auctionTitle}</span></p>  	
+				        <p>Current Bid:<br/><strong> ${auctionBean.highestBid}</strong></p>
+				        <p>Increment:<br/><strong> ${auctionBean.auction.biddingIncrement}</strong></p>
+				        <p>Time Left:<br/><strong> ${auctionBean.timeLeft}</strong></p>
+				         	
+				        <div id="auction-bid" class="input-prepend auction-input">
+						  	<span class="add-on">$</span>
+						  	<input class="span2 form-control bid-input" id="appendedPrependedInput" type="text">
+						  	<button id="auction-bid-button" type="button" class="btn btn-sm btn-primary">Bid</button>
+						</div>
+					</c:otherwise>
+				</c:choose>
 			</div>
   		</div><!-- /end left auction panel -->
   		

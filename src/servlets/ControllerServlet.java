@@ -73,7 +73,7 @@ public class ControllerServlet extends HttpServlet {
 		if(request.getParameter("action") != null){
 			// TODO - what should the default be => 
 			// index.jsp with a jsp guard that redirects to login.jsp
-			String forwardPage = "index.jsp";
+			String forwardPage = "controller?action=searchAuction";
 			
 			String action = request.getParameter("action");
 			//TODO - remove the println

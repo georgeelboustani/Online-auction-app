@@ -67,10 +67,9 @@ public class AuctionDAOImpl implements AuctionDAO {
 			con = DBConnectionFactory.getConnection();
 			
 			PreparedStatement userQuery = con.prepareStatement("SELECT * FROM " + DBUtils.AUCTION_TABLE
-															 + " WHERE ?=?");
-			userQuery.setString(1,DBUtils.AUC_ID);
-			userQuery.setInt(2,auctionId);
-			
+															 + " WHERE "+DBUtils.AUC_ID+"=?");
+			userQuery.setInt(1,auctionId);
+
 			ResultSet rs = userQuery.executeQuery();
 			rs.next();
 			

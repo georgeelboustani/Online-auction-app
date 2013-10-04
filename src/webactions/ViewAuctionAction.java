@@ -65,6 +65,13 @@ public class ViewAuctionAction implements WebActionGP {
 					auctionBean.setTimeLeft(timeLeft/(1000*60));
 					auctionBean.setDisplayError(false);
 					auctionBean.setAuction(auction);
+					
+					if (auction.getAuctionHalt()) {
+						auctionBean.setDisplayError(true);
+						auctionBean.setErrorMessage("This auction has already finished");
+					} else {
+						auctionBean.setDisplayError(false);
+					}	
 				}
 				
 				req.getSession().setAttribute("auctionBean", auctionBean);
