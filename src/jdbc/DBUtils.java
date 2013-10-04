@@ -44,6 +44,7 @@ public class DBUtils {
 	public static String USER_CREDIT_CARD_NUM = "credit_card_num";
 	public static String USER_CHECKSUM = "activate_hashsum";
 	public static String USER_IS_ADMIN = "is_admin";
+	public static String USER_ADDRESS = "address";
 	
 	public static String ADMIN_TABLE = "user_admin";
 	public static String ADMIN_UID = "uid";

@@ -15,8 +15,6 @@ public class WebActionFactory {
 	private WebActionFactory() {
 		// TODO - add more action mappings
 		gpActionMap = new HashMap<String, WebActionGP>();
-		
-		gpActionMap.put("updateUser", new UpdateUserAction());
 		gpActionMap.put("login", new LoginAction());
 		gpActionMap.put("adminLogin", new AuthenticateAdminAction());
 		gpActionMap.put("logout", new LogoutAction());
@@ -35,6 +33,7 @@ public class WebActionFactory {
 		ajaxActionMap.put("addUser", new RegisterUserAction());
 		ajaxActionMap.put("addAuction", new AddAuctionAction());
 		ajaxActionMap.put("placeBid", new PlaceBidAction());
+		ajaxActionMap.put("updateUser", new UpdateUserAction());
 	}
 	
 	// Get the Get or Post action

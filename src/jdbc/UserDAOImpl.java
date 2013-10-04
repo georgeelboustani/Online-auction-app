@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import pagebeans.UpdateBean;
 import exceptions.ServiceLocatorException;
 
 /* Admin Manual insert
@@ -23,8 +24,8 @@ public class UserDAOImpl implements UserDAO {
 			
 			PreparedStatement updateUser = con.prepareStatement("INSERT into " + DBUtils.SCHEMA_NAME + ".user "
 															 + "(username,nickname,first_name,last_name,password,"
-															 + "email,year_of_birth,activate,ban,credit_card_num,activate_hashsum,is_admin)"
-															 + " values (?,?,?,?,?,?,?,?,?,?,?,?)");
+															 + "email,year_of_birth,activate,ban,credit_card_num,activate_hashsum,is_admin,address)"
+															 + " values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			updateUser.setString(1,user.getUsername());
 			updateUser.setString(2,user.getNickname());
 			updateUser.setString(3,user.getFirstName());
@@ -37,6 +38,7 @@ public class UserDAOImpl implements UserDAO {
 			updateUser.setString(10,user.getCreditCardNum());
 			updateUser.setString(11,user.getCheckSum());
 			updateUser.setBoolean(12, false);
+			updateUser.setString(13,user.getAddress());
 			
 			updateUser.executeUpdate();      
 
@@ -223,21 +225,24 @@ public class UserDAOImpl implements UserDAO {
 	
 	
 	@Override
-	public void updateUser(UserDTO user) throws SQLException {
+	public void updateUser(UpdateBean updateBean) throws SQLException {
 		Connection con = null;
 		try {
 			con = DBConnectionFactory.getConnection();
 			
 			PreparedStatement updateUser = con.prepareStatement("UPDATE " + DBUtils.SCHEMA_NAME + ".user "
-															 + "SET nickname=?,first_name=?,last_name=?,password=?,"
-															 + "email=?,year_of_birth=?"
-															 + "WHERE " + DBUtils.USER_ID + " = " + user.getUid());
-			updateUser.setString(1,user.getNickname());
-			updateUser.setString(2,user.getFirstName());
-			updateUser.setString(3,user.getLastName());
-			updateUser.setString(4,DBUtils.calculateMD5(user.getPassword()));
-			updateUser.setString(5,user.getEmail());
-			updateUser.setDate(6,user.getYearOfBirth());
+															 + "SET nickname=?,first_name=?,last_name=?,"
+															 + "password=?,email=?,year_of_birth=?,"
+															 + "credit_card_num=?,address=? "
+															 + "WHERE " + DBUtils.USER_ID + " = " + updateBean.getUid());
+			updateUser.setString(1,updateBean.getNickname());
+			updateUser.setString(2,updateBean.getFirstName());
+			updateUser.setString(3,updateBean.getLastName());
+			updateUser.setString(4,DBUtils.calculateMD5(updateBean.getPassword()));
+			updateUser.setString(5,updateBean.getEmail());
+			updateUser.setDate(6,updateBean.getYearOfBirth());
+			updateUser.setString(7,updateBean.getCreditCardNum());
+			updateUser.setString(8,updateBean.getAddress());
 			
 			updateUser.executeUpdate();      
 
@@ -271,6 +276,7 @@ public class UserDAOImpl implements UserDAO {
 		user.setCreditCardNum(rs.getString(DBUtils.USER_CREDIT_CARD_NUM));
 		user.setCheckSum(rs.getString(DBUtils.USER_CHECKSUM));
 		user.setIsAdmin(rs.getBoolean(DBUtils.USER_IS_ADMIN));
+		user.setAddress(rs.getString(DBUtils.USER_ADDRESS));
 		
 		return user;
 	}

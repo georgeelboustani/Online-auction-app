@@ -74,8 +74,7 @@ public class ControllerServlet extends HttpServlet {
 			String forwardPage = "controller?action=searchAuction";
 			
 			String action = request.getParameter("action");
-			//TODO - remove the println
-			System.out.println(action);
+			
 			
 			WebActionGP webAction = WebActionFactory.getGPAction(action);
 			if (webAction != null) {

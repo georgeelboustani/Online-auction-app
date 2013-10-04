@@ -24,12 +24,14 @@
 		<!-- Navbar -->
 		<jsp:include page="navbar.jsp"/>
 		
-		  	<form class="form-profile" id="regoForm" method="post" action="">
+		  	<form class="form-profile" id="profileForm" method="post" action="">
 		    	<div class="col-md-4 well form-profile-block">
 			    	<div class="formProfileBlock" ><span id="formProfileHeader" class="form-profile-heading-main">Le Profile</span><button id="profileUpdate" type="submit" class="btn btn-primary btn-block">Update</button></div>
 			        <br/>
 			        <p>User Name: <strong>${userDTO.username}</strong></p>
-			        <p>Email Address: <strong>${userDTO.email}</strong></p>
+			        <input id="formProfileEmail" name="formProfileEmail" type="text" class="form-control" value="${userDTO.email}" placeholder="Email" autofocus />
+			        <input id="formProfilePassword" name="formProfilePassword" type="text" class="form-control"  placeholder="Password" autofocus />
+			        <input id="formProfileConfirmPassword" name="formProfileConfirmPassword" type="text" class="form-control" placeholder="Confirm Password" autofocus />
 		        </div>
 		        <div class="col-md-4 well">
 			        <h4 class="form-profile-heading">Personal Info</h4>
@@ -43,7 +45,7 @@
 		        <div class="col-md-4 well">
 			        <h4 class="form-profile-heading">Credit Details</h4>
 			        <br/>
-			        <input id="formProfileCreditCardNo" name="formProfileCreditCardNo" type="text" class="form-control" value="" placeholder="Credit Card No." autofocus />
+			        <input id="formProfileCreditCardNo" name="formProfileCreditCardNo" type="text" class="form-control" value="${userDTO.creditCardNum}" placeholder="Credit Card No." autofocus />
 			        
 			        <div id="formProfileAlert"></div>
 			      	
@@ -59,9 +61,11 @@
 	<script src="${pageContext.request.contextPath}/js/jquery-1.10.2.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap-switch.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/additional-methods.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.3.custom.min.js"></script>
 	
 	<!-- custom scripts -->
-	
+	<script src="${pageContext.request.contextPath}/js/custom/profile.js"></script>
 </body>
 </html>

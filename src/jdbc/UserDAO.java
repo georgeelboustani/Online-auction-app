@@ -3,11 +3,13 @@ package jdbc;
 import java.sql.SQLException;
 import java.util.List;
 
+import pagebeans.UpdateBean;
+
 public interface UserDAO {
 	
 	void addUser(UserDTO user) throws SQLException;
 	
-	void updateUser(UserDTO user) throws SQLException;
+	void updateUser(UpdateBean updateBean) throws SQLException;
 	
 	void banUser(int userId) throws SQLException;
 	
