@@ -50,6 +50,18 @@ public class ViewAuctionAction implements WebActionGP {
 						timeLeft = closeTime.getTime() - currentTime.getTime();
 					}
 					
+					AuctionBidDAO bidDao = new AuctionBidDAOImpl();
+					try {
+						AuctionBidDTO bid = bidDao.getHighestBid(auction.getAid());
+						if (bid == null) {
+							auctionBean.setHighestBid(auction.getBiddingStartPrice());
+						} else {
+							auctionBean.setHighestBid(bid.getBidAmount());
+						}
+					} catch (SQLException e) {
+						auctionBean.setHighestBid(auction.getBiddingStartPrice());
+					}
+					
 					auctionBean.setTimeLeft(timeLeft/(1000*60));
 					auctionBean.setDisplayError(false);
 					auctionBean.setAuction(auction);

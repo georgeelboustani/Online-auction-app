@@ -4,7 +4,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="auctionDTO" class="jdbc.AuctionDTO" scope="session" />    
-<jsp:useBean id="searchBean" class="pagebeans.SearchBean" scope="session" />
+<jsp:useBean id="auctionBean" class="pagebeans.AuctionBean" scope="session" />  
 	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -33,10 +33,15 @@
 		    </div>
 		    <div class="col-md-9">
 				<p><h3>Title Title Title</h3></p>
-		        <p><span class="description-title">Description:</span><br/><span class="text">Description Description Description</span></p>
-		        <p><span class="description-title">Postage:</span><br/><span class="text">Postage Postage Postage</span></p>   	
-		        <p>Current Bid:<br/><strong>100.00</strong></p>
-		        <p>Time Left:<br/><strong>15 mins</strong></p>
+		        <p><span class="description-title">Auction Title:</span><br/><span class="text">${auctionBean.auction.auctionTitle}</span></p>
+		        <p><span class="description-title">Auction Description:</span><br/><span class="text">${auctionBean.auction.auctionDescription}</span></p>
+		        <p><span class="description-title">Auction Category:</span><br/><span class="text">${auctionBean.auction.auctionCategory}</span></p>
+		        <p><span class="description-title">Auction Postage Details:</span><br/><span class="text">${auctionBean.auction.auctionPostageDetails}</span></p>
+		        <p><span class="description-title">Auction Title:</span><br/><span class="text">${auctionBean.auction.auctionTitle}</span></p>
+		        <p><span class="description-title">Auction Title:</span><br/><span class="text">${auctionBean.auction.auctionTitle}</span></p>  	
+		        <p>Current Bid:<br/><strong> ${auctionBean.highestBid}</strong></p>
+		        <p>Increment:<br/><strong> ${auctionBean.auction.biddingIncrement}</strong></p>
+		        <p>Time Left:<br/><strong> ${auctionBean.timeLeft}</strong></p>
 		         	
 		        <div id="auction-bid" class="input-prepend auction-input">
 				  	<span class="add-on">$</span>

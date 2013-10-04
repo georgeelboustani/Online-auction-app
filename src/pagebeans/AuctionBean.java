@@ -8,10 +8,17 @@ public class AuctionBean implements Serializable{
 	private static final long serialVersionUID = 3L;
 	
 	private AuctionDTO auction;
+	private double highestBid;
 	private long timeLeft;
 	private boolean displayError;
 	private String errorMessage;
 	
+	public double getHighestBid() {
+		return highestBid;
+	}
+	public void setHighestBid(double highestBid) {
+		this.highestBid = highestBid;
+	}
 	public long getTimeLeft() {
 		return timeLeft;
 	}

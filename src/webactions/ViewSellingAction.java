@@ -52,12 +52,12 @@ public class ViewSellingAction implements WebActionGP {
 			try {
 				AuctionBidDTO bid = bidDao.getHighestBid(auc.getAid());
 				if (bid == null) {
-					bids.add((double) 0);
+					bids.add(auc.getBiddingStartPrice());
 				} else {
 					bids.add(bid.getBidAmount());
 				}
 			} catch (SQLException e) {
-				bids.add((double) 0);
+				bids.add(auc.getBiddingStartPrice());
 			}
 		}
 		

@@ -13,7 +13,7 @@
           <li class="active">
           	<a href="${pageContext.request.contextPath}/index.jsp" class="dropdown-toggle" data-toggle="dropdown">Auctions <b class="caret"></b></a>
 		<ul class="dropdown-menu">
-            <li><a href="${pageContext.request.contextPath}/index.jsp">All Auctions</a></li>
+            <li><a href="${pageContext.request.contextPath}/controller?action=searchAuction">All Auctions</a></li>
             <li><a href="controller?action=viewMyBid">My Bids</a></li>
             <li><a href="controller?action=viewSelling">Selling</a></li>
             <li class="divider"></li>
