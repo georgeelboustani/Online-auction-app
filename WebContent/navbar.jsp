@@ -6,14 +6,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="${pageContext.request.contextPath}">RollBack Auctions</a>
+          <a class="navbar-brand" href="${pageContext.request.contextPath}/controller?action=searchAuction">RollBack Auctions</a>
         </div>
           <ul class="nav navbar-nav navbar-right">
           	
           <li class="active">
           	<a href="${pageContext.request.contextPath}/index.jsp" class="dropdown-toggle" data-toggle="dropdown">Auctions <b class="caret"></b></a>
 		<ul class="dropdown-menu">
-            <li><a href="${pageContext.request.contextPath}/index.jsp">All Auctions</a></li>
+            <li><a href="${pageContext.request.contextPath}/controller?action=searchAuction">All Auctions</a></li>
             <li><a href="controller?action=viewMyBid">My Bids</a></li>
             <li><a href="controller?action=viewSelling">Selling</a></li>
             <li class="divider"></li>
