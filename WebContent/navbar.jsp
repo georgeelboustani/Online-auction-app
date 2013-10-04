@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="${pageContext.request.contextPath}">RollBack Auctions</a>
+          <a class="navbar-brand" href="${pageContext.request.contextPath}/controller?action=searchAuction">RollBack Auctions</a>
         </div>
           <ul class="nav navbar-nav navbar-right">
           	
