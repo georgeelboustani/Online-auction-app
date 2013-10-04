@@ -26,6 +26,7 @@ public class UserDTO {
 	private String creditCardNum;
 	private String activateChecksum;
 	private boolean isAdmin = false;
+	private String address;
 	
 	public boolean getIsAdmin() {
 		return isAdmin;
@@ -139,4 +140,12 @@ public class UserDTO {
 		this.activateChecksum = activateChecksum;
 	}
 	
+	@NotNull(message = "CreditCardNum is compulsory")
+	@NotBlank(message = "CreditCardNum is compulsory")
+	public String getAddress(){
+		return this.address;
+	}
+	public void setAddress(String address){
+		this.address = address;
+	}
 }

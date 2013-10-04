@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="userDTO" class="jdbc.UserDTO" scope="session" />    
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,7 +13,10 @@
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="${pageContext.request.contextPath}/css/signinandrego.css" rel="stylesheet" media="screen">
     <link href="${pageContext.request.contextPath}/css/jquery-ui-1.10.3.custom.css" rel="stylesheet" media="screen">
+    <link href="${pageContext.request.contextPath}/css/custom/index.css" rel="stylesheet" media="screen">
     
+    <!-- custom -->
+    <link href="${pageContext.request.contextPath}/css/custom/profile.css" rel="stylesheet" media="screen">
     <title>RollBack: Profile Page</title>
 </head>
 <body>
@@ -18,15 +24,32 @@
 		<!-- Navbar -->
 		<jsp:include page="navbar.jsp"/>
 		
-  	
-		<!-- Main component for a primary marketing message or call to action -->
-	    <div class="jumbotron">
-	      <h1>Navbar example</h1>
-	      <p>This example is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-	      <p>
-	        <a class="btn btn-lg btn-primary" href="../../components/#navbar">View navbar docs &raquo;</a>
-	      </p>
-	    </div>
+		  	<form class="form-profile" id="regoForm" method="post" action="">
+		    	<div class="col-md-4 well form-profile-block">
+			    	<div class="formProfileBlock" ><span id="formProfileHeader" class="form-profile-heading-main">Le Profile</span><button id="profileUpdate" type="submit" class="btn btn-primary btn-block">Update</button></div>
+			        <br/>
+			        <p>User Name: <strong>${userDTO.username}</strong></p>
+			        <p>Email Address: <strong>${userDTO.email}</strong></p>
+		        </div>
+		        <div class="col-md-4 well">
+			        <h4 class="form-profile-heading">Personal Info</h4>
+			        <br/>
+			        <input id="formProfileNickName" name="formProfileNickName" type="text" class="form-control" value="${userDTO.nickname}" placeholder="Nick Name" autofocus />
+			        <input id="formProfileFirstName" name="formProfileFirstName" type="text" class="form-control" value="${userDTO.firstName}" placeholder="First Name" autofocus />
+			        <input id="formProfileLastName" name="formProfileLastName" type="text" class="form-control" value="${userDTO.lastName}" placeholder="Last Name" autofocus />
+			        <input id="formProfileBirthDate" name="formProfileBirthDate" type="text" class="form-control" value="${userDTO.yearOfBirth}" placeholder="BirthDate" data-date-format="mm/dd/yy" id="dp" style="width:150px" />
+			        <input id="formProfileAddress" name="formProfileAddress" type="text" class="form-control" value="${userDTO.address}" placeholder="Address" autofocus />
+		        </div>
+		        <div class="col-md-4 well">
+			        <h4 class="form-profile-heading">Credit Details</h4>
+			        <br/>
+			        <input id="formProfileCreditCardNo" name="formProfileCreditCardNo" type="text" class="form-control" value="" placeholder="Credit Card No." autofocus />
+			        
+			        <div id="formProfileAlert"></div>
+			      	
+			    </div>
+		     </form>
+  		
 	</div>
 	
 	

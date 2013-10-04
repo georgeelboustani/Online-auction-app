@@ -51,6 +51,7 @@ public class RegisterUserAction implements WebActionAjax {
 		user.setNickname(regoData.getNickName());
 		user.setPassword(regoData.getPassword());
 		user.setUsername(regoData.getUsername());
+		
 		try{
 			SimpleDateFormat DateFormat = new SimpleDateFormat("dd/mm/yyyy");
 			Date parsed = DateFormat.parse(regoData.getBirthDate());

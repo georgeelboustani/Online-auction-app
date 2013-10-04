@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.0.7
 -- Dumped by pg_dump version 9.0.7
--- Started on 2013-10-03 13:33:53 SGT
+-- Started on 2013-10-04 20:00:49 SGT
 
 SET statement_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -141,7 +141,8 @@ CREATE TABLE "user" (
     ban boolean DEFAULT false NOT NULL,
     credit_card_num character varying(32),
     is_admin boolean DEFAULT false NOT NULL,
-    activate_hashsum character varying(128)
+    activate_hashsum character varying(128),
+    address character varying(255)
 );
 
 
@@ -303,7 +304,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2013-10-03 13:33:53 SGT
+-- Completed on 2013-10-04 20:00:49 SGT
 
 --
 -- PostgreSQL database dump complete

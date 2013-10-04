@@ -24,8 +24,8 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="#">User Profile</a></li>
-              <li><a href="#">Change Password</a></li>
+              <li><a href="${pageContext.request.contextPath}/controller?action=viewProfile">User Profile</a></li>
+              <li><a href="${pageContext.request.contextPath}/controller?action=changePassword">Change Password</a></li>
             </ul>
           </li>
           <li><a href="${pageContext.request.contextPath}/controller?action=logout">Logout</a></li>
