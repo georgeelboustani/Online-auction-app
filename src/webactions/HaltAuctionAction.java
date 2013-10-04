@@ -25,6 +25,8 @@ public class HaltAuctionAction implements WebActionGP {
 			HttpServletResponse res, Logger logger) {
 
 		UserDAO userDao = new UserDAOImpl();
+		AuctionDAO aucDao = new AuctionDAOImpl();
+		
 		
 		int auctionId = -1;
 		try {
@@ -39,13 +41,11 @@ public class HaltAuctionAction implements WebActionGP {
 				reasons = "No reason";
 			}
 			
-			int userId = LoginUtils.getUserId(req);
-			
 			try {
+				AuctionDTO auction = aucDao.getAuctionById(auctionId);
+				int userId = auction.getAuctionOwnerId();
 				UserDTO user = userDao.getUserById(userId);
-				
 				AuctionDAO auctionDao = new AuctionDAOImpl();
-				AuctionDTO auction = auctionDao.getAuctionById(auctionId);
 				
 				auctionDao.closeAuction(auctionId);
 				
