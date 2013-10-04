@@ -4,12 +4,22 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Logger;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+
 import model.ForAuction;
+
 import com.google.gson.Gson;
+
 import jdbc.AuctionDAO;
 import jdbc.AuctionDAOImpl;
 import jdbc.AuctionDTO;
@@ -79,22 +89,39 @@ public class AddAuctionAction implements WebActionAjax {
 				auc.setAuctionStartTime(startTime);
 				auc.setAuctionCloseTime(endTime);
 				auc.setAuctionHalt(false);
+
+				ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+				Validator validator = factory.getValidator();
+				Set<ConstraintViolation<AuctionDTO>> violations = validator.validate(auc);
 				
-				AuctionDAO aucdao = new AuctionDAOImpl();
-				try {
-					aucdao.addAuction(auc);
-				} catch (SQLException e) {
-					e.printStackTrace();
-					
-					// TODO - sort out handling of this exception
+				if(violations.size() > 0){
+					//Returns error message for violations detected
+					StringBuffer message = new StringBuffer();
+					message.append("Could not process auction, you had invalid inputs of: ");
+					Iterator<ConstraintViolation<AuctionDTO>> it = violations.iterator();
+					while(it.hasNext()){
+						message.append("<br/>" + it.next().getMessage());
+					}
 					resultMap.put("success", false);
-					resultMap.put("message", "SQL exception: "+e.getSQLState());
-					resultMap.put("redirect", "");
+					resultMap.put("message", message.toString());
+					resultMap.put("redirect", "controller?action=viewSelling");
+				}else{
+					AuctionDAO aucdao = new AuctionDAOImpl();
+					try {
+						aucdao.addAuction(auc);
+					} catch (SQLException e) {
+						e.printStackTrace();
+						
+						// TODO - sort out handling of this exception
+						resultMap.put("success", false);
+						resultMap.put("message", "SQL exception: "+e.getSQLState());
+						resultMap.put("redirect", "");
+					}
+					
+					resultMap.put("success", true);
+					resultMap.put("message", "Your Auction has been Submitted!!");
+					resultMap.put("redirect", "controller?action=viewSelling");
 				}
-				
-				resultMap.put("success", true);
-				resultMap.put("message", "Your Auction has been Submitted!!");
-				resultMap.put("redirect", "controller?action=viewSelling");
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
