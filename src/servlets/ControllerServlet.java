@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +35,7 @@ import exceptions.ServiceLocatorException;
 @WebServlet(name="ControllerServlet",urlPatterns={"/ControllerServlet"})
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 	final Logger logger = Logger.getLogger(this.getClass().getName());
 	
 	private AuctionMonitorPool auctionMonitor;

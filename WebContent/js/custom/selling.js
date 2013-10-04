@@ -64,7 +64,8 @@ $().ready( function(){
 			var auction = new Object();
 			auction.title = $('#formTitle').val();
 			auction.category = $('#formCategory').val();
-//			auction.image = $('#formImage').val(); DO THIS LATER
+			auction.image = $('#formImage').val(); //DO THIS LATER
+			
 			auction.itemDesc = $('#formItemDescription').val();
 			auction.postageDesc = $('#formPostageDescription').val();
 			auction.startPrice = $('#formStartPrice').val();

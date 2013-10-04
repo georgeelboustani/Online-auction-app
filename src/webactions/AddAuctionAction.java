@@ -1,5 +1,8 @@
 package webactions;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Calendar;
@@ -35,12 +38,11 @@ public class AddAuctionAction implements WebActionAjax {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
 		String jsonData = req.getParameter("data");
+
 		Gson gson = new Gson();
 		ForAuction aucData = gson.fromJson(jsonData, ForAuction.class);
 	    
 		try {
-			// TODO - prices cant be negative, increment must be greater then 0, reserve not zero. - done
-			// TODO - closing time > current time (> 3mins and < 60mins), auction starts when user clicks button - done
 			UserDAO userDao = new UserDAOImpl();
 			int userId = LoginUtils.getUserId(req);
 			UserDTO user = userDao.getUserById(userId);
@@ -64,20 +66,19 @@ public class AddAuctionAction implements WebActionAjax {
 				
 			} else {
 				
-				
 				AuctionDTO auc = new AuctionDTO();
 				auc.setAuctionOwnerId(userId);
 				auc.setAuctionTitle(aucData.getTitle());
 				auc.setAuctionCategory(aucData.getCategory());
+				
 				auc.setAuctionImage(aucData.getImage());
+				
 				auc.setAuctionDescription(aucData.getItemDesc());
 				auc.setAuctionPostageDetails(aucData.getPostageDesc());
 				auc.setBiddingStartPrice(Double.parseDouble(aucData.getStartPrice()));
 				auc.setAuctionReservePrice(Double.parseDouble(aucData.getReservePrice()));
 				auc.setBiddingIncrement(Double.parseDouble(aucData.getMinBid()));
 				
-				//TODO: this image thing later
-				auc.setAuctionImage("blahblah");
 				
 				java.util.Date date= new java.util.Date();
 				Timestamp startTime = new Timestamp(date.getTime());
