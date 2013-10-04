@@ -6,7 +6,7 @@ $().ready( function(){
 function doBid(aid, current_bid, min_bid_amt){
 	var value = $("#bid_input_"+aid).val();
 	var isValid = value.search(/^\$?\d+(,\d{3})*(\.\d*)?$/) >= 0;
-	var bidDifference = current_bid-value;
+	var bidDifference = current_bid - value;
 	
 	if(isValid == false){
 		$("<div>Error: Invalid format of money <br/>or empty</div>").dialog({
@@ -18,11 +18,15 @@ function doBid(aid, current_bid, min_bid_amt){
 			title: "Bid Warning",
 			modal: true
 		});
-	}else if(bidDifference < min_bid_amt && current_bid != 0.0){	
-		$("<div>Error: Bid does not meet the minimum amount of $"+min_bid_amt+"</div>").dialog({
-			title: "Bid Warning",
-			modal: true
-		});
+	}else if(current_bid > 0 && bidDifference > 0){ 
+		alert("hello");
+		if(bidDifference < min_bid_amt){
+			alert("diff: " + bidDifference);
+			$("<div>Error: Bid does not meet the minimum increase of $"+min_bid_amt+"</div>").dialog({
+				title: "Bid Warning",
+				modal: true
+			});
+		}
 	}else{
 		var bid = new Object();
 		bid.aid = aid;

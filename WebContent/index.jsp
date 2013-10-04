@@ -117,6 +117,7 @@
 										  	<input class="span2 form-control bid-input" id="bid_input_${auction.aid}" type="text" value="${suggestedBid}">
 										  	<button id="auction-bid-button" type="button" class="btn btn-sm btn-primary" onclick="doBid(${auction.aid}, ${searchBean.bids[count]}, ${auction.biddingIncrement}); return false;">Bid</button>
 										</div>
+										<div id="bidAlert_${auction.aid}"></div>
 				            		</p>
 				            		<p>
 				            			<div class="input-prepend auction-input">
@@ -124,7 +125,7 @@
 										</div>
 				            		</p>
 								</div>
-								<div id="bidAlert_${auction.aid}"></div>
+								
 				            </a>
 			            	<c:set var="count" value="${count + 1}" scope="page"/>
 						</c:forEach>
